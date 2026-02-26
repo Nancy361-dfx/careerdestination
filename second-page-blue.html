@@ -3,198 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recruitment Technology - Blue Theme</title>
+  <title>Brand Partners - Motion Logo Section</title>
   <style>
     :root {
-      --page-bg: #e9e9ec;
-      --section-bg: #ffffff;
-      --heading: #071a39;
-      --body: #5e6d82;
-      --blue-50: #eef4ff;
-      --blue-100: #dce9ff;
-      --blue-500: #2d66ad;
-      --blue-600: #1f5598;
-      --radius: 2px;
+      --page-bg: #f2f2f2;
+      --line: #e7cfbd;
+      --title: #06142e;
+      --card-bg: #ffffff;
+      --card-border: #f1d6c5;
+      --text: #1f314f;
+      --accent: #2d66ad;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--page-bg);
-      color: var(--heading);
-    }
-
-    .frame {
-      max-width: 1365px;
-      margin: 0 auto;
-      padding: 36px 30px;
+      color: var(--text);
     }
 
     .section {
-      background: var(--section-bg);
-      padding: 58px 46px;
+      max-width: 1365px;
+      margin: 32px auto;
+      padding: 12px 0 22px;
+      overflow: hidden;
     }
 
-    .grid {
+    .headline-wrap {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-      align-items: start;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin: 0 26px 26px;
     }
 
-    .hero-image {
-      width: 100%;
-      aspect-ratio: 1 / 1.07;
-      object-fit: cover;
-      display: block;
+    .line {
+      height: 1px;
+      background: var(--line);
     }
 
-    .chip {
-      display: inline-block;
-      padding: 6px 10px;
-      background: var(--blue-100);
-      color: #345679;
-      border-radius: 3px;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    h1 {
+    .title {
       margin: 0;
-      font-size: clamp(28px, 3.1vw, 52px);
-      line-height: 1.16;
-      letter-spacing: -0.4px;
-      max-width: 620px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--title);
+      text-align: center;
+      white-space: nowrap;
     }
 
-    .intro {
-      margin: 14px 0 16px;
-      color: var(--body);
-      font-size: clamp(14px, 1.18vw, 22px);
-      line-height: 1.62;
-      max-width: 620px;
+    .marquee {
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     }
 
-    .feature-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 10px;
+    .track {
+      display: flex;
+      gap: 18px;
+      width: max-content;
+      padding: 8px 0;
+      animation: slideLeft 22s linear infinite;
     }
 
-    .feature {
-      background: #f3f7ff;
-      padding: 14px 14px;
-      display: grid;
-      grid-template-columns: 52px 1fr;
-      gap: 12px;
-      align-items: start;
+    .track.reverse {
+      animation-direction: reverse;
+      animation-duration: 24s;
+      margin-top: 16px;
     }
 
-    .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
-      color: #fff;
-      display: inline-flex;
+    .logo-card {
+      width: 188px;
+      height: 64px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 1px;
+      border-radius: 2px;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      padding: 0 8px;
       flex: 0 0 auto;
     }
 
-    .feature h3 {
+    .logo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(12, 32, 74, 0.08);
+      border-color: #d9b59d;
+    }
+
+    .logo-text {
       margin: 0;
-      font-size: clamp(20px, 1.3vw, 26px);
-      line-height: 1.24;
+      text-align: center;
+      font-size: 27px;
       font-weight: 700;
-      color: #071a39;
+      letter-spacing: .2px;
+      color: var(--accent);
+      line-height: 1;
     }
 
-    .feature p {
-      margin: 6px 0 0;
-      font-size: clamp(14px, 1.06vw, 19px);
-      line-height: 1.55;
-      color: var(--body);
-      max-width: 500px;
+    .logo-text.small {
+      font-size: 21px;
+      font-weight: 700;
     }
 
-    @media (max-width: 980px) {
-      .section { padding: 28px 18px; }
-      .grid { grid-template-columns: 1fr; gap: 24px; }
+    .logo-text.mini {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    @keyframes slideLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 9px)); }
+    }
+
+    @media (max-width: 900px) {
+      .title { font-size: 15px; }
+      .logo-card { width: 160px; height: 56px; }
+      .logo-text { font-size: 22px; }
+      .logo-text.small { font-size: 17px; }
+      .logo-text.mini { font-size: 15px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .track,
+      .track.reverse {
+        animation: none;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <section class="section">
-      <div class="grid">
-        <div>
-          <img
-            class="hero-image"
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-            alt="Team collaborating in office"
-          />
-        </div>
+  <section class="section">
+    <div class="headline-wrap">
+      <span class="line" aria-hidden="true"></span>
+      <h2 class="title">More Than 5K+ Brands With Work Recrute</h2>
+      <span class="line" aria-hidden="true"></span>
+    </div>
 
-        <div>
-          <span class="chip">Recruitment Technologies</span>
-          <h1>Solving Recruitment Using Technology</h1>
-          <p class="intro">
-            Whether you are seeking temporary assignments, placements, or executive-level positions,
-            our curated
-          </p>
+    <div class="marquee" aria-label="Hiring partner logos moving carousel">
+      <div class="track">
+        <article class="logo-card"><p class="logo-text mini">JINDAL SAW</p></article>
+        <article class="logo-card"><p class="logo-text small">SONALIKA</p></article>
+        <article class="logo-card"><p class="logo-text mini">IUP Jindal</p></article>
+        <article class="logo-card"><p class="logo-text small">DEE</p></article>
+        <article class="logo-card"><p class="logo-text mini">RATNAMANI</p></article>
+        <article class="logo-card"><p class="logo-text small">TAFE</p></article>
+        <article class="logo-card"><p class="logo-text small">TVS</p></article>
+        <article class="logo-card"><p class="logo-text mini">Hunting JV</p></article>
+        <article class="logo-card"><p class="logo-text mini">Motherson</p></article>
+        <article class="logo-card"><p class="logo-text mini">Knorr Bremse</p></article>
 
-          <ul class="feature-list">
-            <li class="feature">
-              <span class="icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="4" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M4 10H20M9 17V20M15 17V20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Sourcing the Best</h3>
-                <p>Stay tuned for regular updates and valuable insights from our team of staffing experts.</p>
-              </div>
-            </li>
-
-            <li class="feature">
-              <span class="icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M12 4V7M12 17V20M4 12H7M17 12H20M6.4 6.4L8.5 8.5M15.5 15.5L17.6 17.6M17.6 6.4L15.5 8.5M8.5 15.5L6.4 17.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Volume Hiring</h3>
-                <p>Remember to keep your blog content informative, engaging, and relevant to your target audience</p>
-              </div>
-            </li>
-
-            <li class="feature">
-              <span class="icon" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="8" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6"/>
-                  <circle cx="16" cy="9" r="2.3" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M3.8 17.5C4.4 15.4 6.1 14 8 14C9.9 14 11.6 15.4 12.2 17.5M11.8 17.5C12.4 15.4 14.1 14 16 14C17.9 14 19.6 15.4 20.2 17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <div>
-                <h3>Partners in Team Building</h3>
-                <p>This will help drive traffic to your website & establish your agency as a trusted authority</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <article class="logo-card"><p class="logo-text mini">JINDAL SAW</p></article>
+        <article class="logo-card"><p class="logo-text small">SONALIKA</p></article>
+        <article class="logo-card"><p class="logo-text mini">IUP Jindal</p></article>
+        <article class="logo-card"><p class="logo-text small">DEE</p></article>
+        <article class="logo-card"><p class="logo-text mini">RATNAMANI</p></article>
+        <article class="logo-card"><p class="logo-text small">TAFE</p></article>
+        <article class="logo-card"><p class="logo-text small">TVS</p></article>
+        <article class="logo-card"><p class="logo-text mini">Hunting JV</p></article>
+        <article class="logo-card"><p class="logo-text mini">Motherson</p></article>
+        <article class="logo-card"><p class="logo-text mini">Knorr Bremse</p></article>
       </div>
-    </section>
-  </div>
+
+      <div class="track reverse">
+        <article class="logo-card"><p class="logo-text mini">CAMOZZI</p></article>
+        <article class="logo-card"><p class="logo-text mini">Windlas</p></article>
+        <article class="logo-card"><p class="logo-text mini">DS Group</p></article>
+        <article class="logo-card"><p class="logo-text small">Supreme</p></article>
+        <article class="logo-card"><p class="logo-text mini">MATSUI</p></article>
+        <article class="logo-card"><p class="logo-text small">TAO</p></article>
+        <article class="logo-card"><p class="logo-text mini">CHEMCON</p></article>
+        <article class="logo-card"><p class="logo-text mini">Synergy Steel</p></article>
+        <article class="logo-card"><p class="logo-text mini">Sapphire</p></article>
+        <article class="logo-card"><p class="logo-text mini">BigBasket</p></article>
+
+        <article class="logo-card"><p class="logo-text mini">CAMOZZI</p></article>
+        <article class="logo-card"><p class="logo-text mini">Windlas</p></article>
+        <article class="logo-card"><p class="logo-text mini">DS Group</p></article>
+        <article class="logo-card"><p class="logo-text small">Supreme</p></article>
+        <article class="logo-card"><p class="logo-text mini">MATSUI</p></article>
+        <article class="logo-card"><p class="logo-text small">TAO</p></article>
+        <article class="logo-card"><p class="logo-text mini">CHEMCON</p></article>
+        <article class="logo-card"><p class="logo-text mini">Synergy Steel</p></article>
+        <article class="logo-card"><p class="logo-text mini">Sapphire</p></article>
+        <article class="logo-card"><p class="logo-text mini">BigBasket</p></article>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
