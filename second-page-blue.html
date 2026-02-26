@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Section - Blue Variant</title>
+  <title>Our Service - White Theme</title>
   <style>
     :root {
-      --bg: #f5f5f5;
-      --primary-blue: #2a66a3;
-      --primary-blue-dark: #1b4f84;
-      --text-heading: #071b3a;
-      --text-body: #5f6f85;
-      --chip-bg: #e6eaee;
-      --icon-bg: #e6e6e6;
-      --card-radius: 6px;
+      --section-bg: #ffffff;
+      --chip-bg: #eef2f7;
+      --chip-text: #2d4f79;
+      --heading: #0b1f3f;
+      --body: #5f6f85;
+      --button: #2b6cb0;
+      --button-hover: #1f548b;
+      --radius: 6px;
     }
 
     * {
@@ -22,275 +22,147 @@
 
     body {
       margin: 0;
-      background: var(--bg);
       font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text-heading);
+      background: #f6f8fb;
+      color: var(--heading);
     }
 
-    .section {
-      max-width: 1280px;
-      margin: 28px auto;
-      padding: 8px 18px;
+    .service-section {
+      background: var(--section-bg);
+      padding: 58px 24px 56px;
+      width: min(100%, 1280px);
+      margin: 0 auto;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 560px 1fr;
-      gap: 48px;
+    .header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .chip {
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
+      background: var(--chip-bg);
+      color: var(--chip-text);
+      padding: 7px 13px;
+      border-radius: 5px;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 600;
+      margin-bottom: 14px;
     }
 
-    .visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .stack {
-      display: grid;
-      gap: 22px;
-    }
-
-    .panel {
-      border-radius: var(--card-radius);
-      overflow: hidden;
+    .header h2 {
       margin: 0;
-      background: #ffffff;
+      font-size: clamp(30px, 3.6vw, 50px);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      font-weight: 700;
     }
 
-    .panel img {
+    .header p {
+      margin: 18px auto 0;
+      max-width: 700px;
+      font-size: clamp(15px, 1.6vw, 24px);
+      line-height: 1.6;
+      color: var(--body);
+      font-weight: 400;
+    }
+
+    .cards {
+      margin: 48px auto 0;
+      max-width: 1140px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      margin: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #f9fbff;
+      min-height: 236px;
+    }
+
+    .card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .left-photo {
-      min-height: 530px;
-    }
-
-    .right-photo {
-      min-height: 385px;
-    }
-
-    .stat-card {
-      min-height: 146px;
-      background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
-      color: #fff;
+    .cta-wrap {
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      padding: 26px 26px;
-    }
-
-    .stat-card h3 {
-      margin: 0;
-      font-size: 49px;
-      line-height: 1;
-      letter-spacing: -0.6px;
-      font-weight: 700;
-    }
-
-    .stat-card p {
-      margin: 12px 0 0;
-      font-size: 34px;
-      line-height: 1.15;
-      font-weight: 500;
-    }
-
-    .content .chip {
-      display: inline-flex;
-      padding: 9px 14px;
-      border-radius: 6px;
-      background: var(--chip-bg);
-      font-size: 25px;
-      line-height: 1;
-      color: #1f3c64;
-      margin-bottom: 20px;
-      font-weight: 500;
-    }
-
-    .content h1 {
-      margin: 0;
-      font-size: clamp(44px, 5vw, 62px);
-      line-height: 1.16;
-      letter-spacing: -0.8px;
-      max-width: 720px;
-      font-weight: 700;
-    }
-
-    .content .desc {
-      margin: 26px 0 26px;
-      font-size: 38px;
-      line-height: 1.45;
-      color: var(--text-body);
-      max-width: 760px;
-      font-weight: 400;
-    }
-
-    .feature-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 18px;
-      max-width: 840px;
-    }
-
-    .feature {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-
-    .icon-wrap {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--icon-bg);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary-blue);
-      margin-top: 2px;
-    }
-
-    .feature h4 {
-      margin: 0;
-      font-size: 43px;
-      line-height: 1.2;
-      letter-spacing: -0.3px;
-      font-weight: 700;
-    }
-
-    .feature p {
-      margin: 8px 0 0;
-      font-size: 38px;
-      line-height: 1.38;
-      color: var(--text-body);
-      font-weight: 400;
+      margin-top: 38px;
     }
 
     .cta {
-      margin-top: 24px;
       border: none;
-      border-radius: 6px;
-      padding: 13px 21px;
-      font-size: 30px;
-      font-weight: 600;
-      line-height: 1;
+      background: var(--button);
       color: #fff;
-      background: var(--primary-blue);
+      border-radius: 5px;
+      padding: 14px 24px;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 700;
       cursor: pointer;
+      transition: background-color 0.2s ease;
     }
 
     .cta:hover {
-      background: var(--primary-blue-dark);
+      background: var(--button-hover);
     }
 
-    @media (max-width: 1200px) {
-      .layout {
+    @media (max-width: 900px) {
+      .service-section {
+        padding: 48px 18px;
+      }
+
+      .cards {
         grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 34px;
       }
 
-      .content h1,
-      .content .desc,
-      .feature-list {
-        max-width: none;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .visual {
-        grid-template-columns: 1fr;
+      .card {
+        min-height: 240px;
       }
 
-      .left-photo,
-      .right-photo,
-      .stat-card {
-        min-height: 250px;
-      }
-
-      .feature {
-        grid-template-columns: 50px 1fr;
-      }
-
-      .icon-wrap {
-        width: 50px;
-        height: 50px;
+      .cta-wrap {
+        margin-top: 28px;
       }
     }
   </style>
 </head>
 <body>
-  <section class="section">
-    <div class="layout">
-      <div class="visual">
-        <div class="stack">
-          <figure class="panel left-photo">
-            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=820&q=80" alt="Office team collaboration" />
-          </figure>
+  <section class="service-section">
+    <header class="header">
+      <span class="chip">Our Service</span>
+      <h2>Tailored Solutions for Your Hiring Needs</h2>
+      <p>
+        With our proven track record and commitment to excellence, we're here to support your
+        organization's growth and help you achieve your hiring goals.
+      </p>
+    </header>
 
-          <article class="panel stat-card">
-            <h3>16+</h3>
-            <p>Years of Experienced</p>
-          </article>
-        </div>
+    <div class="cards">
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Team brainstorming around a table" />
+      </figure>
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Team discussing project plans" />
+      </figure>
+      <figure class="card">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=900&q=80" alt="Business meeting with documents" />
+      </figure>
+    </div>
 
-        <div class="stack">
-          <article class="panel stat-card">
-            <h3>1590+</h3>
-            <p>Happy Clients</p>
-          </article>
-
-          <figure class="panel right-photo">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=820&q=80" alt="Professional woman in office" />
-          </figure>
-        </div>
-      </div>
-
-      <div class="content">
-        <span class="chip">About Us</span>
-        <h1>Our Story Connecting Talent, Powering Success</h1>
-        <p class="desc">
-          Our team of industry experts is dedicated to understanding your unique needs and delivering tailored
-          solutions that propel your business forward.
-        </p>
-
-        <ul class="feature-list">
-          <li class="feature">
-            <span class="icon-wrap" aria-hidden="true">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="8.7" stroke="currentColor" stroke-width="1.8"/>
-                <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M12 2.9V7.6M12 16.4V21.1M2.9 12H7.6M16.4 12H21.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <div>
-              <h4>Empowering Careers, Driving Growth</h4>
-              <p>we are your strategic partner in talent acquisition. With a steadfast commitment to excellence</p>
-            </div>
-          </li>
-
-          <li class="feature">
-            <span class="icon-wrap" aria-hidden="true">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3.4" y="5" width="17.2" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M7.8 9.5h8.4M7.8 13h5.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                <circle cx="7.3" cy="16.8" r="1.4" stroke="currentColor" stroke-width="1.6"/>
-              </svg>
-            </span>
-            <div>
-              <h4>Leaders in Staffing Excellence</h4>
-              <p>Discover the difference with Your Agency Name and unlock new possibilities for growth</p>
-            </div>
-          </li>
-        </ul>
-
-        <button class="cta">About Us ↗</button>
-      </div>
+    <div class="cta-wrap">
+      <button class="cta">Explore More Services ↗</button>
     </div>
   </section>
 </body>
