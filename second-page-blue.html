@@ -11,8 +11,6 @@
       --title: #06142e;
       --card-bg: #ffffff;
       --card-border: #f1d6c5;
-      --text: #1f314f;
-      --accent: #2d66ad;
     }
 
     * { box-sizing: border-box; }
@@ -21,7 +19,6 @@
       margin: 0;
       font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
       background: var(--page-bg);
-      color: var(--text);
     }
 
     .section {
@@ -39,10 +36,7 @@
       margin: 0 26px 26px;
     }
 
-    .line {
-      height: 1px;
-      background: var(--line);
-    }
+    .line { height: 1px; background: var(--line); }
 
     .title {
       margin: 0;
@@ -54,7 +48,6 @@
     }
 
     .marquee {
-      position: relative;
       overflow: hidden;
       mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
@@ -65,12 +58,12 @@
       gap: 18px;
       width: max-content;
       padding: 8px 0;
-      animation: slideLeft 22s linear infinite;
+      animation: slideLeft 24s linear infinite;
     }
 
     .track.reverse {
       animation-direction: reverse;
-      animation-duration: 24s;
+      animation-duration: 26s;
       margin-top: 16px;
     }
 
@@ -83,9 +76,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 2px;
-      box-shadow: 0 0 0 rgba(0,0,0,0);
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-      padding: 0 8px;
+      padding: 8px 10px;
       flex: 0 0 auto;
     }
 
@@ -95,24 +87,11 @@
       border-color: #d9b59d;
     }
 
-    .logo-text {
-      margin: 0;
-      text-align: center;
-      font-size: 27px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .logo-text.small {
-      font-size: 21px;
-      font-weight: 700;
-    }
-
-    .logo-text.mini {
-      font-size: 18px;
-      font-weight: 700;
+    .logo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: saturate(1.05);
     }
 
     @keyframes slideLeft {
@@ -123,16 +102,11 @@
     @media (max-width: 900px) {
       .title { font-size: 15px; }
       .logo-card { width: 160px; height: 56px; }
-      .logo-text { font-size: 22px; }
-      .logo-text.small { font-size: 17px; }
-      .logo-text.mini { font-size: 15px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .track,
-      .track.reverse {
-        animation: none;
-      }
+      .track.reverse { animation: none; }
     }
   </style>
 </head>
@@ -146,51 +120,51 @@
 
     <div class="marquee" aria-label="Hiring partner logos moving carousel">
       <div class="track">
-        <article class="logo-card"><p class="logo-text mini">JINDAL SAW</p></article>
-        <article class="logo-card"><p class="logo-text small">SONALIKA</p></article>
-        <article class="logo-card"><p class="logo-text mini">IUP Jindal</p></article>
-        <article class="logo-card"><p class="logo-text small">DEE</p></article>
-        <article class="logo-card"><p class="logo-text mini">RATNAMANI</p></article>
-        <article class="logo-card"><p class="logo-text small">TAFE</p></article>
-        <article class="logo-card"><p class="logo-text small">TVS</p></article>
-        <article class="logo-card"><p class="logo-text mini">Hunting JV</p></article>
-        <article class="logo-card"><p class="logo-text mini">Motherson</p></article>
-        <article class="logo-card"><p class="logo-text mini">Knorr Bremse</p></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/jindalsaw.com" alt="Jindal Saw logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/sonalika.com" alt="Sonalika logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/deepipes.com" alt="DEE logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/ratnamani.com" alt="Ratnamani logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/tafe.com" alt="TAFE logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/tvsmotor.com" alt="TVS logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/motherson.com" alt="Motherson logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/knorr-bremse.com" alt="Knorr Bremse logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/camozzi.com" alt="Camozzi logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/windlas.com" alt="Windlas logo" loading="lazy"></article>
 
-        <article class="logo-card"><p class="logo-text mini">JINDAL SAW</p></article>
-        <article class="logo-card"><p class="logo-text small">SONALIKA</p></article>
-        <article class="logo-card"><p class="logo-text mini">IUP Jindal</p></article>
-        <article class="logo-card"><p class="logo-text small">DEE</p></article>
-        <article class="logo-card"><p class="logo-text mini">RATNAMANI</p></article>
-        <article class="logo-card"><p class="logo-text small">TAFE</p></article>
-        <article class="logo-card"><p class="logo-text small">TVS</p></article>
-        <article class="logo-card"><p class="logo-text mini">Hunting JV</p></article>
-        <article class="logo-card"><p class="logo-text mini">Motherson</p></article>
-        <article class="logo-card"><p class="logo-text mini">Knorr Bremse</p></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/jindalsaw.com" alt="Jindal Saw logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/sonalika.com" alt="Sonalika logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/deepipes.com" alt="DEE logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/ratnamani.com" alt="Ratnamani logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/tafe.com" alt="TAFE logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/tvsmotor.com" alt="TVS logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/motherson.com" alt="Motherson logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/knorr-bremse.com" alt="Knorr Bremse logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/camozzi.com" alt="Camozzi logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/windlas.com" alt="Windlas logo" loading="lazy"></article>
       </div>
 
       <div class="track reverse">
-        <article class="logo-card"><p class="logo-text mini">CAMOZZI</p></article>
-        <article class="logo-card"><p class="logo-text mini">Windlas</p></article>
-        <article class="logo-card"><p class="logo-text mini">DS Group</p></article>
-        <article class="logo-card"><p class="logo-text small">Supreme</p></article>
-        <article class="logo-card"><p class="logo-text mini">MATSUI</p></article>
-        <article class="logo-card"><p class="logo-text small">TAO</p></article>
-        <article class="logo-card"><p class="logo-text mini">CHEMCON</p></article>
-        <article class="logo-card"><p class="logo-text mini">Synergy Steel</p></article>
-        <article class="logo-card"><p class="logo-text mini">Sapphire</p></article>
-        <article class="logo-card"><p class="logo-text mini">BigBasket</p></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/dsgroup.com" alt="DS Group logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/supreme.co.in" alt="Supreme logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/matsui.co.jp" alt="Matsui logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/taotesting.com" alt="TAO logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/chemconspeciality.com" alt="Chemcon logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/synergysteels.com" alt="Synergy Steel logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/sapphirefoods.in" alt="Sapphire Foods logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/bigbasket.com" alt="BigBasket logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/justdial.com" alt="Justdial logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/quikr.com" alt="Quikr logo" loading="lazy"></article>
 
-        <article class="logo-card"><p class="logo-text mini">CAMOZZI</p></article>
-        <article class="logo-card"><p class="logo-text mini">Windlas</p></article>
-        <article class="logo-card"><p class="logo-text mini">DS Group</p></article>
-        <article class="logo-card"><p class="logo-text small">Supreme</p></article>
-        <article class="logo-card"><p class="logo-text mini">MATSUI</p></article>
-        <article class="logo-card"><p class="logo-text small">TAO</p></article>
-        <article class="logo-card"><p class="logo-text mini">CHEMCON</p></article>
-        <article class="logo-card"><p class="logo-text mini">Synergy Steel</p></article>
-        <article class="logo-card"><p class="logo-text mini">Sapphire</p></article>
-        <article class="logo-card"><p class="logo-text mini">BigBasket</p></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/dsgroup.com" alt="DS Group logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/supreme.co.in" alt="Supreme logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/matsui.co.jp" alt="Matsui logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/taotesting.com" alt="TAO logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/chemconspeciality.com" alt="Chemcon logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/synergysteels.com" alt="Synergy Steel logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/sapphirefoods.in" alt="Sapphire Foods logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/bigbasket.com" alt="BigBasket logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/justdial.com" alt="Justdial logo" loading="lazy"></article>
+        <article class="logo-card"><img src="https://logo.clearbit.com/quikr.com" alt="Quikr logo" loading="lazy"></article>
       </div>
     </div>
   </section>
