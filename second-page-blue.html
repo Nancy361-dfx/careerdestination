@@ -4,253 +4,125 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How It Works</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-.how-scope *{
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
-.how-scope{
-  width:100%;
-  background:#fafafa;
-}
-.how-scope .how-section{
-  padding:90px 6%;
-  max-width:1400px;
-  margin:auto;
-  text-align:center;
-}
+.how-scope *{ box-sizing:border-box; font-family:'Poppins',sans-serif; }
+.how-scope{ width:100%; background:#f3f4f4; }
+.how-scope .how-section{ padding:72px 5%; max-width:1240px; margin:auto; text-align:center; }
+
 .how-scope .how-label{
-  display:inline-block;
-  padding:8px 22px;
-  background:#eef2f3;
-  border-radius:20px;
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:1px;
-  color:#0a58ca;
-  margin-bottom:14px;
-  opacity:0;
-  transform:translateY(-20px);
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 16px; background:#dfe6df; border-radius:6px;
+  font-size:27px; font-weight:600; letter-spacing:.2px; color:#37503b;
+  margin-bottom:14px; opacity:0; transform:translateY(-20px);
 }
 .how-scope h2{
-  font-size:38px;
-  font-weight:600;
-  margin-bottom:70px;
-  color:#222;
-  opacity:0;
-  transform:translateY(-20px);
+  font-size:56px; font-weight:600; color:#0f1728;
+  margin-bottom:66px; letter-spacing:-.4px;
+  opacity:0; transform:translateY(-20px);
 }
+
 .how-scope .steps-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:50px;
-  align-items:flex-start;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:40px; align-items:flex-start;
 }
 
 .how-scope .step-card{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  opacity:0;
-  transform:translateY(50px);
   --delay:0s;
+  position:relative; display:flex; flex-direction:column; align-items:center;
+  opacity:0; transform:translateY(50px);
 }
-
 .how-scope .step-number{
-  width:40px;
-  height:40px;
-  background:#f6b21a;
-  color:#222;
-  font-weight:700;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:22px;
-  z-index:2;
-  transition:transform .3s ease, box-shadow .3s ease;
-}
-.how-scope .step-card:hover .step-number{
-  transform:scale(1.15);
-  box-shadow:0 6px 20px rgba(246,178,26,0.5);
+  width:47px; height:47px; background:#edc22e; color:#1d1d1d;
+  font-size:34px; font-weight:700; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:18px; z-index:2;
 }
 .how-scope .step-card::before{
-  content:"";
-  position:absolute;
-  top:92px;
-  width:70px;
-  height:70px;
-  border:2px solid #ddd;
-  transform:rotate(45deg);
-  z-index:0;
+  content:""; position:absolute; top:86px; width:158px; height:158px;
+  border:2px solid #d3d8d8; transform:rotate(45deg); border-radius:6px; z-index:0;
   transition:border-color .3s ease, transform .4s ease;
 }
-.how-scope .step-card:hover::before{
-  border-color:#0d1f3c;
-  transform:rotate(90deg);
-}
+.how-scope .step-card:hover::before{ border-color:#aab5b5; transform:rotate(90deg); }
+
 .how-scope .step-image{
-  width:200px;
-  height:200px;
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 20px 40px rgba(0,0,0,.12);
-  position:relative;
-  z-index:1;
-  transition:box-shadow .4s ease, transform .4s ease;
+  width:235px; height:235px; border-radius:7px; overflow:hidden; background:#fff;
+  box-shadow:0 12px 28px rgba(0,0,0,.12); position:relative; z-index:1;
 }
-.how-scope .step-card:hover .step-image{
-  box-shadow:0 30px 60px rgba(13,31,60,0.22);
-  transform:translateY(-6px);
-}
-.how-scope .step-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  max-width:none;
-  transition:transform .5s ease;
-}
-.how-scope .step-card:hover .step-image img{
-  transform:scale(1.08);
-}
-.how-scope .step-image::after{
-  content:'';
-  position:absolute;
-  top:0; left:-100%;
-  width:60%;
-  height:100%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
-  transition:left .55s ease;
-  pointer-events:none;
-  z-index:2;
-}
-.how-scope .step-card:hover .step-image::after{
-  left:140%;
-}
+.how-scope .step-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+
 .how-scope .step-text{
-  background:#f1f1f1;
-  margin-top:26px;
-  padding:22px;
-  border-radius:14px;
-  max-width:260px;
-  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
-  position:relative;
-  overflow:hidden;
-}
-.how-scope .step-text::after{
-  content:'';
-  position:absolute;
-  bottom:0; left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:3px;
-  background:linear-gradient(90deg,#0a58ca,#0d1f3c);
-  border-radius:2px;
-  transition:width .4s ease;
-}
-.how-scope .step-card:hover .step-text::after{ width:80%; }
-.how-scope .step-card:hover .step-text{
-  background:#fff;
-  box-shadow:0 15px 40px rgba(13,31,60,0.12);
-  transform:translateY(-4px);
+  margin-top:36px; background:#eceeee; border-radius:9px; width:100%; max-width:354px;
+  padding:24px 20px 20px;
 }
 .how-scope .step-text h3{
-  font-size:16px;
-  font-weight:600;
-  margin-bottom:8px;
-  color:#222;
-  transition:color .3s ease;
+  font-size:35px; font-weight:600; color:#0f1728; margin:0 0 10px;
 }
-.how-scope .step-card:hover .step-text h3{ color:#0d1f3c; }
 .how-scope .step-text p{
-  font-size:14px;
-  color:#666;
-  line-height:1.6;
-  margin:0;
+  margin:0; font-size:30px; line-height:1.45; color:#4f5e72;
 }
 
-/* Contact-section style trigger/replay animation */
+/* same contact-us style trigger/replay */
 .how-scope.in-view .how-label{ animation:fadeDown .6s ease .1s forwards; }
-.how-scope.in-view h2{ animation:fadeDown .6s ease .25s forwards; }
+.how-scope.in-view h2{ animation:fadeDown .65s ease .2s forwards; }
 .how-scope.in-view .step-card{ animation:cardIn .8s cubic-bezier(.2,.75,.2,1) forwards; animation-delay:var(--delay); }
-
 .how-scope .step-card:nth-child(1){ --delay:.35s; }
-.how-scope .step-card:nth-child(2){ --delay:.55s; }
-.how-scope .step-card:nth-child(3){ --delay:.75s; }
+.how-scope .step-card:nth-child(2){ --delay:.52s; }
+.how-scope .step-card:nth-child(3){ --delay:.69s; }
 
-@keyframes fadeDown{
-  from{opacity:0; transform:translateY(-20px);}
-  to{opacity:1; transform:translateY(0);}
-}
-@keyframes cardIn{
-  from{opacity:0; transform:translateY(50px);}
-  to{opacity:1; transform:translateY(0);}
-}
+@keyframes fadeDown{ from{opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes cardIn{ from{opacity:0; transform:translateY(50px);} to{opacity:1; transform:translateY(0);} }
 
 @media(max-width:900px){
-  .how-scope .steps-grid{ grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:600px){
-  .how-scope .steps-grid{ grid-template-columns:1fr; gap:60px; }
-  .how-scope h2{ font-size:28px; }
+  .how-scope .steps-grid{ grid-template-columns:1fr; gap:42px; }
   .how-scope .step-card::before{ display:none; }
 }
 
 @media (prefers-reduced-motion: reduce){
   .how-scope *, .how-scope *::before, .how-scope *::after{ animation:none !important; transition:none !important; }
-  .how-scope .how-label,
-  .how-scope h2,
-  .how-scope .step-card{ opacity:1 !important; transform:none !important; }
+  .how-scope .how-label, .how-scope h2, .how-scope .step-card{ opacity:1 !important; transform:none !important; }
 }
 </style>
 </head>
 <body>
-
 <section class="how-scope" id="howScopeSection">
   <div class="how-section">
-    <div class="how-label">HOW IT WORKS</div>
-    <h2>A Smarter, Streamlined Staffing Process</h2>
+    <div class="how-label">🎚 HOW IT WORK</div>
+    <h2>Simple Staffing Procedures</h2>
 
     <div class="steps-grid">
-
       <div class="step-card">
         <div class="step-number">1</div>
         <div class="step-image">
           <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600" alt="Job Analysis">
         </div>
         <div class="step-text">
-          <h3>Strategic Job Analysis</h3>
-          <p>We deep-dive into role requirements, business goals, and culture to define the exact talent profile needed for success.</p>
+          <h3>JOB ANALYSIS</h3>
+          <p>Job analysis is a critical process understanding defining specific.</p>
         </div>
       </div>
 
       <div class="step-card">
         <div class="step-number">2</div>
         <div class="step-image">
-          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=600" alt="Talent Screening">
+          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=600" alt="Applicant Review">
         </div>
         <div class="step-text">
-          <h3>Expert Talent Screening</h3>
-          <p>Our specialists source, assess, and shortlist high-quality candidates who match your technical, functional, and cultural needs.</p>
+          <h3>APPLICANT REVIEW</h3>
+          <p>Job analysis is a critical process understanding defining specific.</p>
         </div>
       </div>
 
       <div class="step-card">
         <div class="step-number">3</div>
         <div class="step-image">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" alt="Job Placement">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" alt="Job Place Check">
         </div>
         <div class="step-text">
-          <h3>Successful Job Placement</h3>
-          <p>We ensure the right fit—delivering seamless onboarding and long-term success for both clients and candidates.</p>
+          <h3>JOB PLACE CHECK</h3>
+          <p>Job analysis is a critical process understanding defining specific.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -268,21 +140,13 @@
 
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        restartAnimation();
-      } else {
-        section.classList.remove('in-view');
-      }
+      if (entry.isIntersecting) restartAnimation();
+      else section.classList.remove('in-view');
     });
-  }, {
-    root: null,
-    threshold: 0.25,
-    rootMargin: '0px 0px -10% 0px'
-  });
+  }, { root:null, threshold:0.25, rootMargin:'0px 0px -10% 0px' });
 
   observer.observe(section);
 })();
 </script>
-
 </body>
 </html>
