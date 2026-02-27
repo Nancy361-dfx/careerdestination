@@ -6,122 +6,64 @@
 <title>How It Works</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-.how-scope *{ box-sizing:border-box; font-family:'Poppins',sans-serif; }
-.how-scope{ width:100%; background:#f3f4f4; }
-.how-scope .how-section{ padding:72px 5%; max-width:1240px; margin:auto; text-align:center; }
+.how-scope *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+.how-scope{width:100%;background:#f3f4f4}
+.how-scope .how-section{max-width:1180px;margin:auto;padding:72px 4%;text-align:center}
 
-.how-scope .how-label{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:7px 16px; background:#dfe6df; border-radius:6px;
-  font-size:27px; font-weight:600; letter-spacing:.2px; color:#37503b;
-  margin-bottom:14px; opacity:0; transform:translateY(-20px);
-}
-.how-scope h2{
-  font-size:56px; font-weight:600; color:#0f1728;
-  margin-bottom:66px; letter-spacing:-.4px;
-  opacity:0; transform:translateY(-20px);
-}
+.how-label{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:#dfe6df;border-radius:6px;color:#37503b;font-size:14px;font-weight:600;letter-spacing:.3px;opacity:0;transform:translateY(-16px)}
+.how-label::before{content:"";width:14px;height:14px;border-radius:3px;background:linear-gradient(90deg,#6d826f 0 30%,transparent 30% 45%,#6d826f 45% 70%,transparent 70% 100%)}
 
-.how-scope .steps-grid{
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:40px; align-items:flex-start;
-}
+.how-scope h2{margin:14px 0 62px;font-size:48px;line-height:1.2;font-weight:600;color:#101928;opacity:0;transform:translateY(-18px)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px;align-items:flex-start}
 
-.how-scope .step-card{
-  --delay:0s;
-  position:relative; display:flex; flex-direction:column; align-items:center;
-  opacity:0; transform:translateY(50px);
-}
-.how-scope .step-number{
-  width:47px; height:47px; background:#edc22e; color:#1d1d1d;
-  font-size:34px; font-weight:700; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  margin-bottom:18px; z-index:2;
-}
-.how-scope .step-card::before{
-  content:""; position:absolute; top:86px; width:158px; height:158px;
-  border:2px solid #d3d8d8; transform:rotate(45deg); border-radius:6px; z-index:0;
-  transition:border-color .3s ease, transform .4s ease;
-}
-.how-scope .step-card:hover::before{ border-color:#aab5b5; transform:rotate(90deg); }
+.step-card{--delay:0s;position:relative;display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(42px)}
+.step-number{width:34px;height:34px;border-radius:999px;background:#edc22e;color:#1d1d1d;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;z-index:2;margin-bottom:16px}
+.step-card::before{content:"";position:absolute;top:76px;width:166px;height:166px;border:2px solid #d0d5d5;border-radius:6px;transform:rotate(45deg);z-index:0;transition:.35s ease}
+.step-card:hover::before{transform:rotate(90deg);border-color:#aeb7b7}
 
-.how-scope .step-image{
-  width:235px; height:235px; border-radius:7px; overflow:hidden; background:#fff;
-  box-shadow:0 12px 28px rgba(0,0,0,.12); position:relative; z-index:1;
-}
-.how-scope .step-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+.step-image{width:160px;height:160px;border-radius:5px;overflow:hidden;position:relative;z-index:1;background:#fff;box-shadow:0 10px 22px rgba(0,0,0,.12);transition:.35s ease}
+.step-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease}
+.step-card:hover .step-image{transform:translateY(-5px);box-shadow:0 18px 34px rgba(13,31,60,.2)}
+.step-card:hover .step-image img{transform:scale(1.08)}
 
-.how-scope .step-text{
-  margin-top:36px; background:#eceeee; border-radius:9px; width:100%; max-width:354px;
-  padding:24px 20px 20px;
-}
-.how-scope .step-text h3{
-  font-size:35px; font-weight:600; color:#0f1728; margin:0 0 10px;
-}
-.how-scope .step-text p{
-  margin:0; font-size:30px; line-height:1.45; color:#4f5e72;
-}
+.step-text{width:100%;max-width:290px;background:#e9ebeb;border-radius:8px;margin-top:30px;padding:18px 14px 16px;position:relative;overflow:hidden;transition:.3s ease}
+.step-text::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:0;height:3px;background:linear-gradient(90deg,#0a58ca,#0d1f3c);transition:width .35s ease}
+.step-card:hover .step-text::after{width:78%}
+.step-card:hover .step-text{background:#fff;box-shadow:0 12px 28px rgba(13,31,60,.13);transform:translateY(-4px)}
+.step-text h3{font-size:31px;line-height:1.22;font-weight:600;margin:0 0 8px;color:#101928}
+.step-text p{font-size:26px;line-height:1.45;color:#4f5e72;margin:0}
 
-/* same contact-us style trigger/replay */
-.how-scope.in-view .how-label{ animation:fadeDown .6s ease .1s forwards; }
-.how-scope.in-view h2{ animation:fadeDown .65s ease .2s forwards; }
-.how-scope.in-view .step-card{ animation:cardIn .8s cubic-bezier(.2,.75,.2,1) forwards; animation-delay:var(--delay); }
-.how-scope .step-card:nth-child(1){ --delay:.35s; }
-.how-scope .step-card:nth-child(2){ --delay:.52s; }
-.how-scope .step-card:nth-child(3){ --delay:.69s; }
+.how-scope.in-view .how-label{animation:fadeDown .6s ease .1s forwards}
+.how-scope.in-view h2{animation:fadeDown .65s ease .2s forwards}
+.how-scope.in-view .step-card{animation:cardIn .8s cubic-bezier(.2,.75,.2,1) forwards;animation-delay:var(--delay)}
+.step-card:nth-child(1){--delay:.35s}.step-card:nth-child(2){--delay:.52s}.step-card:nth-child(3){--delay:.69s}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(42px)}to{opacity:1;transform:translateY(0)}}
 
-@keyframes fadeDown{ from{opacity:0; transform:translateY(-20px);} to{opacity:1; transform:translateY(0);} }
-@keyframes cardIn{ from{opacity:0; transform:translateY(50px);} to{opacity:1; transform:translateY(0);} }
-
-@media(max-width:900px){
-  .how-scope .steps-grid{ grid-template-columns:1fr; gap:42px; }
-  .how-scope .step-card::before{ display:none; }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .how-scope *, .how-scope *::before, .how-scope *::after{ animation:none !important; transition:none !important; }
-  .how-scope .how-label, .how-scope h2, .how-scope .step-card{ opacity:1 !important; transform:none !important; }
-}
+@media(max-width:900px){.steps-grid{grid-template-columns:1fr;gap:42px}.step-card::before{display:none}.how-scope h2{font-size:36px}}
+@media (prefers-reduced-motion: reduce){.how-scope *,.how-scope *::before,.how-scope *::after{animation:none!important;transition:none!important}.how-label,.how-scope h2,.step-card{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
 <section class="how-scope" id="howScopeSection">
   <div class="how-section">
-    <div class="how-label">🎚 HOW IT WORK</div>
+    <div class="how-label">HOW IT WORK</div>
     <h2>Simple Staffing Procedures</h2>
-
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-number">1</div>
-        <div class="step-image">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600" alt="Job Analysis">
-        </div>
-        <div class="step-text">
-          <h3>JOB ANALYSIS</h3>
-          <p>Job analysis is a critical process understanding defining specific.</p>
-        </div>
+        <div class="step-image"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600" alt="Job Analysis"></div>
+        <div class="step-text"><h3>JOB ANALYSIS</h3><p>Job analysis is a critical process understanding defining specific.</p></div>
       </div>
-
       <div class="step-card">
         <div class="step-number">2</div>
-        <div class="step-image">
-          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=600" alt="Applicant Review">
-        </div>
-        <div class="step-text">
-          <h3>APPLICANT REVIEW</h3>
-          <p>Job analysis is a critical process understanding defining specific.</p>
-        </div>
+        <div class="step-image"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=600" alt="Applicant Review"></div>
+        <div class="step-text"><h3>APPLICANT REVIEW</h3><p>Job analysis is a critical process understanding defining specific.</p></div>
       </div>
-
       <div class="step-card">
         <div class="step-number">3</div>
-        <div class="step-image">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" alt="Job Place Check">
-        </div>
-        <div class="step-text">
-          <h3>JOB PLACE CHECK</h3>
-          <p>Job analysis is a critical process understanding defining specific.</p>
-        </div>
+        <div class="step-image"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" alt="Job Place Check"></div>
+        <div class="step-text"><h3>JOB PLACE CHECK</h3><p>Job analysis is a critical process understanding defining specific.</p></div>
       </div>
     </div>
   </div>
@@ -131,20 +73,10 @@
 (function(){
   var section = document.getElementById('howScopeSection');
   if (!section) return;
-
-  function restartAnimation(){
-    section.classList.remove('in-view');
-    void section.offsetWidth;
-    section.classList.add('in-view');
-  }
-
+  function restartAnimation(){ section.classList.remove('in-view'); void section.offsetWidth; section.classList.add('in-view'); }
   var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) restartAnimation();
-      else section.classList.remove('in-view');
-    });
-  }, { root:null, threshold:0.25, rootMargin:'0px 0px -10% 0px' });
-
+    entries.forEach(function(entry){ if(entry.isIntersecting){ restartAnimation(); } else { section.classList.remove('in-view'); } });
+  },{root:null,threshold:0.25,rootMargin:'0px 0px -10% 0px'});
   observer.observe(section);
 })();
 </script>
