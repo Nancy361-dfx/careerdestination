@@ -1,123 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Partners - Motion Logo Section</title>
-  <style>
-    :root {
-      --page-bg: #f2f2f2;
-      --line: #e7cfbd;
-      --title: #06142e;
-      --card-bg: #ffffff;
-      --card-border: #f1d6c5;
-      --fallback: #2d66ad;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; background: var(--page-bg); }
-    .section { max-width: 1365px; margin: 32px auto; padding: 12px 0 22px; overflow: hidden; }
-    .headline-wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin: 0 26px 26px; }
-    .line { height: 1px; background: var(--line); }
-    .title { margin: 0; font-size: 18px; font-weight: 700; color: var(--title); text-align: center; white-space: nowrap; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .marquee {
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    }
-    .track { display: flex; gap: 18px; width: max-content; padding: 8px 0; animation: slideLeft 24s linear infinite; }
-    .track.reverse { animation-direction: reverse; animation-duration: 26s; margin-top: 16px; }
+<style>
+:root{ --accent:#f4b41a; --blue:#0a58ca; --dark:#222; }
+.form-title{ font-size:22px; font-weight:700; color:#000; margin-bottom:10px; padding-top:5px; }
+.form-subtitle{ font-size:13px; color:#777; margin-bottom:25px; }
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body{ background:#fff; }
 
-    .logo-card {
-      width: 188px;
-      height: 64px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 2px;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-      padding: 8px 10px;
-      flex: 0 0 auto;
-      position: relative;
-    }
-    .logo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(12, 32, 74, 0.08); border-color: #d9b59d; }
-    .logo-card img { max-height: 42px; max-width: 100%; width: auto; object-fit: contain; display: block; }
-    .logo-card .fallback { display: none; font-weight: 700; color: var(--fallback); font-size: 16px; text-align: center; }
-    .logo-card.is-fallback img { display: none; }
-    .logo-card.is-fallback .fallback { display: block; }
+.contact-section{ padding:90px 6%; background:#fafafa; }
+.contact-head{ text-align:center; margin-bottom:60px; }
 
-    @keyframes slideLeft { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 9px)); } }
-    @media (max-width: 900px) { .title { font-size: 15px; } .logo-card { width: 160px; height: 56px; } }
-    @media (prefers-reduced-motion: reduce) { .track, .track.reverse { animation: none; } }
-  </style>
+.contact-head span{
+  display:inline-block; padding:8px 20px; background:#eef2f3;
+  border-radius:20px; font-size:15px; font-weight:700;
+  letter-spacing:1.2px; color:var(--blue); margin-bottom:10px;
+  opacity:0; transform:translateY(-30px);
+  transition: opacity .7s ease 0s, transform .7s ease 0s;
+}
+.contact-head h2{
+  font-size:38px; font-weight:600; color:var(--dark);
+  opacity:0; transform:translateY(-30px);
+  transition: opacity .7s ease .15s, transform .7s ease .15s;
+}
+.contact-form{
+  background:#f1f1f1; padding:40px; border-radius:18px;
+  opacity:0; transform:translateX(-80px);
+  transition: opacity .8s ease .2s, transform .8s ease .2s;
+}
+.info-box{
+  display:flex; gap:16px; align-items:flex-start;
+  background:#fff; padding:22px; border-radius:16px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.12); cursor:pointer;
+  opacity:0; transform:translateX(80px);
+  transition: opacity .7s ease, transform .7s ease, background .4s ease, box-shadow .4s ease;
+}
+.info-box:nth-child(1){ transition-delay:.3s,.3s,0s,0s; }
+.info-box:nth-child(2){ transition-delay:.45s,.45s,0s,0s; }
+.info-box:nth-child(3){ transition-delay:.6s,.6s,0s,0s; }
+.info-box:nth-child(4){ transition-delay:.75s,.75s,0s,0s; }
+
+/* IN VIEW */
+.contact-section.in-view .contact-head span,
+.contact-section.in-view .contact-head h2,
+.contact-section.in-view .contact-form,
+.contact-section.in-view .info-box{
+  opacity:1; transform:translate(0,0);
+}
+
+/* Hover */
+.contact-section.in-view .info-box:hover{
+  background:var(--blue);
+  transform:translateY(-6px) !important;
+  box-shadow:0 25px 55px rgba(10,88,202,0.25);
+}
+.info-box:hover .info-icon{ background:#fff !important; transform:rotate(15deg) scale(1.1); }
+.info-box:hover h4, .info-box:hover p{ color:#fff; }
+
+.contact-wrapper{ display:grid; grid-template-columns:1.3fr 1fr; gap:60px; }
+.form-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.form-grid input, .form-grid textarea{
+  width:100%; padding:14px; border:2px solid transparent;
+  border-radius:10px; background:#fff; font-size:14px; outline:none;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.form-grid input:focus, .form-grid textarea:focus{
+  border-color:var(--blue); box-shadow:0 0 0 4px rgba(10,88,202,0.1);
+}
+.form-grid textarea{ grid-column:1/-1; height:120px; resize:none; }
+.submit-btn{ margin-top:25px; }
+.submit-btn button{
+  background:var(--accent); border:none; padding:14px 28px;
+  font-weight:600; border-radius:8px; cursor:pointer; font-size:14px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.submit-btn button:hover{ transform:translateY(-3px); box-shadow:0 10px 25px rgba(244,180,26,0.45); }
+.contact-info{ display:flex; flex-direction:column; gap:22px; }
+.info-icon{
+  width:52px; height:52px; min-width:52px; border-radius:50%;
+  background:#F6CE71; display:flex; align-items:center; justify-content:center;
+  transition: background .4s ease, transform .4s ease;
+}
+.info-icon span{ font-size:22px; line-height:1; }
+.info-text h4{ font-size:16px; margin-bottom:4px; transition:color .4s ease; }
+.info-text p{ font-size:14px; color:#222; word-break:break-word; transition:color .4s ease; }
+.info-box.whatsapp .info-icon{ background:var(--accent); }
+
+@media(max-width:768px){
+  .contact-section{ padding:50px 4%; }
+  .contact-head h2{ font-size:26px; }
+  .contact-wrapper{ grid-template-columns:1fr; gap:40px; }
+  .contact-form{ padding:25px; }
+  .form-grid{ grid-template-columns:1fr; }
+  .submit-btn button{ width:100%; }
+}
+</style>
 </head>
 <body>
-  <section class="section">
-    <div class="headline-wrap">
-      <span class="line" aria-hidden="true"></span>
-      <h2 class="title">More Than 5K+ Brands With Work Recrute</h2>
-      <span class="line" aria-hidden="true"></span>
+
+<section class="contact-section" id="cdContactSection">
+  <div class="contact-head">
+    <span>CONTACT US</span>
+    <h2>Let's Start the Conversation</h2>
+  </div>
+
+  <div class="contact-wrapper">
+    <div class="contact-form">
+      <h3 class="form-title">Let's Start a Conversation</h3>
+      <p class="form-subtitle">Our team will get back to you within 24 hours.</p>
+      <div class="form-grid">
+        <input placeholder="First Name">
+        <input placeholder="Last Name">
+        <input placeholder="Email">
+        <input placeholder="Phone Number">
+        <input placeholder="Subject">
+        <textarea placeholder="Your Message"></textarea>
+      </div>
+      <div class="submit-btn"><button>SUBMIT NOW →</button></div>
     </div>
 
-    <div class="marquee" aria-label="Hiring partner logos moving carousel">
-      <div class="track">
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub logo" loading="lazy"><span class="fallback">GitHub</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/razorpay/0C2451" alt="Razorpay logo" loading="lazy"><span class="fallback">Razorpay</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/workday/0875E1" alt="Workday logo" loading="lazy"><span class="fallback">Workday</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/outsystems/FF1F00" alt="OutSystems logo" loading="lazy"><span class="fallback">OutSystems</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/cockroachlabs/6933FF" alt="Cockroach Labs logo" loading="lazy"><span class="fallback">Cockroach</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/databricks/FF3621" alt="Databricks logo" loading="lazy"><span class="fallback">Databricks</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/justeat/FF8000" alt="Just Eat logo" loading="lazy"><span class="fallback">Just Eat</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/airbnb/FF5A5F" alt="Airbnb logo" loading="lazy"><span class="fallback">Airbnb</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/netflix/E50914" alt="Netflix logo" loading="lazy"><span class="fallback">Netflix</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/zomato/E23744" alt="Zomato logo" loading="lazy"><span class="fallback">Zomato</span></article>
-
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub logo" loading="lazy"><span class="fallback">GitHub</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/razorpay/0C2451" alt="Razorpay logo" loading="lazy"><span class="fallback">Razorpay</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/workday/0875E1" alt="Workday logo" loading="lazy"><span class="fallback">Workday</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/outsystems/FF1F00" alt="OutSystems logo" loading="lazy"><span class="fallback">OutSystems</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/cockroachlabs/6933FF" alt="Cockroach Labs logo" loading="lazy"><span class="fallback">Cockroach</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/databricks/FF3621" alt="Databricks logo" loading="lazy"><span class="fallback">Databricks</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/justeat/FF8000" alt="Just Eat logo" loading="lazy"><span class="fallback">Just Eat</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/airbnb/FF5A5F" alt="Airbnb logo" loading="lazy"><span class="fallback">Airbnb</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/netflix/E50914" alt="Netflix logo" loading="lazy"><span class="fallback">Netflix</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/zomato/E23744" alt="Zomato logo" loading="lazy"><span class="fallback">Zomato</span></article>
+    <div class="contact-info">
+      <div class="info-box">
+        <div class="info-icon"><span>📞</span></div>
+        <div class="info-text"><h4>Call Us</h4><p>7906927451</p></div>
       </div>
-
-      <div class="track reverse">
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/tvs/004A99" alt="TVS logo" loading="lazy"><span class="fallback">TVS</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/bigbasket/A0C540" alt="BigBasket logo" loading="lazy"><span class="fallback">BigBasket</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/quikr/00AEEF" alt="Quikr logo" loading="lazy"><span class="fallback">Quikr</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/justdial/F58220" alt="Justdial logo" loading="lazy"><span class="fallback">Justdial</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/uber/000000" alt="Uber logo" loading="lazy"><span class="fallback">Uber</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify logo" loading="lazy"><span class="fallback">Spotify</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/adobe/FF0000" alt="Adobe logo" loading="lazy"><span class="fallback">Adobe</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/intel/0071C5" alt="Intel logo" loading="lazy"><span class="fallback">Intel</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/samsung/1428A0" alt="Samsung logo" loading="lazy"><span class="fallback">Samsung</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/microsoft/5E5E5E" alt="Microsoft logo" loading="lazy"><span class="fallback">Microsoft</span></article>
-
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/tvs/004A99" alt="TVS logo" loading="lazy"><span class="fallback">TVS</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/bigbasket/A0C540" alt="BigBasket logo" loading="lazy"><span class="fallback">BigBasket</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/quikr/00AEEF" alt="Quikr logo" loading="lazy"><span class="fallback">Quikr</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/justdial/F58220" alt="Justdial logo" loading="lazy"><span class="fallback">Justdial</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/uber/000000" alt="Uber logo" loading="lazy"><span class="fallback">Uber</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify logo" loading="lazy"><span class="fallback">Spotify</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/adobe/FF0000" alt="Adobe logo" loading="lazy"><span class="fallback">Adobe</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/intel/0071C5" alt="Intel logo" loading="lazy"><span class="fallback">Intel</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/samsung/1428A0" alt="Samsung logo" loading="lazy"><span class="fallback">Samsung</span></article>
-        <article class="logo-card"><img src="https://cdn.simpleicons.org/microsoft/5E5E5E" alt="Microsoft logo" loading="lazy"><span class="fallback">Microsoft</span></article>
+      <div class="info-box">
+        <div class="info-icon"><span>✉️</span></div>
+        <div class="info-text"><h4>Email Us</h4><p>careers.destinationhr@gmail.com</p></div>
+      </div>
+      <div class="info-box">
+        <div class="info-icon"><span>📍</span></div>
+        <div class="info-text"><h4>Our Location</h4><p>Greater Noida, Uttar Pradesh – 201310</p></div>
+      </div>
+      <div class="info-box whatsapp" onclick="window.open('https://wa.me/917906927451','_blank')">
+        <div class="info-icon"><span>💬</span></div>
+        <div class="info-text"><h4>WhatsApp Us</h4><p>7906927451</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    document.querySelectorAll('.logo-card img').forEach((img) => {
-      img.addEventListener('error', () => {
-        img.closest('.logo-card')?.classList.add('is-fallback');
-      });
+<script>
+(function () {
+  var section = document.getElementById('cdContactSection');
+  if (!section) return;
+
+  // Trigger animation once, only when Contact section enters viewport.
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        section.classList.add('in-view');
+        observer.unobserve(section);
+      }
     });
-  </script>
+  }, {
+    root: null,
+    threshold: 0.25,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  observer.observe(section);
+})();
+</script>
+
 </body>
 </html>
