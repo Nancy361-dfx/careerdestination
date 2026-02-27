@@ -237,16 +237,25 @@ body{ background:#fff; }
   var section = document.getElementById('cdContactSection');
   if (!section) return;
 
+  function restartAnimation() {
+    section.classList.remove('in-view');
+    // force reflow so animation restarts every time section re-enters view
+    void section.offsetWidth;
+    section.classList.add('in-view');
+  }
+
   var observer = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
-        section.classList.add('in-view');
-        observer.unobserve(section);
+        restartAnimation();
+      } else {
+        // reset when section leaves viewport so next entry animates again
+        section.classList.remove('in-view');
       }
     });
   }, {
     root: null,
-    threshold: 0.3,
+    threshold: 0.25,
     rootMargin: '0px 0px -10% 0px'
   });
 
