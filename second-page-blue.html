@@ -3,244 +3,249 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us</title>
+<title>Services Section</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --accent:#f4b41a;
-  --accent-solid:#f4b41a;
-  --blue:#0a58ca;
-  --blue-dark:#0848a6;
-  --dark:#222;
+  --primary:#0a2540;
+  --accent:#0a58ca;
+  --navy:#0d1f3c;
 }
 *{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 body{ background:#fff; }
 
-.contact-section{
-  padding:90px 6%;
+.services-section{
+  padding:80px 6%;
   background:#fafafa;
-  position:relative;
+  text-align:center;
   overflow:hidden;
 }
-.contact-section::before,
-.contact-section::after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(10,88,202,.14) 0%, rgba(10,88,202,0) 70%);
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .8s ease;
-}
-.contact-section::before{ width:380px; height:380px; left:-120px; top:-120px; }
-.contact-section::after{ width:320px; height:320px; right:-100px; bottom:-120px; }
-.contact-section.in-view::before,
-.contact-section.in-view::after{ opacity:1; }
 
-.contact-head{ text-align:center; margin-bottom:60px; }
-.contact-head span{
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:8px 20px;
+.label{
+  display:inline-block;
+  padding:8px 22px;
   background:#eef2f3;
   border-radius:20px;
   font-size:15px;
   font-weight:700;
   letter-spacing:1.2px;
-  color:var(--blue);
-  margin-bottom:10px;
+  color:#0a58ca;
+  margin-bottom:12px;
   opacity:0;
-  transform:translateY(-30px);
+  transform:translateY(-20px);
 }
-.contact-head span::before{
-  content:"";
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:var(--blue);
-  box-shadow:0 0 0 0 rgba(10,88,202,.45);
-  transform:scale(.2);
-}
-.contact-head h2{
+
+.services-section h2{
   font-size:38px;
   font-weight:600;
-  color:var(--dark);
+  margin-bottom:60px;
+  color:#222;
   opacity:0;
-  transform:translateY(-30px);
+  transform:translateY(-20px);
 }
 
-.contact-wrapper{ display:grid; grid-template-columns:1.3fr 1fr; gap:60px; position:relative; z-index:2; }
-.contact-form{
-  background:#f1f1f1;
-  padding:40px;
-  border-radius:18px;
-  box-shadow:0 16px 40px rgba(0,0,0,.05);
-  opacity:0;
-  transform:translateX(-70px) scale(.98);
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin-bottom:70px;
 }
-.form-title{ font-size:22px; font-weight:700; color:#000; margin-bottom:10px; padding-top:5px; }
-.form-subtitle{ font-size:13px; color:#777; margin-bottom:25px; }
 
-.form-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-.form-grid input, .form-grid textarea{
-  width:100%; padding:14px; border:2px solid transparent;
-  border-radius:10px; background:#fff; font-size:14px; outline:none;
-  transition:border-color .3s ease, box-shadow .3s ease, transform .25s ease;
+@keyframes fadeDrop {
+  from { opacity:0; transform:translateY(-20px); }
+  to { opacity:1; transform:translateY(0); }
 }
-.form-grid input:focus, .form-grid textarea:focus{
-  border-color:var(--blue); box-shadow:0 0 0 4px rgba(10,88,202,0.1);
+@keyframes springPop {
+  0%   { opacity:0; transform: scale(0.4) translateY(50px); }
+  55%  { opacity:1; transform: scale(1.1) translateY(-10px); }
+  75%  { transform: scale(0.95) translateY(4px); }
+  90%  { transform: scale(1.03) translateY(-2px); }
+  100% { opacity:1; transform: scale(1) translateY(0); }
 }
-.form-grid input:hover, .form-grid textarea:hover{ transform:translateY(-1px); }
-.form-grid textarea{ grid-column:1/-1; height:120px; resize:none; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
 
-.submit-btn{ margin-top:25px; }
-.submit-btn button{
-  background:var(--accent-solid);
-  border:none;
-  padding:14px 28px;
-  font-weight:600;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:14px;
-  transition:transform .3s ease, box-shadow .3s ease, filter .3s ease;
-}
-.submit-btn button:hover{ transform:translateY(-3px); box-shadow:0 10px 25px rgba(244,180,26,0.45); filter:brightness(1.02); }
-
-.contact-info{ display:flex; flex-direction:column; gap:22px; }
-.info-box{
+.service-card{
   --delay:0s;
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
   background:#fff;
-  padding:22px;
   border-radius:16px;
-  box-shadow:0 20px 45px rgba(0,0,0,0.12);
-  cursor:pointer;
+  box-shadow:0 20px 50px rgba(0,0,0,0.08);
+  overflow:hidden;
+  padding-bottom:25px;
   opacity:0;
-  transform:translateX(80px);
-}
-.info-icon{
-  width:52px; height:52px; min-width:52px; border-radius:50%;
-  background:#F6CE71; display:flex; align-items:center; justify-content:center;
-  transition:background .4s ease, transform .4s ease;
-}
-.info-icon span{ font-size:22px; line-height:1; }
-.info-text h4{ font-size:16px; margin-bottom:4px; transition:color .4s ease; }
-.info-text p{ font-size:14px; color:#222; word-break:break-word; transition:color .4s ease; }
-.info-box.whatsapp .info-icon{ background:var(--accent); }
-
-/* Triggered Animations */
-.contact-section.in-view .contact-head span{ animation:fadeDrop .7s ease forwards; }
-.contact-section.in-view .contact-head span::before{ animation:pulseDot 1.2s ease .35s forwards; }
-.contact-section.in-view .contact-head h2{ animation:fadeDrop .75s ease .12s forwards; }
-.contact-section.in-view .contact-form{ animation:formIn .8s cubic-bezier(.2,.75,.2,1) .2s forwards; }
-.contact-section.in-view .info-box{ animation:cardIn .7s cubic-bezier(.2,.75,.2,1) forwards; animation-delay:var(--delay); }
-
-.info-box:hover{
-  background:var(--blue);
-  transform:translateY(-6px);
-  box-shadow:0 25px 55px rgba(10,88,202,0.25);
-}
-.info-box:hover .info-icon{ background:#fff !important; transform:rotate(15deg) scale(1.1); }
-.info-box:hover h4, .info-box:hover p{ color:#fff; }
-
-.info-box:nth-child(1){ --delay:.35s; }
-.info-box:nth-child(2){ --delay:.5s; }
-.info-box:nth-child(3){ --delay:.65s; }
-.info-box:nth-child(4){ --delay:.8s; }
-
-@keyframes fadeDrop{
-  from{ opacity:0; transform:translateY(-30px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-@keyframes formIn{
-  from{ opacity:0; transform:translateX(-70px) scale(.98); }
-  to{ opacity:1; transform:translateX(0) scale(1); }
-}
-@keyframes cardIn{
-  from{ opacity:0; transform:translateX(80px); }
-  to{ opacity:1; transform:translateX(0); }
-}
-@keyframes pulseDot{
-  0%{ transform:scale(.2); box-shadow:0 0 0 0 rgba(10,88,202,.45); }
-  55%{ transform:scale(1.1); box-shadow:0 0 0 10px rgba(10,88,202,0); }
-  100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(10,88,202,0); }
+  transform: scale(0.4) translateY(50px);
+  will-change: transform, opacity;
 }
 
-@media(max-width:768px){
-  .contact-section{ padding:50px 4%; }
-  .contact-head h2{ font-size:26px; }
-  .contact-wrapper{ grid-template-columns:1fr; gap:40px; }
-  .contact-form{ padding:25px; }
-  .form-grid{ grid-template-columns:1fr; }
-  .submit-btn button{ width:100%; }
+.img-wrapper{ position:relative; overflow:hidden; }
+.service-card img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+.service-card:hover img{ transform:scale(1.08); }
+
+.img-wrapper::after{
+  content:'';
+  position:absolute; top:0; left:-100%;
+  width:60%; height:100%;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.25) 50%,transparent 100%);
+  transition:left .55s ease;
+  pointer-events:none;
+}
+.service-card:hover .img-wrapper::after{ left:140%; }
+
+.icon-box{
+  width:60px; height:60px;
+  background:#fff; border-radius:50%;
+  margin:20px auto 15px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition: background .3s, box-shadow .3s, transform .3s;
+}
+.service-card:hover .icon-box{
+  background:var(--navy);
+  box-shadow:0 12px 30px rgba(13,31,60,0.35);
+  transform:rotate(8deg) scale(1.1);
+}
+.icon-box span{ font-size:26px; line-height:1; color:var(--accent); transition:filter .3s; }
+.service-card:hover .icon-box span{ filter:brightness(0) invert(1); }
+
+.service-card h3{ font-size:18px; font-weight:600; margin-top:10px; color:#333; transition:color .3s; }
+.service-card:hover h3{ color:var(--navy); }
+
+.service-card::after{
+  content:''; display:block; height:3px; width:0;
+  background:linear-gradient(90deg, var(--accent), var(--navy));
+  margin:0 auto; border-radius:0 0 4px 4px;
+  transition:width .4s ease;
+}
+.service-card:hover::after{ width:80%; }
+
+.more-btn{
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.more-btn a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 30px; background:#0a58ca; color:#fff;
+  text-decoration:none; font-weight:600; border-radius:8px;
+  transition: background .3s, transform .3s, box-shadow .3s;
+  position:relative; overflow:hidden;
+}
+.more-btn a::before{
+  content:''; position:absolute; top:0; left:-100%;
+  width:100%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  transition:left .5s ease;
+}
+.more-btn a:hover::before{ left:100%; }
+.more-btn a:hover{
+  background:var(--navy);
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(13,31,60,.4);
+}
+
+/* Same trigger behavior as contact section */
+.services-section.in-view .label{ animation:fadeDrop .5s ease forwards; }
+.services-section.in-view h2{ animation:fadeDrop .5s ease .12s forwards; }
+.services-section.in-view .service-card{ animation:springPop .7s cubic-bezier(.34,1.56,.64,1) forwards; animation-delay:var(--delay); }
+.services-section.in-view .more-btn{ animation:fadeUp .6s ease .95s forwards; }
+
+.service-card:nth-child(1){ --delay:.18s; }
+.service-card:nth-child(2){ --delay:.26s; }
+.service-card:nth-child(3){ --delay:.34s; }
+.service-card:nth-child(4){ --delay:.42s; }
+.service-card:nth-child(5){ --delay:.50s; }
+.service-card:nth-child(6){ --delay:.58s; }
+.service-card:nth-child(7){ --delay:.66s; }
+.service-card:nth-child(8){ --delay:.74s; }
+.service-card:nth-child(9){ --delay:.82s; }
+
+@media(max-width:900px){ .services-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr;}
+  .services-section h2{font-size:28px;}
+  .service-card img{height:200px;}
 }
 
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{ animation:none !important; transition:none !important; }
-  .contact-head span,
-  .contact-head h2,
-  .contact-form,
-  .info-box{ opacity:1 !important; transform:none !important; }
+  .label, .services-section h2, .service-card, .more-btn{ opacity:1 !important; transform:none !important; }
 }
 </style>
 </head>
 <body>
 
-<section class="contact-section" id="cdContactSection">
-  <div class="contact-head">
-    <span>CONTACT US</span>
-    <h2>Let's Start the Conversation</h2>
+<section class="services-section" id="servicesSection">
+  <div class="label">OUR SERVICE AREAS</div>
+  <h2>Industries Connected</h2>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=80" alt="Iron and steel industry"></div>
+      <div class="icon-box"><span>🏭</span></div>
+      <h3>Iron & Steel</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/automobile.png" alt="Automobile industry"></div>
+      <div class="icon-box"><span>🚗</span></div>
+      <h3>Automobile</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/Manufactring.png" alt="Manufacturing industry"></div>
+      <div class="icon-box"><span>⚙️</span></div>
+      <h3>Manufacturing</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/ed-tech.png" alt="EdTech industry"></div>
+      <div class="icon-box"><span>📚</span></div>
+      <h3>EdTech</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="FinTech industry"></div>
+      <div class="icon-box"><span>💳</span></div>
+      <h3>FinTech</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/engeering-cunstruction.png" alt="Engineering and construction industry"></div>
+      <div class="icon-box"><span>🏗️</span></div>
+      <h3>Engineering & Construction</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&w=900&q=80" alt="BPO and customer support"></div>
+      <div class="icon-box"><span>🎧</span></div>
+      <h3>BPO & Customer Support</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/pharma.png" alt="Pharmaceutical industry"></div>
+      <div class="icon-box"><span>💊</span></div>
+      <h3>Pharmaceutical</h3>
+    </div>
+    <div class="service-card">
+      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/chemical-industry.png" alt="Chemical industry"></div>
+      <div class="icon-box"><span>⚗️</span></div>
+      <h3>Chemical Industry</h3>
+    </div>
   </div>
 
-  <div class="contact-wrapper">
-    <div class="contact-form">
-      <h3 class="form-title">Let's Start a Conversation</h3>
-      <p class="form-subtitle">Our team will get back to you within 24 hours.</p>
-      <div class="form-grid">
-        <input placeholder="First Name">
-        <input placeholder="Last Name">
-        <input placeholder="Email">
-        <input placeholder="Phone Number">
-        <input placeholder="Subject">
-        <textarea placeholder="Your Message"></textarea>
-      </div>
-      <div class="submit-btn"><button>SUBMIT NOW →</button></div>
-    </div>
-
-    <div class="contact-info">
-      <div class="info-box">
-        <div class="info-icon"><span>📞</span></div>
-        <div class="info-text"><h4>Call Us</h4><p>7906927451</p></div>
-      </div>
-      <div class="info-box">
-        <div class="info-icon"><span>✉️</span></div>
-        <div class="info-text"><h4>Email Us</h4><p>careers.destinationhr@gmail.com</p></div>
-      </div>
-      <div class="info-box">
-        <div class="info-icon"><span>📍</span></div>
-        <div class="info-text"><h4>Our Location</h4><p>Greater Noida, Uttar Pradesh – 201310</p></div>
-      </div>
-      <div class="info-box whatsapp" onclick="window.open('https://wa.me/917906927451','_blank')">
-        <div class="info-icon"><span>💬</span></div>
-        <div class="info-text"><h4>WhatsApp Us</h4><p>7906927451</p></div>
-      </div>
-    </div>
+  <div class="more-btn">
+    <a href="#">MORE →</a>
   </div>
 </section>
 
 <script>
 (function () {
-  var section = document.getElementById('cdContactSection');
+  var section = document.getElementById('servicesSection');
   if (!section) return;
 
   function restartAnimation() {
     section.classList.remove('in-view');
-    // force reflow so animation restarts every time section re-enters view
     void section.offsetWidth;
     section.classList.add('in-view');
   }
@@ -250,7 +255,6 @@ body{ background:#fff; }
       if (entry.isIntersecting) {
         restartAnimation();
       } else {
-        // reset when section leaves viewport so next entry animates again
         section.classList.remove('in-view');
       }
     });
@@ -263,6 +267,5 @@ body{ background:#fff; }
   observer.observe(section);
 })();
 </script>
-
 </body>
 </html>
