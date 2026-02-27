@@ -3,255 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services Section</title>
+<title>How It Works</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --primary:#0a2540;
-  --accent:#0a58ca;
-  --navy:#0d1f3c;
+.how-scope *{
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
 }
-*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-body{ background:#fff; }
-
-.services-section{
-  padding:80px 6%;
+.how-scope{
+  width:100%;
   background:#fafafa;
-  text-align:center;
-  overflow:hidden;
 }
-
-.label{
+.how-scope .how-section{
+  padding:90px 6%;
+  max-width:1400px;
+  margin:auto;
+  text-align:center;
+}
+.how-scope .how-label{
   display:inline-block;
   padding:8px 22px;
   background:#eef2f3;
   border-radius:20px;
-  font-size:15px;
+  font-size:14px;
   font-weight:700;
-  letter-spacing:1.2px;
+  letter-spacing:1px;
   color:#0a58ca;
-  margin-bottom:12px;
+  margin-bottom:14px;
   opacity:0;
   transform:translateY(-20px);
 }
-
-.services-section h2{
+.how-scope h2{
   font-size:38px;
   font-weight:600;
-  margin-bottom:60px;
+  margin-bottom:70px;
   color:#222;
   opacity:0;
   transform:translateY(-20px);
 }
-
-.services-grid{
+.how-scope .steps-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:40px;
-  margin-bottom:70px;
+  gap:50px;
+  align-items:flex-start;
 }
 
-@keyframes fadeDrop {
-  from { opacity:0; transform:translateY(-20px); }
-  to { opacity:1; transform:translateY(0); }
-}
-@keyframes springPop {
-  0%   { opacity:0; transform: scale(0.4) translateY(50px); }
-  55%  { opacity:1; transform: scale(1.1) translateY(-10px); }
-  75%  { transform: scale(0.95) translateY(4px); }
-  90%  { transform: scale(1.03) translateY(-2px); }
-  100% { opacity:1; transform: scale(1) translateY(0); }
-}
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(20px); }
-  to { opacity:1; transform:translateY(0); }
-}
-
-.service-card{
-  --delay:0s;
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.08);
-  overflow:hidden;
-  padding-bottom:25px;
+.how-scope .step-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   opacity:0;
-  transform: scale(0.4) translateY(50px);
-  will-change: transform, opacity;
+  transform:translateY(50px);
+  --delay:0s;
 }
 
-.img-wrapper{ position:relative; overflow:hidden; }
-.service-card img{
+.how-scope .step-number{
+  width:40px;
+  height:40px;
+  background:#f6b21a;
+  color:#222;
+  font-weight:700;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:22px;
+  z-index:2;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.how-scope .step-card:hover .step-number{
+  transform:scale(1.15);
+  box-shadow:0 6px 20px rgba(246,178,26,0.5);
+}
+.how-scope .step-card::before{
+  content:"";
+  position:absolute;
+  top:92px;
+  width:70px;
+  height:70px;
+  border:2px solid #ddd;
+  transform:rotate(45deg);
+  z-index:0;
+  transition:border-color .3s ease, transform .4s ease;
+}
+.how-scope .step-card:hover::before{
+  border-color:#0d1f3c;
+  transform:rotate(90deg);
+}
+.how-scope .step-image{
+  width:200px;
+  height:200px;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+  position:relative;
+  z-index:1;
+  transition:box-shadow .4s ease, transform .4s ease;
+}
+.how-scope .step-card:hover .step-image{
+  box-shadow:0 30px 60px rgba(13,31,60,0.22);
+  transform:translateY(-6px);
+}
+.how-scope .step-image img{
   width:100%;
-  height:230px;
+  height:100%;
   object-fit:cover;
   display:block;
+  max-width:none;
   transition:transform .5s ease;
 }
-.service-card:hover img{ transform:scale(1.08); }
-
-.img-wrapper::after{
+.how-scope .step-card:hover .step-image img{
+  transform:scale(1.08);
+}
+.how-scope .step-image::after{
   content:'';
-  position:absolute; top:0; left:-100%;
-  width:60%; height:100%;
-  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.25) 50%,transparent 100%);
+  position:absolute;
+  top:0; left:-100%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
   transition:left .55s ease;
   pointer-events:none;
+  z-index:2;
 }
-.service-card:hover .img-wrapper::after{ left:140%; }
-
-.icon-box{
-  width:60px; height:60px;
-  background:#fff; border-radius:50%;
-  margin:20px auto 15px;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
-  transition: background .3s, box-shadow .3s, transform .3s;
+.how-scope .step-card:hover .step-image::after{
+  left:140%;
 }
-.service-card:hover .icon-box{
-  background:var(--navy);
-  box-shadow:0 12px 30px rgba(13,31,60,0.35);
-  transform:rotate(8deg) scale(1.1);
+.how-scope .step-text{
+  background:#f1f1f1;
+  margin-top:26px;
+  padding:22px;
+  border-radius:14px;
+  max-width:260px;
+  transition:background .3s ease, box-shadow .3s ease, transform .3s ease;
+  position:relative;
+  overflow:hidden;
 }
-.icon-box span{ font-size:26px; line-height:1; color:var(--accent); transition:filter .3s; }
-.service-card:hover .icon-box span{ filter:brightness(0) invert(1); }
-
-.service-card h3{ font-size:18px; font-weight:600; margin-top:10px; color:#333; transition:color .3s; }
-.service-card:hover h3{ color:var(--navy); }
-
-.service-card::after{
-  content:''; display:block; height:3px; width:0;
-  background:linear-gradient(90deg, var(--accent), var(--navy));
-  margin:0 auto; border-radius:0 0 4px 4px;
+.how-scope .step-text::after{
+  content:'';
+  position:absolute;
+  bottom:0; left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:3px;
+  background:linear-gradient(90deg,#0a58ca,#0d1f3c);
+  border-radius:2px;
   transition:width .4s ease;
 }
-.service-card:hover::after{ width:80%; }
-
-.more-btn{
-  opacity:0;
-  transform:translateY(20px);
+.how-scope .step-card:hover .step-text::after{ width:80%; }
+.how-scope .step-card:hover .step-text{
+  background:#fff;
+  box-shadow:0 15px 40px rgba(13,31,60,0.12);
+  transform:translateY(-4px);
+}
+.how-scope .step-text h3{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#222;
+  transition:color .3s ease;
+}
+.how-scope .step-card:hover .step-text h3{ color:#0d1f3c; }
+.how-scope .step-text p{
+  font-size:14px;
+  color:#666;
+  line-height:1.6;
+  margin:0;
 }
 
-.more-btn a{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:14px 30px; background:#0a58ca; color:#fff;
-  text-decoration:none; font-weight:600; border-radius:8px;
-  transition: background .3s, transform .3s, box-shadow .3s;
-  position:relative; overflow:hidden;
+/* Contact-section style trigger/replay animation */
+.how-scope.in-view .how-label{ animation:fadeDown .6s ease .1s forwards; }
+.how-scope.in-view h2{ animation:fadeDown .6s ease .25s forwards; }
+.how-scope.in-view .step-card{ animation:cardIn .8s cubic-bezier(.2,.75,.2,1) forwards; animation-delay:var(--delay); }
+
+.how-scope .step-card:nth-child(1){ --delay:.35s; }
+.how-scope .step-card:nth-child(2){ --delay:.55s; }
+.how-scope .step-card:nth-child(3){ --delay:.75s; }
+
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-20px);}
+  to{opacity:1; transform:translateY(0);}
 }
-.more-btn a::before{
-  content:''; position:absolute; top:0; left:-100%;
-  width:100%; height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
-  transition:left .5s ease;
-}
-.more-btn a:hover::before{ left:100%; }
-.more-btn a:hover{
-  background:var(--navy);
-  transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(13,31,60,.4);
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(50px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
-/* Same trigger behavior as contact section */
-.services-section.in-view .label{ animation:fadeDrop .75s ease forwards; }
-.services-section.in-view h2{ animation:fadeDrop .85s ease .2s forwards; }
-.services-section.in-view .service-card{ animation:springPop 1.15s cubic-bezier(.22,.9,.25,1.15) forwards; animation-delay:var(--delay); }
-.services-section.in-view .more-btn{ animation:fadeUp .85s ease 1.65s forwards; }
-
-.service-card:nth-child(1){ --delay:.28s; }
-.service-card:nth-child(2){ --delay:.40s; }
-.service-card:nth-child(3){ --delay:.52s; }
-.service-card:nth-child(4){ --delay:.64s; }
-.service-card:nth-child(5){ --delay:.76s; }
-.service-card:nth-child(6){ --delay:.88s; }
-.service-card:nth-child(7){ --delay:1.00s; }
-.service-card:nth-child(8){ --delay:1.12s; }
-.service-card:nth-child(9){ --delay:1.24s; }
-
-@media(max-width:900px){ .services-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:900px){
+  .how-scope .steps-grid{ grid-template-columns:repeat(2,1fr); }
+}
 @media(max-width:600px){
-  .services-grid{grid-template-columns:1fr;}
-  .services-section h2{font-size:28px;}
-  .service-card img{height:200px;}
+  .how-scope .steps-grid{ grid-template-columns:1fr; gap:60px; }
+  .how-scope h2{ font-size:28px; }
+  .how-scope .step-card::before{ display:none; }
 }
 
 @media (prefers-reduced-motion: reduce){
-  *, *::before, *::after{ animation:none !important; transition:none !important; }
-  .label, .services-section h2, .service-card, .more-btn{ opacity:1 !important; transform:none !important; }
+  .how-scope *, .how-scope *::before, .how-scope *::after{ animation:none !important; transition:none !important; }
+  .how-scope .how-label,
+  .how-scope h2,
+  .how-scope .step-card{ opacity:1 !important; transform:none !important; }
 }
 </style>
 </head>
 <body>
 
-<section class="services-section" id="servicesSection">
-  <div class="label">OUR SERVICE AREAS</div>
-  <h2>Industries Connected</h2>
+<section class="how-scope" id="howScopeSection">
+  <div class="how-section">
+    <div class="how-label">HOW IT WORKS</div>
+    <h2>A Smarter, Streamlined Staffing Process</h2>
 
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=80" alt="Iron and steel industry"></div>
-      <div class="icon-box"><span>🏭</span></div>
-      <h3>Iron & Steel</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/automobile.png" alt="Automobile industry"></div>
-      <div class="icon-box"><span>🚗</span></div>
-      <h3>Automobile</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/Manufactring.png" alt="Manufacturing industry"></div>
-      <div class="icon-box"><span>⚙️</span></div>
-      <h3>Manufacturing</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/ed-tech.png" alt="EdTech industry"></div>
-      <div class="icon-box"><span>📚</span></div>
-      <h3>EdTech</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80" alt="FinTech industry"></div>
-      <div class="icon-box"><span>💳</span></div>
-      <h3>FinTech</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/engeering-cunstruction.png" alt="Engineering and construction industry"></div>
-      <div class="icon-box"><span>🏗️</span></div>
-      <h3>Engineering & Construction</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?auto=format&fit=crop&w=900&q=80" alt="BPO and customer support"></div>
-      <div class="icon-box"><span>🎧</span></div>
-      <h3>BPO & Customer Support</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/pharma.png" alt="Pharmaceutical industry"></div>
-      <div class="icon-box"><span>💊</span></div>
-      <h3>Pharmaceutical</h3>
-    </div>
-    <div class="service-card">
-      <div class="img-wrapper"><img src="https://careersdestination.com/wp-content/uploads/2026/01/chemical-industry.png" alt="Chemical industry"></div>
-      <div class="icon-box"><span>⚗️</span></div>
-      <h3>Chemical Industry</h3>
-    </div>
-  </div>
+    <div class="steps-grid">
 
-  <div class="more-btn">
-    <a href="#">MORE →</a>
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-image">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600" alt="Job Analysis">
+        </div>
+        <div class="step-text">
+          <h3>Strategic Job Analysis</h3>
+          <p>We deep-dive into role requirements, business goals, and culture to define the exact talent profile needed for success.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-image">
+          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=600" alt="Talent Screening">
+        </div>
+        <div class="step-text">
+          <h3>Expert Talent Screening</h3>
+          <p>Our specialists source, assess, and shortlist high-quality candidates who match your technical, functional, and cultural needs.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-image">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600" alt="Job Placement">
+        </div>
+        <div class="step-text">
+          <h3>Successful Job Placement</h3>
+          <p>We ensure the right fit—delivering seamless onboarding and long-term success for both clients and candidates.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <script>
-(function () {
-  var section = document.getElementById('servicesSection');
+(function(){
+  var section = document.getElementById('howScopeSection');
   if (!section) return;
 
-  function restartAnimation() {
+  function restartAnimation(){
     section.classList.remove('in-view');
     void section.offsetWidth;
     section.classList.add('in-view');
   }
 
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
       if (entry.isIntersecting) {
         restartAnimation();
       } else {
@@ -267,5 +283,6 @@ body{ background:#fff; }
   observer.observe(section);
 })();
 </script>
+
 </body>
 </html>
