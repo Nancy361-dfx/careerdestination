@@ -3,198 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HR Consulting Layout</title>
+  <title>HR Consulting & Staffing</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fff;
-      color: #111;
-    }
-    .page {
-      max-width: 1200px;
-      margin: 18px auto;
-      padding: 0 14px;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 18px;
-    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#12233d}
+    .wrap{max-width:1140px;margin:16px auto;padding:0 10px;display:grid;grid-template-columns:2.1fr 1fr;gap:16px}
 
-    .main h1 { font-size: 38px; margin: 0 0 10px; font-weight: 700; color:#0d2240; }
-    .main h2 { font-size: 28px; margin: 22px 0 6px; color:#0d2240; }
-    .main p { margin: 0 0 10px; color:#3f4b5b; line-height: 1.6; font-size: 15px; }
+    .main h1{font-size:34px;line-height:1.1;margin:0 0 8px;color:#132645}
+    .main h2{font-size:30px;line-height:1.15;margin:16px 0 6px;color:#112745}
+    .main p{font-size:12px;line-height:1.55;color:#46556a;margin:0 0 9px}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:10px 0 12px}
 
-    .split {
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin: 10px 0 16px;
-    }
+    .quote{border-left:4px solid #f0a220;background:#f7f7f7;padding:12px 12px;margin:10px 0 18px;font-size:12px;line-height:1.55;color:#4f5d70}
 
-    .tip-box {
-      border-left: 4px solid #f3a51d;
-      background:#fafafa;
-      padding:14px;
-      margin: 14px 0 22px;
-      color:#38495d;
-      font-size:14px;
-      line-height:1.6;
-    }
+    .section-title{font-size:31px;line-height:1.15;color:#112745;margin:8px 0 6px}
 
-    .accordion {
-      border-top: 1px solid #e7e7e7;
-    }
-    .acc-item {
-      border-bottom: 1px solid #e7e7e7;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding: 14px 10px;
-      font-size:14px;
-    }
-    .acc-item.open {
-      background: #f8f8f8;
-      border-left: 4px solid #f3a51d;
-      padding-left: 12px;
-      color:#27364e;
-      line-height:1.6;
-    }
+    .faq{margin-top:8px;border-top:1px solid #e6e6e6}
+    .faq-item{display:flex;justify-content:space-between;align-items:center;padding:10px 10px;border-bottom:1px solid #e6e6e6;font-size:12px;color:#223650;background:#fff}
+    .faq-item.open{background:#fff8ef;border-left:4px solid #f0a220;padding-left:8px;align-items:flex-start;line-height:1.6}
 
-    .sidebar .card {
-      border:1px solid #e7e7e7;
-      padding: 12px;
-      margin-bottom: 14px;
-      background:#fff;
-    }
-    .card h3 {
-      margin:0 0 10px;
-      font-size:16px;
-      font-weight:700;
-      color:#1b2d47;
-    }
-    .search {
-      width:100%;
-      border:1px solid #ddd;
-      padding:9px;
-      font-size:13px;
-    }
+    .card{border:1px solid #e4e4e4;background:#fff;padding:10px;margin-bottom:10px}
+    .card h3{margin:0 0 8px;font-size:12px;color:#1f2f49;font-weight:700}
 
-    .recent-item {
-      display:grid;
-      grid-template-columns: 56px 1fr;
-      gap:10px;
-      margin-bottom:10px;
-      align-items:center;
-    }
-    .recent-item img {
-      width:56px; height:56px; object-fit:cover;
-      border:1px solid #ddd;
-    }
-    .recent-item .t { font-size:12px; color:#22334d; line-height:1.35; }
-    .recent-item .d { font-size:11px; color:#777; margin-top:2px; }
+    .searchbox{position:relative}
+    .searchbox input{width:100%;border:1px solid #ddd;padding:7px 24px 7px 7px;font-size:11px}
+    .searchbox span{position:absolute;right:8px;top:6px;color:#f0a220;font-size:12px}
 
-    .list a {
-      display:block;
-      text-decoration:none;
-      color:#25374f;
-      font-size:13px;
-      padding:6px 0;
-      border-bottom:1px solid #eee;
-    }
+    .recent{display:grid;grid-template-columns:48px 1fr;gap:8px;margin-bottom:10px}
+    .recent img{width:48px;height:48px;object-fit:cover;border:1px solid #ddd}
+    .recent .t{font-size:10.5px;line-height:1.35;color:#1f2f49}
+    .recent .d{font-size:9.5px;color:#777;margin-top:2px}
 
-    .contact input, .contact textarea {
-      width:100%;
-      border:1px solid #ddd;
-      padding:8px;
-      margin-bottom:8px;
-      font-size:12px;
-      font-family: inherit;
-    }
-    .contact textarea { min-height:90px; resize:vertical; }
-    .btn {
-      border:none;
-      background:#f3a51d;
-      color:#fff;
-      padding:8px 12px;
-      font-size:12px;
-      font-weight:700;
-      cursor:pointer;
-    }
+    .cats a{display:block;color:#25374f;text-decoration:none;font-size:11px;padding:5px 0;border-bottom:1px solid #efefef}
 
-    @media (max-width: 900px) {
-      .page { grid-template-columns: 1fr; }
-      .split { grid-template-columns: 1fr; }
-    }
+    .contact input,.contact textarea{width:100%;border:1px solid #ddd;padding:7px;font-size:10.5px;margin-bottom:7px}
+    .contact textarea{height:84px;resize:vertical}
+    .btn{background:#f0a220;color:#fff;border:0;padding:7px 11px;font-size:10.5px;font-weight:700;cursor:pointer}
+
+    @media (max-width:900px){.wrap{grid-template-columns:1fr}.cols{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="wrap">
     <main class="main">
       <h1>HR Consulting &amp; Staffing</h1>
-      <p>Our HR consulting and staffing support your business growth and management with customized solutions. Whether for planning, hiring, or process optimization, we help transform your staffing strategy.</p>
+      <p>Our HR consulting and staffing support your process planning and organization success with compliance, workforce planning, and talent management. Helping you optimize your staffing strategy for long-term growth.</p>
 
       <h2>HR compliance and talent management</h2>
-      <p>We provide guidance for hiring policies, workforce planning, and documentation so your business can move confidently with compliant HR practices.</p>
+      <p>Our experienced consultants improve hiring procedures and documentation and help your organization stay compliant while reducing hiring risks and improving team performance.</p>
 
       <h2>Talent to drive your organization’s success</h2>
-      <p>Our recruitment model focuses on role-fit and long-term value by identifying professionals who align with your operational and leadership goals.</p>
+      <p>Our recruitment experts evaluate role requirements and match qualified talent for your industry. We focus on practical hiring outcomes with the right technical and cultural fit.</p>
 
       <h2>Need to fill a position quickly</h2>
-      <p>From urgent hiring to specialized placement, we streamline screening and interview management to reduce hiring time without compromising quality.</p>
+      <p>Our rapid hiring process and dedicated support team helps you close positions faster. We streamline sourcing, screening, and interview coordination to reduce delays and improve decisions.</p>
 
-      <div class="split">
-        <p>Our experts provide practical staffing strategies to improve retention and hiring quality.</p>
-        <p>We support candidates and employers with responsive communication and job readiness guidance.</p>
+      <div class="cols">
+        <p>Our direct hire solutions deliver long-term workforce growth and reduce replacement costs for employers.</p>
+        <p>Our temporary staffing services provide flexible workforce solutions to meet short-term staffing needs with better business continuity.</p>
       </div>
 
-      <div class="tip-box">
-        <strong>Did you know?</strong> A proactive and strategic hiring approach can significantly improve long-term business outcomes, employee engagement, and workforce stability.
-      </div>
+      <div class="quote">Did you know strategic workforce planning can improve hiring speed, reduce attrition, and increase team performance? Investing in better recruitment practices today supports long-term business success.</div>
 
-      <h2>Recruitology Tips &amp; Trends for Hiring Success</h2>
-      <p>Stay informed about modern recruitment methods, candidate behavior, and workplace trends.</p>
+      <h2 class="section-title">Recruitology Tips &amp;<br>Trends for Hiring Success</h2>
+      <p>Learn modern recruitment strategy and practical staffing tips to hire better, faster, and smarter for every role.</p>
 
-      <div class="accordion">
-        <div class="acc-item open">
-          Looking for top talent for permanent roles?<br>
-          We deliver high-quality recruitment and role-specific candidate matching to improve long-term fit.
-          <span>−</span>
-        </div>
-        <div class="acc-item">People specialized skills for short-term projects? <span>+</span></div>
-        <div class="acc-item">Concerned about cultural fit when hiring? <span>+</span></div>
-        <div class="acc-item">Unsure what staffing solution is right for you? <span>+</span></div>
+      <div class="faq">
+        <div class="faq-item open">Looking for top talent for permanent roles?<br><br>With our strong industry knowledge and expertise, we recruit and deliver long-term fit candidates for critical roles. Our high-touch process gives you the flexibility to assess candidates before final decision making for permanent hiring needs.<span>−</span></div>
+        <div class="faq-item">People specialized skills for short-term projects?<span>+</span></div>
+        <div class="faq-item">Concerned about cultural fit when hiring?<span>+</span></div>
+        <div class="faq-item">Unsure which staffing solution is right for you?<span>+</span></div>
       </div>
     </main>
 
-    <aside class="sidebar">
+    <aside>
       <div class="card">
         <h3>Search</h3>
-        <input class="search" placeholder="Search" />
+        <div class="searchbox">
+          <input placeholder="Search" />
+          <span>⌕</span>
+        </div>
       </div>
 
       <div class="card">
         <h3>Recent Posted</h3>
-        <div class="recent-item">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120&h=120&fit=crop&auto=format" alt="recent" />
+        <div class="recent">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=96&h=96&fit=crop&auto=format" alt="post">
           <div><div class="t">Executive Search Service</div><div class="d">December 20, 2024</div></div>
         </div>
-        <div class="recent-item">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=120&h=120&fit=crop&auto=format" alt="recent" />
+        <div class="recent">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=96&h=96&fit=crop&auto=format" alt="post">
           <div><div class="t">Temporary Staffing Services</div><div class="d">December 20, 2024</div></div>
         </div>
-        <div class="recent-item">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=120&h=120&fit=crop&auto=format" alt="recent" />
+        <div class="recent">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=96&h=96&fit=crop&auto=format" alt="post">
           <div><div class="t">Temp-to-Hire Program</div><div class="d">December 20, 2024</div></div>
         </div>
       </div>
 
-      <div class="card list">
+      <div class="card cats">
         <h3>Service Categories</h3>
         <a href="#">Hiring Panic</a>
         <a href="#">Industries</a>
-        <a href="#">Industry2</a>
-        <a href="#">Marketing</a>
+        <a href="#">Industries2</a>
+        <a href="#">marketing</a>
         <a href="#">Solutions</a>
         <a href="#">Staffing</a>
         <a href="#">Talent</a>
@@ -203,9 +115,9 @@
 
       <div class="card contact">
         <h3>Contact Us</h3>
-        <input placeholder="Full Name" />
-        <input placeholder="Email" />
-        <input placeholder="Phone Number" />
+        <input placeholder="Full Name">
+        <input placeholder="Email">
+        <input placeholder="Phone Number">
         <textarea placeholder="Your Message"></textarea>
         <button class="btn">Submit Now ↗</button>
       </div>
