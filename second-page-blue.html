@@ -1,281 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Services</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Consulting Layout</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    .page {
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 14px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    .main h1 { font-size: 38px; margin: 0 0 10px; font-weight: 700; color:#0d2240; }
+    .main h2 { font-size: 28px; margin: 22px 0 6px; color:#0d2240; }
+    .main p { margin: 0 0 10px; color:#3f4b5b; line-height: 1.6; font-size: 15px; }
 
-<style>
-:root{
-  --accent:#f4b41a;
-  --navy:#0d1f3c;
-}
+    .split {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 10px 0 16px;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+    .tip-box {
+      border-left: 4px solid #f3a51d;
+      background:#fafafa;
+      padding:14px;
+      margin: 14px 0 22px;
+      color:#38495d;
+      font-size:14px;
+      line-height:1.6;
+    }
 
-body{ background:#fff; }
+    .accordion {
+      border-top: 1px solid #e7e7e7;
+    }
+    .acc-item {
+      border-bottom: 1px solid #e7e7e7;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 14px 10px;
+      font-size:14px;
+    }
+    .acc-item.open {
+      background: #f8f8f8;
+      border-left: 4px solid #f3a51d;
+      padding-left: 12px;
+      color:#27364e;
+      line-height:1.6;
+    }
 
-.industry-section{
-  padding:90px 6%;
-  background:#fafafa;
-}
+    .sidebar .card {
+      border:1px solid #e7e7e7;
+      padding: 12px;
+      margin-bottom: 14px;
+      background:#fff;
+    }
+    .card h3 {
+      margin:0 0 10px;
+      font-size:16px;
+      font-weight:700;
+      color:#1b2d47;
+    }
+    .search {
+      width:100%;
+      border:1px solid #ddd;
+      padding:9px;
+      font-size:13px;
+    }
 
-/* Heading */
-.industry-section h2{
-  text-align:center;
-  font-size:38px;
-  font-weight:600;
-  margin-bottom:60px;
-  color:#222;
-  opacity:0;
-  transform:translateY(-24px);
-}
+    .recent-item {
+      display:grid;
+      grid-template-columns: 56px 1fr;
+      gap:10px;
+      margin-bottom:10px;
+      align-items:center;
+    }
+    .recent-item img {
+      width:56px; height:56px; object-fit:cover;
+      border:1px solid #ddd;
+    }
+    .recent-item .t { font-size:12px; color:#22334d; line-height:1.35; }
+    .recent-item .d { font-size:11px; color:#777; margin-top:2px; }
 
-.industry-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:30px;
-}
+    .list a {
+      display:block;
+      text-decoration:none;
+      color:#25374f;
+      font-size:13px;
+      padding:6px 0;
+      border-bottom:1px solid #eee;
+    }
 
-/* ===== CARD ===== */
-.industry-card{
-  --delay:0s;
-  position:relative;
-  height:360px;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 25px 60px rgba(0,0,0,0.15);
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(50px);
-  transition:transform .45s cubic-bezier(.25,.8,.25,1), box-shadow .45s ease;
-}
+    .contact input, .contact textarea {
+      width:100%;
+      border:1px solid #ddd;
+      padding:8px;
+      margin-bottom:8px;
+      font-size:12px;
+      font-family: inherit;
+    }
+    .contact textarea { min-height:90px; resize:vertical; }
+    .btn {
+      border:none;
+      background:#f3a51d;
+      color:#fff;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:700;
+      cursor:pointer;
+    }
 
-.industry-card:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 40px 80px rgba(13,31,60,0.22);
-}
-
-/* ===== BACKGROUND IMAGE DIV ===== */
-.card-bg{
-  width:100%;
-  height:100%;
-  background-size:cover;
-  background-position:center;
-  transition:transform .55s ease;
-}
-.industry-card:hover .card-bg{ transform:scale(1.1); }
-
-.card-bg-1{
-  background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&fit=crop&q=80');
-  background-color: #1a3a6b;
-}
-.card-bg-2{
-  background-image: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&auto=format&fit=crop&q=80');
-  background-color: #1a3b2a;
-}
-.card-bg-3{
-  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80');
-  background-color: #2a1a0d;
-}
-
-/* Shine sweep */
-.industry-card::after{
-  content:'';
-  position:absolute;
-  top:0; left:-100%;
-  width:55%;
-  height:100%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
-  transition:left .6s ease;
-  pointer-events:none;
-  z-index:2;
-}
-.industry-card:hover::after{ left:150%; }
-
-/* ===== OVERLAY BOX ===== */
-.card-overlay{
-  position:absolute;
-  left:20px;
-  right:20px;
-  bottom:20px;
-  background:#fff;
-  border-radius:14px;
-  padding:20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.2);
-  transition:background .35s ease, box-shadow .35s ease, transform .35s ease;
-  z-index:3;
-  overflow:hidden;
-}
-.card-overlay::after{
-  content:'';
-  position:absolute;
-  bottom:0; left:50%;
-  transform:translateX(-50%);
-  width:0;
-  height:3px;
-  background:linear-gradient(90deg, #0a58ca, var(--navy));
-  border-radius:2px;
-  transition:width .4s ease;
-}
-.industry-card:hover .card-overlay::after{ width:85%; }
-.industry-card:hover .card-overlay{
-  background:var(--navy);
-  box-shadow:0 20px 50px rgba(13,31,60,0.35);
-  transform:translateY(-4px);
-}
-
-.overlay-text{ flex:1; }
-.overlay-text span{
-  font-size:16px;
-  font-weight:600;
-  color:#0a1f44;
-  transition:color .3s ease;
-}
-.industry-card:hover .overlay-text span{ color:#f4b41a; }
-.overlay-text h3{
-  font-size:14px;
-  margin-top:6px;
-  font-weight:500;
-  color:#222;
-  line-height:1.4;
-  transition:color .3s ease;
-}
-.industry-card:hover .overlay-text h3{ color:rgba(255,255,255,0.85); }
-
-.arrow-btn{
-  min-width:45px;
-  min-height:45px;
-  background:var(--accent);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  color:#222;
-  transition:transform .35s ease, background .35s ease, box-shadow .35s ease;
-  cursor:pointer;
-  flex-shrink:0;
-}
-.industry-card:hover .arrow-btn{
-  transform:rotate(45deg) scale(1.12);
-  background:#fff;
-  box-shadow:0 6px 20px rgba(0,0,0,0.2);
-}
-
-/* Contact-section style viewport animation */
-.industry-section.in-view h2{
-  animation:fadeDown .65s ease forwards;
-}
-.industry-section.in-view .industry-card{
-  animation:cardIn .7s cubic-bezier(.2,.75,.2,1) forwards;
-  animation-delay:var(--delay);
-}
-.industry-card:nth-child(1){ --delay:.3s; }
-.industry-card:nth-child(2){ --delay:.48s; }
-.industry-card:nth-child(3){ --delay:.66s; }
-
-@keyframes fadeDown{
-  from{opacity:0; transform:translateY(-24px);} 
-  to{opacity:1; transform:translateY(0);} 
-}
-@keyframes cardIn{
-  from{opacity:0; transform:translateY(50px);} 
-  to{opacity:1; transform:translateY(0);} 
-}
-
-@media(max-width:992px){
-  .industry-grid{grid-template-columns:repeat(2,1fr);}
-}
-@media(max-width:600px){
-  .industry-grid{grid-template-columns:1fr;}
-  .industry-section h2{font-size:28px;}
-  .industry-card{height:320px;}
-}
-
-@media (prefers-reduced-motion: reduce){
-  *, *::before, *::after{ animation:none !important; transition:none !important; }
-  .industry-section h2, .industry-card{ opacity:1 !important; transform:none !important; }
-}
-</style>
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .split { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <main class="main">
+      <h1>HR Consulting &amp; Staffing</h1>
+      <p>Our HR consulting and staffing support your business growth and management with customized solutions. Whether for planning, hiring, or process optimization, we help transform your staffing strategy.</p>
 
-<section class="industry-section" id="industrySection">
-  <h2>Our Services</h2>
+      <h2>HR compliance and talent management</h2>
+      <p>We provide guidance for hiring policies, workforce planning, and documentation so your business can move confidently with compliant HR practices.</p>
 
-  <div class="industry-grid">
-    <div class="industry-card">
-      <div class="card-bg card-bg-1"></div>
-      <div class="card-overlay">
-        <div class="overlay-text">
-          <span>Recruitment Services</span>
-          <h3>Connecting the right talent with the right opportunity faster and smarter.</h3>
-        </div>
-        <div class="arrow-btn">↗</div>
+      <h2>Talent to drive your organization’s success</h2>
+      <p>Our recruitment model focuses on role-fit and long-term value by identifying professionals who align with your operational and leadership goals.</p>
+
+      <h2>Need to fill a position quickly</h2>
+      <p>From urgent hiring to specialized placement, we streamline screening and interview management to reduce hiring time without compromising quality.</p>
+
+      <div class="split">
+        <p>Our experts provide practical staffing strategies to improve retention and hiring quality.</p>
+        <p>We support candidates and employers with responsive communication and job readiness guidance.</p>
       </div>
-    </div>
 
-    <div class="industry-card">
-      <div class="card-bg card-bg-2"></div>
-      <div class="card-overlay">
-        <div class="overlay-text">
-          <span>Resume Services</span>
-          <h3>Professionally crafted resumes that open doors to better careers.</h3>
-        </div>
-        <div class="arrow-btn">↗</div>
+      <div class="tip-box">
+        <strong>Did you know?</strong> A proactive and strategic hiring approach can significantly improve long-term business outcomes, employee engagement, and workforce stability.
       </div>
-    </div>
 
-    <div class="industry-card">
-      <div class="card-bg card-bg-3"></div>
-      <div class="card-overlay">
-        <div class="overlay-text">
-          <span>Disha</span>
-          <h3>Guiding talent and organizations toward meaningful career success.</h3>
+      <h2>Recruitology Tips &amp; Trends for Hiring Success</h2>
+      <p>Stay informed about modern recruitment methods, candidate behavior, and workplace trends.</p>
+
+      <div class="accordion">
+        <div class="acc-item open">
+          Looking for top talent for permanent roles?<br>
+          We deliver high-quality recruitment and role-specific candidate matching to improve long-term fit.
+          <span>−</span>
         </div>
-        <div class="arrow-btn">↗</div>
+        <div class="acc-item">People specialized skills for short-term projects? <span>+</span></div>
+        <div class="acc-item">Concerned about cultural fit when hiring? <span>+</span></div>
+        <div class="acc-item">Unsure what staffing solution is right for you? <span>+</span></div>
       </div>
-    </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h3>Search</h3>
+        <input class="search" placeholder="Search" />
+      </div>
+
+      <div class="card">
+        <h3>Recent Posted</h3>
+        <div class="recent-item">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=120&h=120&fit=crop&auto=format" alt="recent" />
+          <div><div class="t">Executive Search Service</div><div class="d">December 20, 2024</div></div>
+        </div>
+        <div class="recent-item">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=120&h=120&fit=crop&auto=format" alt="recent" />
+          <div><div class="t">Temporary Staffing Services</div><div class="d">December 20, 2024</div></div>
+        </div>
+        <div class="recent-item">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=120&h=120&fit=crop&auto=format" alt="recent" />
+          <div><div class="t">Temp-to-Hire Program</div><div class="d">December 20, 2024</div></div>
+        </div>
+      </div>
+
+      <div class="card list">
+        <h3>Service Categories</h3>
+        <a href="#">Hiring Panic</a>
+        <a href="#">Industries</a>
+        <a href="#">Industry2</a>
+        <a href="#">Marketing</a>
+        <a href="#">Solutions</a>
+        <a href="#">Staffing</a>
+        <a href="#">Talent</a>
+        <a href="#">Temporary</a>
+      </div>
+
+      <div class="card contact">
+        <h3>Contact Us</h3>
+        <input placeholder="Full Name" />
+        <input placeholder="Email" />
+        <input placeholder="Phone Number" />
+        <textarea placeholder="Your Message"></textarea>
+        <button class="btn">Submit Now ↗</button>
+      </div>
+    </aside>
   </div>
-</section>
-
-<script>
-(function(){
-  var section = document.getElementById('industrySection');
-  if (!section) return;
-
-  function restartAnimation(){
-    section.classList.remove('in-view');
-    void section.offsetWidth;
-    section.classList.add('in-view');
-  }
-
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        restartAnimation();
-      } else {
-        section.classList.remove('in-view');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  observer.observe(section);
-})();
-</script>
-
 </body>
 </html>
