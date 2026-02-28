@@ -3,125 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HR Consulting & Staffing</title>
+  <title>Search Widget</title>
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#12233d}
-    .wrap{max-width:1140px;margin:16px auto;padding:0 10px;display:grid;grid-template-columns:2.1fr 1fr;gap:16px}
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      display: grid;
+      place-items: start center;
+      min-height: 100vh;
+      padding-top: 10px;
+    }
 
-    .main h1{font-size:34px;line-height:1.1;margin:0 0 8px;color:#132645}
-    .main h2{font-size:30px;line-height:1.15;margin:16px 0 6px;color:#112745}
-    .main p{font-size:12px;line-height:1.55;color:#46556a;margin:0 0 9px}
-    .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:10px 0 12px}
+    .search-card {
+      width: 119px;
+      background: #f8f8f8;
+      border: 1px solid #ececec;
+      padding: 8px;
+    }
 
-    .quote{border-left:4px solid #f0a220;background:#f7f7f7;padding:12px 12px;margin:10px 0 18px;font-size:12px;line-height:1.55;color:#4f5d70}
+    .search-title {
+      margin: 0 0 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #2a2a2a;
+      line-height: 1;
+    }
 
-    .section-title{font-size:31px;line-height:1.15;color:#112745;margin:8px 0 6px}
+    .search-wrap {
+      position: relative;
+    }
 
-    .faq{margin-top:8px;border-top:1px solid #e6e6e6}
-    .faq-item{display:flex;justify-content:space-between;align-items:center;padding:10px 10px;border-bottom:1px solid #e6e6e6;font-size:12px;color:#223650;background:#fff}
-    .faq-item.open{background:#fff8ef;border-left:4px solid #f0a220;padding-left:8px;align-items:flex-start;line-height:1.6}
+    .search-input {
+      width: 100%;
+      height: 18px;
+      border: 1px solid #e5e5e5;
+      background: #ffffff;
+      font-size: 8px;
+      color: #777;
+      padding: 0 14px 0 6px;
+      outline: none;
+    }
 
-    .card{border:1px solid #e4e4e4;background:#fff;padding:10px;margin-bottom:10px}
-    .card h3{margin:0 0 8px;font-size:12px;color:#1f2f49;font-weight:700}
+    .search-input::placeholder {
+      color: #c0c0c0;
+    }
 
-    .searchbox{position:relative}
-    .searchbox input{width:100%;border:1px solid #ddd;padding:7px 24px 7px 7px;font-size:11px}
-    .searchbox span{position:absolute;right:8px;top:6px;color:#f0a220;font-size:12px}
-
-    .recent{display:grid;grid-template-columns:48px 1fr;gap:8px;margin-bottom:10px}
-    .recent img{width:48px;height:48px;object-fit:cover;border:1px solid #ddd}
-    .recent .t{font-size:10.5px;line-height:1.35;color:#1f2f49}
-    .recent .d{font-size:9.5px;color:#777;margin-top:2px}
-
-    .cats a{display:block;color:#25374f;text-decoration:none;font-size:11px;padding:5px 0;border-bottom:1px solid #efefef}
-
-    .contact input,.contact textarea{width:100%;border:1px solid #ddd;padding:7px;font-size:10.5px;margin-bottom:7px}
-    .contact textarea{height:84px;resize:vertical}
-    .btn{background:#f0a220;color:#fff;border:0;padding:7px 11px;font-size:10.5px;font-weight:700;cursor:pointer}
-
-    @media (max-width:900px){.wrap{grid-template-columns:1fr}.cols{grid-template-columns:1fr}}
+    .search-icon {
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 8px;
+      color: #f3a51d;
+      line-height: 1;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <main class="main">
-      <h1>HR Consulting &amp; Staffing</h1>
-      <p>Our HR consulting and staffing support your process planning and organization success with compliance, workforce planning, and talent management. Helping you optimize your staffing strategy for long-term growth.</p>
-
-      <h2>HR compliance and talent management</h2>
-      <p>Our experienced consultants improve hiring procedures and documentation and help your organization stay compliant while reducing hiring risks and improving team performance.</p>
-
-      <h2>Talent to drive your organization’s success</h2>
-      <p>Our recruitment experts evaluate role requirements and match qualified talent for your industry. We focus on practical hiring outcomes with the right technical and cultural fit.</p>
-
-      <h2>Need to fill a position quickly</h2>
-      <p>Our rapid hiring process and dedicated support team helps you close positions faster. We streamline sourcing, screening, and interview coordination to reduce delays and improve decisions.</p>
-
-      <div class="cols">
-        <p>Our direct hire solutions deliver long-term workforce growth and reduce replacement costs for employers.</p>
-        <p>Our temporary staffing services provide flexible workforce solutions to meet short-term staffing needs with better business continuity.</p>
-      </div>
-
-      <div class="quote">Did you know strategic workforce planning can improve hiring speed, reduce attrition, and increase team performance? Investing in better recruitment practices today supports long-term business success.</div>
-
-      <h2 class="section-title">Recruitology Tips &amp;<br>Trends for Hiring Success</h2>
-      <p>Learn modern recruitment strategy and practical staffing tips to hire better, faster, and smarter for every role.</p>
-
-      <div class="faq">
-        <div class="faq-item open">Looking for top talent for permanent roles?<br><br>With our strong industry knowledge and expertise, we recruit and deliver long-term fit candidates for critical roles. Our high-touch process gives you the flexibility to assess candidates before final decision making for permanent hiring needs.<span>−</span></div>
-        <div class="faq-item">People specialized skills for short-term projects?<span>+</span></div>
-        <div class="faq-item">Concerned about cultural fit when hiring?<span>+</span></div>
-        <div class="faq-item">Unsure which staffing solution is right for you?<span>+</span></div>
-      </div>
-    </main>
-
-    <aside>
-      <div class="card">
-        <h3>Search</h3>
-        <div class="searchbox">
-          <input placeholder="Search" />
-          <span>⌕</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Recent Posted</h3>
-        <div class="recent">
-          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=96&h=96&fit=crop&auto=format" alt="post">
-          <div><div class="t">Executive Search Service</div><div class="d">December 20, 2024</div></div>
-        </div>
-        <div class="recent">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=96&h=96&fit=crop&auto=format" alt="post">
-          <div><div class="t">Temporary Staffing Services</div><div class="d">December 20, 2024</div></div>
-        </div>
-        <div class="recent">
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=96&h=96&fit=crop&auto=format" alt="post">
-          <div><div class="t">Temp-to-Hire Program</div><div class="d">December 20, 2024</div></div>
-        </div>
-      </div>
-
-      <div class="card cats">
-        <h3>Service Categories</h3>
-        <a href="#">Hiring Panic</a>
-        <a href="#">Industries</a>
-        <a href="#">Industries2</a>
-        <a href="#">marketing</a>
-        <a href="#">Solutions</a>
-        <a href="#">Staffing</a>
-        <a href="#">Talent</a>
-        <a href="#">Temporary</a>
-      </div>
-
-      <div class="card contact">
-        <h3>Contact Us</h3>
-        <input placeholder="Full Name">
-        <input placeholder="Email">
-        <input placeholder="Phone Number">
-        <textarea placeholder="Your Message"></textarea>
-        <button class="btn">Submit Now ↗</button>
-      </div>
-    </aside>
+  <div class="search-card">
+    <p class="search-title">Search</p>
+    <div class="search-wrap">
+      <input class="search-input" type="text" placeholder="Search" />
+      <span class="search-icon">⌕</span>
+    </div>
   </div>
 </body>
 </html>
