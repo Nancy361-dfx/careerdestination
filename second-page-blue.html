@@ -262,24 +262,27 @@
 
   <div class="section builder" id="builderSection">
     <div class="container">
-      <div class="sec-head"><h2>Resume Builder Tool</h2></div>
+      <div class="sec-head">
+        <h2>Resume Builder Tool</h2>
+        <p>WordPress HTML widget friendly: copy-paste this block and update your Web3Forms access key.</p>
+      </div>
       <div class="rb-builder-wrap">
         <div class="panel">
           <h3>Fill Your Details</h3>
           <form id="rbForm">
             <div class="f-grid">
               <div class="field"><label>Name</label><input id="fName" name="name" placeholder="John Doe"></div>
-              <div class="field"><label>Professional Title</label><input id="fTitle" placeholder="Frontend Developer"></div>
+              <div class="field"><label>Professional Title</label><input id="fTitle" name="professional_title" placeholder="Frontend Developer"></div>
               <div class="field"><label>Email</label><input id="fEmail" name="email" type="email" placeholder="john@email.com"></div>
-              <div class="field"><label>Phone</label><input id="fPhone" placeholder="+91 98xxxxxx"></div>
-              <div class="field"><label>Location</label><input id="fLocation" placeholder="Noida, India"></div>
-              <div class="field"><label>Skills (comma separated)</label><input id="fSkills" placeholder="HTML, CSS, JavaScript"></div>
+              <div class="field"><label>Phone</label><input id="fPhone" name="phone" placeholder="+91 98xxxxxx"></div>
+              <div class="field"><label>Location</label><input id="fLocation" name="location" placeholder="Noida, India"></div>
+              <div class="field"><label>Skills (comma separated)</label><input id="fSkills" name="skills" placeholder="HTML, CSS, JavaScript"></div>
             </div>
-            <div class="field"><label>Summary</label><textarea id="fSummary" placeholder="Write a short summary"></textarea></div>
-            <div class="field"><label>Experience</label><textarea id="fExperience" placeholder="Company - Role - Duration"></textarea></div>
-            <div class="field"><label>Education</label><textarea id="fEducation" placeholder="Degree - University - Year"></textarea></div>
-            <div class="field"><label>Projects</label><textarea id="fProjects" placeholder="Project name - stack - impact"></textarea></div>
-            <div class="field"><label>Certifications</label><textarea id="fCertifications" placeholder="Certifications"></textarea></div>
+            <div class="field"><label>Summary</label><textarea id="fSummary" name="summary" placeholder="Write a short summary"></textarea></div>
+            <div class="field"><label>Experience</label><textarea id="fExperience" name="experience" placeholder="Company - Role - Duration"></textarea></div>
+            <div class="field"><label>Education</label><textarea id="fEducation" name="education" placeholder="Degree - University - Year"></textarea></div>
+            <div class="field"><label>Projects</label><textarea id="fProjects" name="projects" placeholder="Project name - stack - impact"></textarea></div>
+            <div class="field"><label>Certifications</label><textarea id="fCertifications" name="certifications" placeholder="Certifications"></textarea></div>
             <div class="actions">
               <button type="button" class="btn primary" id="generateBtn">Generate Resume</button>
               <button type="button" class="btn alt" id="switchBtn">Switch Template</button>
@@ -289,12 +292,17 @@
           </form>
 
           <form id="notifyForm" style="display:none;">
-            <input type="hidden" name="access_key" value="1ebe19e6-78bd-41a4-83af-4197b2742870">
-            <input type="hidden" name="subject" value="Resume Builder Used">
-            <input type="hidden" name="message" value="Someone used the Resume Builder on our website.">
+            <input type="hidden" name="access_key" id="w3AccessKey" value="REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="Resume Builder Submission">
+            <input type="hidden" name="message" id="nMessage" value="A user interacted with resume builder.">
             <input type="hidden" name="tool" value="Resume Builder">
             <input type="hidden" name="name" id="nName" value="Anonymous User">
             <input type="hidden" name="email" id="nEmail" value="no-email@provided.com">
+            <input type="hidden" name="phone" id="nPhone" value="not-provided">
+            <input type="hidden" name="action" id="nAction" value="generate">
+            <input type="hidden" name="selected_template" id="nTemplate" value="t1">
+            <input type="hidden" name="source_url" id="nSourceUrl" value="">
+            <input type="hidden" name="submitted_at" id="nSubmittedAt" value="">
           </form>
         </div>
 
@@ -332,6 +340,7 @@
       const form = $('rbForm');
       const status = $('status');
       let template = 't1';
+      let lastSentSignature = '';
 
       function updatePreview(){
         const map = [
@@ -352,12 +361,56 @@
         $('pSkills').innerHTML = skills.length ? skills.map(s=>`<li>${s}</li>`).join('') : '<li>Add skills</li>';
       }
 
-      async function sendNotify(){
+      async function sendNotify(actionType){
+        const accessKey = $('w3AccessKey').value.trim();
+        if (!accessKey || accessKey === 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY') {
+          status.textContent = 'Add your valid Web3Forms access key to receive resume builder leads.';
+          return;
+        }
+
+        const payloadSignature = [
+          ($('fName').value || '').trim(),
+          ($('fEmail').value || '').trim(),
+          ($('fPhone').value || '').trim(),
+          actionType,
+          template
+        ].join('|');
+
+        if (actionType === 'generate' && payloadSignature === lastSentSignature) {
+          return;
+        }
+        lastSentSignature = payloadSignature;
+
         $('nName').value = ($('fName').value || 'Anonymous User').trim();
         $('nEmail').value = ($('fEmail').value || 'no-email@provided.com').trim();
+        $('nPhone').value = ($('fPhone').value || 'not-provided').trim();
+        $('nAction').value = actionType;
+        $('nTemplate').value = template;
+        $('nSourceUrl').value = window.location.href;
+        $('nSubmittedAt').value = new Date().toISOString();
+        $('nMessage').value = [
+          `Action: ${actionType}`,
+          `Template: ${template}`,
+          `Name: ${$('fName').value || 'N/A'}`,
+          `Email: ${$('fEmail').value || 'N/A'}`,
+          `Phone: ${$('fPhone').value || 'N/A'}`,
+          `Title: ${$('fTitle').value || 'N/A'}`,
+          `Location: ${$('fLocation').value || 'N/A'}`,
+          `Skills: ${$('fSkills').value || 'N/A'}`
+        ].join('\n');
         const fd = new FormData($('notifyForm'));
-        try { await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd }); }
-        catch(e){ console.warn('Web3 notify failed', e); }
+        ['fSummary', 'fExperience', 'fEducation', 'fProjects', 'fCertifications'].forEach((fieldId) => {
+          fd.append(fieldId.replace('f', '').toLowerCase(), ($(fieldId).value || '').trim());
+        });
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+          if (!response.ok) {
+            throw new Error('Web3Forms request failed');
+          }
+        } catch(e){
+          console.warn('Web3 notify failed', e);
+          status.textContent = 'Resume generated, but lead notification failed. Check access key/internet.';
+        }
       }
 
       function openBuilder(tpl){
@@ -379,7 +432,7 @@
       $('generateBtn').addEventListener('click', async ()=>{
         updatePreview();
         status.textContent = 'Resume generated successfully.';
-        await sendNotify();
+        await sendNotify('generate');
       });
 
       $('switchBtn').addEventListener('click', ()=>{
@@ -391,7 +444,7 @@
 
       $('pdfBtn').addEventListener('click', async ()=>{
         updatePreview();
-        await sendNotify();
+        await sendNotify('download_pdf');
         html2pdf().set({
           margin: 0.25,
           filename: 'resume.pdf',
