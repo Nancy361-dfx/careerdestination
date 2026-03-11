@@ -5,87 +5,154 @@
   <style>
     #rb-landing-widget * { box-sizing: border-box; }
     #rb-landing-widget {
-      --bg: #f8fafc;
+      --bg: #f3f8ff;
       --text: #0f172a;
-      --muted: #64748b;
-      --primary: #2563eb;
-      --primary-2: #1d4ed8;
+      --muted: #5f6b86;
+      --primary: #1f5eb8;
+      --primary-2: #0e3f86;
+      --accent: #ffb000;
       --card: #ffffff;
       font-family: Inter, Arial, sans-serif;
       color: var(--text);
       background: var(--bg);
     }
-    #rb-landing-widget .container { width: min(1200px, 94%); margin: 0 auto; }
-    #rb-landing-widget .section { padding: 68px 0; }
+    #rb-landing-widget .container { width: min(1240px, 94%); margin: 0 auto; }
+    #rb-landing-widget .section { padding: 72px 0; }
 
     .rb-hero {
-      background: linear-gradient(125deg, #0f172a, #1e3a8a 55%, #2563eb);
-      color: #fff;
+      position: relative;
+      padding: 36px 0 70px;
       overflow: hidden;
+      background: linear-gradient(100deg, #f7fbff 0%, #edf4ff 52%, #dbe9ff 100%);
     }
-    .rb-hero .hero-grid {
+    .rb-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 78% 42%, rgba(28,93,186,.24), rgba(28,93,186,0) 40%);
+      pointer-events: none;
+    }
+    .hero-shell {
+      position: relative;
+      background: #fff;
+      border-radius: 28px;
+      border: 1px solid #deebff;
+      box-shadow: 0 22px 55px rgba(21, 56, 120, .16);
+      padding: clamp(26px, 3.2vw, 46px);
+      isolation: isolate;
+    }
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 30px;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 26px;
       align-items: center;
-      min-height: 520px;
     }
-    .rb-hero h1 { font-size: clamp(32px, 4.4vw, 54px); margin: 0 0 14px; line-height: 1.1; }
-    .rb-hero p { margin: 0 0 24px; color: #dbeafe; font-size: 16px; line-height: 1.7; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border: 1px solid #bfd7ff;
+      border-radius: 99px;
+      background: #eef5ff;
+      color: #16458f;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .rb-hero h1 { font-size: clamp(32px, 4.2vw, 56px); margin: 0 0 14px; line-height: 1.05; letter-spacing: -.02em; }
+    .rb-hero p { margin: 0 0 24px; color: #3f506f; font-size: 17px; line-height: 1.65; max-width: 620px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .rb-cta {
       border: 0;
-      background: #fbbf24;
-      color: #111827;
-      padding: 13px 18px;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #08d48f, #01b67b);
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 11px;
       font-weight: 700;
       cursor: pointer;
       font-size: 14px;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
-    .mockup {
+    .rb-cta.ghost {
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(2, 6, 23, .35);
-      overflow: hidden;
-      transform: rotate(-2deg);
+      color: #0d2857;
+      border: 1.5px solid #0d2857;
     }
-    .mockup .bar { height: 38px; background: #eff6ff; border-bottom: 1px solid #e2e8f0; }
-    .mockup .paper {
-      padding: 18px;
-      min-height: 360px;
-      color: #0f172a;
-      background: linear-gradient(#fff, #f8fafc);
+    .rb-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(8,116,181,.22); }
+    .hero-tag {
+      display: inline-flex;
+      margin-top: 10px;
+      border-radius: 99px;
+      background: #ffe7c0;
+      color: #7a4d00;
+      padding: 6px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      animation: pulseTag 2.6s ease-in-out infinite;
     }
-    .line { height: 10px; border-radius: 20px; background: #e2e8f0; margin-bottom: 8px; }
-    .line.lg { width: 68%; height: 14px; background: #bfdbfe; }
+    @keyframes pulseTag { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
 
-    .sec-head { text-align: center; margin-bottom: 24px; }
-    .sec-head h2 { margin: 0 0 8px; font-size: 32px; }
+    .hero-media {
+      position: relative;
+      min-height: 430px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #d8e7ff;
+      box-shadow: 0 18px 40px rgba(16, 39, 90, .18);
+      background: #1f4f9e;
+    }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .floating-resume {
+      position: absolute;
+      left: 8%;
+      bottom: 10%;
+      width: min(330px, 64%);
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, .3);
+      border-top: 8px solid #dd5252;
+      padding: 12px;
+      animation: floatCard 4s ease-in-out infinite;
+    }
+    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .floating-resume .line { height: 8px; border-radius: 20px; background: #e3eaf7; margin-bottom: 7px; }
+    .floating-resume .line.lg { height: 12px; width: 70%; background: #b8d0f5; }
+    .hero-dots {
+      position: absolute;
+      right: 5%;
+      bottom: 9%;
+      width: 120px;
+      height: 78px;
+      background-image: radial-gradient(circle, #835dff 4px, transparent 4px);
+      background-size: 24px 24px;
+      opacity: .5;
+    }
+
+    .sec-head { text-align: center; margin-bottom: 26px; }
+    .sec-head h2 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.01em; }
     .sec-head p { margin: 0; color: var(--muted); }
 
     .template-slider {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 320px);
+      grid-auto-columns: minmax(260px, 300px);
       gap: 16px;
       overflow-x: auto;
-      padding-bottom: 6px;
+      padding-bottom: 8px;
       scroll-snap-type: x mandatory;
     }
     .template-card {
       background: var(--card);
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
+      border: 1px solid #dbe7fb;
+      border-radius: 14px;
       overflow: hidden;
       scroll-snap-align: start;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .template-thumb {
-      height: 190px;
-      background-size: cover;
-      background-position: top center;
-      border-bottom: 1px solid #e2e8f0;
-    }
+    .template-card:hover { transform: translateY(-4px); box-shadow: 0 20px 38px rgba(15,23,42,.16); }
+    .template-thumb { height: 190px; background-size: cover; background-position: top center; border-bottom: 1px solid #e4edf9; }
     .template-body { padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .template-body h4 { margin: 0; font-size: 14px; }
     .choose-btn {
@@ -106,7 +173,7 @@
     }
     .feature-card {
       background: #fff;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dde8fb;
       border-radius: 12px;
       padding: 18px;
       text-align: center;
@@ -116,13 +183,14 @@
     .feature-card h5 { margin: 0 0 6px; font-size: 14px; }
 
     .proof {
-      background: #0f172a;
+      background: linear-gradient(90deg, #0c3574, #1f5eb8);
       color: #fff;
       border-radius: 16px;
       padding: 24px;
       text-align: center;
       font-size: 24px;
       font-weight: 700;
+      box-shadow: 0 18px 34px rgba(14, 63, 134, .28);
     }
 
     .builder { display: none; }
@@ -135,7 +203,7 @@
     }
     .panel {
       background: #fff;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dce7f8;
       border-radius: 12px;
       padding: 14px;
       box-shadow: 0 10px 24px rgba(15,23,42,.05);
@@ -146,7 +214,7 @@
     .field label { display:block; margin-bottom:4px; font-size: 12px; font-weight:600; color:#334155; }
     .field input, .field textarea {
       width: 100%;
-      border: 1px solid #cbd5e1;
+      border: 1px solid #c8d7ee;
       border-radius: 8px;
       padding: 9px 10px;
       font-size: 13px;
@@ -160,59 +228,85 @@
     .btn.primary { background: var(--primary); color: #fff; }
     .btn.dark { background: #0f172a; color: #fff; }
     .btn.alt { background: #f59e0b; color: #111827; }
+    .btn.ai { background: #7c3aed; color: #fff; }
 
     .resume-preview-wrap { border: 1px dashed #cbd5e1; border-radius: 10px; padding: 8px; background:#f8fafc; }
-    #resumeDoc { background:#fff; min-height: 640px; padding: 22px; font-size: 13px; color:#0f172a; }
+    #resumeDoc {
+      --tpl-accent: #2563eb;
+      --tpl-heading: #1e3a8a;
+      --tpl-font: Inter, Arial, sans-serif;
+      --tpl-border: #e2e8f0;
+      background:#fff;
+      min-height: 640px;
+      padding: 22px;
+      font-size: 13px;
+      color:#0f172a;
+      font-family: var(--tpl-font);
+      border-left: 6px solid var(--tpl-accent);
+    }
     #resumeDoc h1 { margin: 0; font-size: 30px; line-height: 1.1; }
     #resumeDoc .r-title { font-weight: 600; color: #334155; margin-top: 4px; }
     #resumeDoc .meta { display:flex; gap:12px; flex-wrap:wrap; margin-top: 10px; color:#475569; font-size:12px; }
     #resumeDoc .meta i { margin-right: 5px; }
     #resumeDoc section { margin-top: 14px; }
-    #resumeDoc h4 { font-size: 12px; letter-spacing: .8px; text-transform: uppercase; margin: 0 0 6px; color:#1d4ed8; }
+    #resumeDoc h4 { font-size: 12px; letter-spacing: .8px; text-transform: uppercase; margin: 0 0 6px; color:var(--tpl-heading); }
     #resumeDoc p { margin: 0; white-space: pre-line; }
     #resumeDoc ul { margin: 0; padding-left: 18px; }
+    #resumeDoc .head { border-bottom: 1px solid var(--tpl-border); padding-bottom: 10px; }
 
-    #resumeDoc.t1 { border-left: 6px solid #2563eb; }
-    #resumeDoc.t1 .head { border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
-
-    #resumeDoc.t2 { font-family: Georgia, 'Times New Roman', serif; }
-    #resumeDoc.t2 h1 { font-size: 28px; }
-    #resumeDoc.t2 .head { text-align:center; border-bottom: 1px solid #dbe2ea; padding-bottom:10px; }
-    #resumeDoc.t2 .meta { justify-content:center; }
-    #resumeDoc.t2 h4 { color:#0f172a; border-bottom:1px solid #cbd5e1; padding-bottom:3px; }
+    #resumeDoc.t1 { --tpl-accent:#1d4ed8; --tpl-heading:#1d4ed8; }
+    #resumeDoc.t2 { --tpl-accent:#0f172a; --tpl-heading:#0f172a; --tpl-font:Georgia,'Times New Roman',serif; }
+    #resumeDoc.t3 { --tpl-accent:#9333ea; --tpl-heading:#6d28d9; }
+    #resumeDoc.t4 { --tpl-accent:#059669; --tpl-heading:#047857; }
+    #resumeDoc.t5 { --tpl-accent:#ea580c; --tpl-heading:#c2410c; }
+    #resumeDoc.t6 { --tpl-accent:#be123c; --tpl-heading:#9f1239; }
+    #resumeDoc.t7 { --tpl-accent:#0ea5e9; --tpl-heading:#0369a1; }
+    #resumeDoc.t8 { --tpl-accent:#4f46e5; --tpl-heading:#3730a3; }
+    #resumeDoc.t9 { --tpl-accent:#4d7c0f; --tpl-heading:#3f6212; }
+    #resumeDoc.t10 { --tpl-accent:#334155; --tpl-heading:#0f172a; }
 
     .status { font-size: 12px; color:#64748b; margin-top: 8px; min-height: 16px; }
 
     @media (max-width: 1100px) {
       .feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .rb-builder-wrap, .rb-hero .hero-grid { grid-template-columns: 1fr; }
+      .rb-builder-wrap, .hero-grid { grid-template-columns: 1fr; }
+      .hero-media { min-height: 340px; }
     }
     @media (max-width: 700px) {
       .f-grid { grid-template-columns: 1fr; }
       .feature-grid { grid-template-columns: 1fr; }
       .sec-head h2 { font-size: 26px; }
       .proof { font-size: 19px; }
+      .hero-shell { border-radius: 18px; }
     }
   </style>
 
   <div class="rb-hero section">
-    <div class="container hero-grid">
-      <div>
-        <h1>Create a professional resume in minutes</h1>
-        <p>Build ATS-friendly resumes with modern templates, smart sections, and one-click export. No design skills needed.</p>
-        <button class="rb-cta" id="scrollToTemplates">Create Your Resume</button>
-      </div>
-      <div class="mockup" aria-hidden="true">
-        <div class="bar"></div>
-        <div class="paper">
-          <div class="line lg"></div>
-          <div class="line" style="width:52%"></div>
-          <div class="line" style="width:85%; margin-top:16px"></div>
-          <div class="line" style="width:92%"></div>
-          <div class="line" style="width:88%"></div>
-          <div class="line" style="width:70%"></div>
-          <div class="line" style="width:80%; margin-top:14px"></div>
-          <div class="line" style="width:90%"></div>
+    <div class="container">
+      <div class="hero-shell">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> ATS + AI Powered Resume Builder</div>
+            <h1>The CV that gets the job… done</h1>
+            <p>Create a professional, recruiter-ready CV in minutes. Choose from 10 modern templates, auto-improve your summary with AI assist, and export as PDF instantly.</p>
+            <div class="hero-actions">
+              <button class="rb-cta" id="scrollToTemplates">Create your CV</button>
+              <button class="rb-cta ghost" id="scrollToBuilder">AI Upgrade CV</button>
+            </div>
+            <div class="hero-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;AI-powered</div>
+          </div>
+          <div class="hero-media" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80" alt="Professional working on laptop">
+            <div class="floating-resume">
+              <div class="line lg"></div>
+              <div class="line" style="width: 58%;"></div>
+              <div class="line" style="width: 92%; margin-top: 12px;"></div>
+              <div class="line" style="width: 94%;"></div>
+              <div class="line" style="width: 89%;"></div>
+              <div class="line" style="width: 67%;"></div>
+            </div>
+            <div class="hero-dots"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -221,42 +315,40 @@
   <div class="section" id="templateSection">
     <div class="container">
       <div class="sec-head">
-        <h2>Choose a Resume Template</h2>
-        <p>Select one of our ATS-friendly professional templates.</p>
+        <h2>Choose from 10 Professional Resume Templates</h2>
+        <p>Each template is ATS-friendly and can be switched anytime.</p>
       </div>
       <div class="template-slider">
-        <div class="template-card">
-          <div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="template-body"><h4>Modern ATS</h4><button class="choose-btn" data-template="t1">Choose Template</button></div>
-        </div>
-        <div class="template-card">
-          <div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="template-body"><h4>Classic ATS</h4><button class="choose-btn" data-template="t2">Choose Template</button></div>
-        </div>
-        <div class="template-card">
-          <div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80');"></div>
-          <div class="template-body"><h4>Executive ATS</h4><button class="choose-btn" data-template="t1">Choose Template</button></div>
-        </div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Modern ATS</h4><button class="choose-btn" data-template="t1">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Classic Pro</h4><button class="choose-btn" data-template="t2">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Purple Edge</h4><button class="choose-btn" data-template="t3">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Emerald Clean</h4><button class="choose-btn" data-template="t4">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Bold Orange</h4><button class="choose-btn" data-template="t5">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Executive Red</h4><button class="choose-btn" data-template="t6">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Skyline Blue</h4><button class="choose-btn" data-template="t7">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Royal Indigo</h4><button class="choose-btn" data-template="t8">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Olive Minimal</h4><button class="choose-btn" data-template="t9">Choose</button></div></div>
+        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Slate Corporate</h4><button class="choose-btn" data-template="t10">Choose</button></div></div>
       </div>
     </div>
   </div>
 
   <div class="section">
     <div class="container">
-      <div class="sec-head"><h2>Why Use This Builder</h2></div>
+      <div class="sec-head"><h2>Why Candidates Love This Builder</h2></div>
       <div class="feature-grid">
-        <div class="feature-card"><i class="fa-solid fa-file-lines"></i><h5>Pre-written content</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-wand-magic-sparkles"></i><h5>AI content improve</h5></div>
         <div class="feature-card"><i class="fa-solid fa-check-double"></i><h5>ATS friendly templates</h5></div>
-        <div class="feature-card"><i class="fa-solid fa-download"></i><h5>One click resume download</h5></div>
-        <div class="feature-card"><i class="fa-solid fa-pen-to-square"></i><h5>Easy editing</h5></div>
-        <div class="feature-card"><i class="fa-solid fa-layer-group"></i><h5>Professional layouts</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-download"></i><h5>One click PDF export</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-pen-to-square"></i><h5>Live editing preview</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-layer-group"></i><h5>10 professional layouts</h5></div>
       </div>
     </div>
   </div>
 
   <div class="section" style="padding-top:0;">
     <div class="container">
-      <div class="proof">Thousands of job seekers build resumes using this tool.</div>
+      <div class="proof">Trusted by job seekers to create high-converting resumes quickly.</div>
     </div>
   </div>
 
@@ -285,6 +377,7 @@
             <div class="field"><label>Certifications</label><textarea id="fCertifications" name="certifications" placeholder="Certifications"></textarea></div>
             <div class="actions">
               <button type="button" class="btn primary" id="generateBtn">Generate Resume</button>
+              <button type="button" class="btn ai" id="aiBtn">AI Improve Content</button>
               <button type="button" class="btn alt" id="switchBtn">Switch Template</button>
               <button type="button" class="btn dark" id="pdfBtn">Download Resume as PDF</button>
             </div>
@@ -339,6 +432,7 @@
       const resumeDoc = $('resumeDoc');
       const form = $('rbForm');
       const status = $('status');
+      const templates = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10'];
       let template = 't1';
       let lastSentSignature = '';
 
@@ -359,6 +453,31 @@
 
         const skills = ($('fSkills').value||'').split(',').map(s=>s.trim()).filter(Boolean);
         $('pSkills').innerHTML = skills.length ? skills.map(s=>`<li>${s}</li>`).join('') : '<li>Add skills</li>';
+      }
+
+      function aiEnhanceContent(){
+        const name = ($('fName').value || 'Candidate').trim();
+        const title = ($('fTitle').value || 'professional').trim();
+        const skillsList = ($('fSkills').value || 'communication, teamwork, problem solving').split(',').map(s => s.trim()).filter(Boolean);
+
+        if (!$('fSummary').value.trim()) {
+          $('fSummary').value = `${name} is a results-driven ${title} with strong focus on quality delivery and measurable outcomes. Skilled in ${skillsList.slice(0,3).join(', ')}, and known for ownership, collaboration, and continuous improvement.`;
+        }
+
+        if ($('fExperience').value.trim() && !$('fExperience').value.includes('•')) {
+          $('fExperience').value = $('fExperience').value.split('\n').filter(Boolean).map(line => `• ${line.trim()}`).join('\n');
+        }
+
+        if ($('fProjects').value.trim() && !$('fProjects').value.includes('•')) {
+          $('fProjects').value = $('fProjects').value.split('\n').filter(Boolean).map(line => `• ${line.trim()}`).join('\n');
+        }
+
+        if (!$('fCertifications').value.trim()) {
+          $('fCertifications').value = '• Google Career Essentials\n• LinkedIn Learning Professional Certificate';
+        }
+
+        updatePreview();
+        status.textContent = 'AI assist applied: summary and content improved.';
       }
 
       async function sendNotify(actionType){
@@ -398,26 +517,30 @@
           `Location: ${$('fLocation').value || 'N/A'}`,
           `Skills: ${$('fSkills').value || 'N/A'}`
         ].join('\n');
+
         const fd = new FormData($('notifyForm'));
         ['fSummary', 'fExperience', 'fEducation', 'fProjects', 'fCertifications'].forEach((fieldId) => {
           fd.append(fieldId.replace('f', '').toLowerCase(), ($(fieldId).value || '').trim());
         });
+
         try {
           const response = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
-          if (!response.ok) {
-            throw new Error('Web3Forms request failed');
-          }
+          if (!response.ok) throw new Error('Web3Forms request failed');
         } catch(e){
           console.warn('Web3 notify failed', e);
           status.textContent = 'Resume generated, but lead notification failed. Check access key/internet.';
         }
       }
 
+      function applyTemplate(tpl){
+        template = tpl || template;
+        resumeDoc.classList.remove(...templates);
+        resumeDoc.classList.add(template);
+      }
+
       function openBuilder(tpl){
         builder.classList.add('active');
-        template = tpl || template;
-        resumeDoc.classList.remove('t1','t2');
-        resumeDoc.classList.add(template);
+        applyTemplate(tpl);
         builder.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
@@ -425,8 +548,17 @@
         btn.addEventListener('click', ()=> openBuilder(btn.dataset.template || 't1'));
       });
 
-      $('scrollToTemplates').addEventListener('click', ()=>{
+      $('scrollToTemplates').addEventListener('click', ()=> {
         $('templateSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      $('scrollToBuilder').addEventListener('click', ()=> {
+        openBuilder(template);
+      });
+
+      $('aiBtn').addEventListener('click', async ()=>{
+        aiEnhanceContent();
+        await sendNotify('ai_enhance');
       });
 
       $('generateBtn').addEventListener('click', async ()=>{
@@ -436,10 +568,10 @@
       });
 
       $('switchBtn').addEventListener('click', ()=>{
-        template = template === 't1' ? 't2' : 't1';
-        resumeDoc.classList.remove('t1','t2');
-        resumeDoc.classList.add(template);
-        status.textContent = `Template switched to ${template === 't1' ? 'Modern ATS' : 'Classic ATS'}.`;
+        const idx = templates.indexOf(template);
+        const next = templates[(idx + 1) % templates.length];
+        applyTemplate(next);
+        status.textContent = `Template switched to ${next.toUpperCase()}.`;
       });
 
       $('pdfBtn').addEventListener('click', async ()=>{
