@@ -1,284 +1,255 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Recruitment Technology - Blue Theme</title>
-<style>
-  :root {
-    --page-bg: #e9e9ec;
-    --section-bg: #ffffff;
-    --heading: #071a39;
-    --body: #5e6d82;
-    --blue-50: #eef4ff;
-    --blue-100: #dce9ff;
-    --blue-500: #2d66ad;
-    --blue-600: #1f5598;
-    --radius: 2px;
-  }
+<div id="resume-builder-widget">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-  * { box-sizing: border-box; }
+  <style>
+    #resume-builder-widget * { box-sizing: border-box; }
+    #resume-builder-widget {
+      font-family: Inter, Arial, sans-serif;
+      color: #1f2937;
+    }
+    #resume-builder-widget .rb-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #resume-builder-widget .rb-panel {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+    #resume-builder-widget h2 { margin: 0 0 14px; font-size: 22px; }
+    #resume-builder-widget .rb-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #resume-builder-widget .rb-field { margin-bottom: 10px; }
+    #resume-builder-widget label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    #resume-builder-widget input,
+    #resume-builder-widget textarea,
+    #resume-builder-widget select {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 9px 10px;
+      font-size: 13px;
+      outline: none;
+      background: #fff;
+    }
+    #resume-builder-widget textarea { min-height: 84px; resize: vertical; }
+    #resume-builder-widget .rb-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    #resume-builder-widget button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #rb-generate { background: #2563eb; color: #fff; }
+    #rb-download { background: #0f172a; color: #fff; }
+    #rb-switch { background: #f59e0b; color: #111827; }
+    #rb-status { font-size: 12px; color: #64748b; margin-top: 8px; min-height: 16px; }
 
-  body {
-    margin: 0;
-    font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-    background: var(--page-bg);
-    color: var(--heading);
-  }
+    #resumePreview {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-  .frame {
-    max-width: 1365px;
-    margin: 0 auto;
-    padding: 36px 30px;
-  }
+    .resume {
+      padding: 24px;
+      color: #111827;
+      line-height: 1.45;
+      font-size: 13px;
+    }
+    .resume h1 { margin: 0; font-size: 30px; line-height: 1.1; }
+    .resume .title { margin-top: 4px; font-size: 15px; font-weight: 600; color: #334155; }
+    .resume .meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #475569;
+    }
+    .resume .meta i { margin-right: 5px; }
+    .resume section { margin-top: 14px; }
+    .resume h3 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #1d4ed8;
+    }
+    .resume p { margin: 0; white-space: pre-line; }
+    .resume ul { margin: 0; padding-left: 18px; }
 
-  .section {
-    background: var(--section-bg);
-    padding: 58px 46px;
-  }
+    .tpl-modern { border-left: 6px solid #2563eb; }
+    .tpl-modern .header { border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 34px;
-    align-items: start;
-  }
+    .tpl-classic { font-family: Georgia, 'Times New Roman', serif; }
+    .tpl-classic h1 { font-size: 28px; }
+    .tpl-classic h3 { color: #0f172a; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; }
+    .tpl-classic .header { text-align: center; }
+    .tpl-classic .meta { justify-content: center; }
 
-  .hero-image {
-    width: 100%;
-    aspect-ratio: 1 / 1.07;
-    object-fit: cover;
-    display: block;
-  }
+    @media (max-width: 900px) {
+      #resume-builder-widget .rb-wrap { grid-template-columns: 1fr; }
+      #resume-builder-widget .rb-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 
-  .chip {
-    display: inline-block;
-    padding: 6px 10px;
-    background: var(--blue-100);
-    color: #345679;
-    border-radius: 3px;
-    font-size: 11px;
-    line-height: 1;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
+  <div class="rb-wrap">
+    <div class="rb-panel">
+      <h2>Advanced Resume Builder</h2>
+      <form id="resumeForm">
+        <div class="rb-grid">
+          <div class="rb-field"><label>Full Name</label><input id="fullName" name="name" placeholder="John Doe" /></div>
+          <div class="rb-field"><label>Professional Title</label><input id="professionalTitle" placeholder="Senior Software Engineer" /></div>
+          <div class="rb-field"><label>Email</label><input id="email" name="email" type="email" placeholder="john@example.com" /></div>
+          <div class="rb-field"><label>Phone</label><input id="phone" placeholder="+91 98xxxxxx" /></div>
+          <div class="rb-field"><label>Location</label><input id="location" placeholder="Noida, India" /></div>
+          <div class="rb-field"><label>Skills (comma separated)</label><input id="skills" placeholder="JavaScript, HTML, CSS" /></div>
+        </div>
 
-  h1 {
-    margin: 0;
-    font-size: clamp(24px, 2.8vw, 42px);
-    line-height: 1.16;
-    letter-spacing: -0.4px;
-    max-width: 620px;
-  }
+        <div class="rb-field"><label>Professional Summary</label><textarea id="summary" placeholder="Write a short professional summary"></textarea></div>
+        <div class="rb-field"><label>Work Experience</label><textarea id="experience" placeholder="Company - Role - Duration\nKey achievements..."></textarea></div>
+        <div class="rb-field"><label>Education</label><textarea id="education" placeholder="Degree - University - Year"></textarea></div>
+        <div class="rb-field"><label>Certifications</label><textarea id="certifications" placeholder="AWS Certified..."></textarea></div>
+        <div class="rb-field"><label>Projects</label><textarea id="projects" placeholder="Project Name - Tech Stack - Impact"></textarea></div>
 
-  .intro {
-    margin: 14px 0 20px;
-    color: var(--body);
-    font-size: clamp(13px, 1.1vw, 16px);
-    line-height: 1.62;
-    max-width: 620px;
-  }
+        <div class="rb-actions">
+          <button type="button" id="rb-generate">Generate Resume</button>
+          <button type="button" id="rb-switch">Switch Template</button>
+          <button type="button" id="rb-download">Download Resume as PDF</button>
+        </div>
+        <div id="rb-status"></div>
+      </form>
 
-  /* 5 BOXES GRID */
-  .feature-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  /* last item (5th) spans full width and is centered */
-  .feature-list li:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .feature {
-    background: #f3f7ff;
-    padding: 14px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue-500), var(--blue-600));
-    color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .step-num {
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .feature h5 {
-    margin: 0 0 4px;
-    font-size: clamp(12px, 1vw, 14px);
-    font-weight: 700;
-    color: #071a39;
-    line-height: 1.3;
-  }
-
-  .feature p {
-    margin: 0;
-    font-size: clamp(11px, 0.85vw, 12.5px);
-    line-height: 1.55;
-    color: var(--body);
-  }
-
-  /* Animation layer only */
-  .hero-wrap,
-  .chip,
-  h1,
-  .intro,
-  .feature,
-  .feature:last-child {
-    opacity: 0;
-  }
-
-  .section.in-view .hero-wrap { animation: vLeft .9s cubic-bezier(.2,.75,.2,1) .08s forwards; }
-  .section.in-view .chip { animation: vFadeUp .6s ease .14s forwards; }
-  .section.in-view h1 { animation: vFadeUp .72s ease .24s forwards; }
-  .section.in-view .intro { animation: vFadeUp .82s ease .36s forwards; }
-  .section.in-view .feature-list .feature:nth-child(1) { animation: vFadeUp .72s ease .50s forwards; }
-  .section.in-view .feature-list .feature:nth-child(2) { animation: vFadeUp .72s ease .62s forwards; }
-  .section.in-view .feature-list .feature:nth-child(3) { animation: vFadeUp .72s ease .74s forwards; }
-  .section.in-view .feature-list .feature:nth-child(4) { animation: vFadeUp .72s ease .86s forwards; }
-  .section.in-view .feature-list .feature:nth-child(5) { animation: vFadeUp .72s ease .98s forwards; }
-
-  @keyframes vFadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes vLeft {
-    from { opacity: 0; transform: translateX(-40px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  @media (max-width: 980px) {
-    .section { padding: 28px 18px; }
-    .grid { grid-template-columns: 1fr; gap: 24px; }
-    .feature-list { grid-template-columns: 1fr; }
-    .feature-list li:last-child { grid-column: auto; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-    .hero-wrap,
-    .chip,
-    h1,
-    .intro,
-    .feature { opacity: 1 !important; transform: none !important; }
-  }
-</style>
-</head>
-<body>
-<div class="frame">
-  <section class="section" id="vikingTechSection">
-    <div class="grid">
-
-      <!-- LEFT: Image -->
-      <div class="hero-wrap">
-        <img
-          class="hero-image"
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-          alt="Team collaborating in office"
-        />
-      </div>
-
-      <!-- RIGHT: Content -->
-      <div>
-        <span class="chip">Recruitment Technologies</span>
-        <h1>Technology-Driven Recruitment Solutions</h1>
-        <p class="intro">
-          At Careers Destination, we leverage advanced digital tools, data-driven sourcing, and intelligent screening methods to deliver faster, smarter, and more accurate hiring outcomes.
-        </p>
-
-        <ul class="feature-list">
-
-          <!-- 1 -->
-          <li class="feature">
-            <span class="icon"><span class="step-num">1</span></span>
-            <div>
-              <h5>Strategic Requirement Analysis</h5>
-              <p>We begin by gaining a comprehensive understanding of your business objectives, role expectations, organizational culture, and long-term workforce strategy to ensure alignment with your growth plan.</p>
-            </div>
-          </li>
-
-          <!-- 2 -->
-          <li class="feature">
-            <span class="icon"><span class="step-num">2</span></span>
-            <div>
-              <h5>Targeted Sourcing & Advanced Screening</h5>
-              <p>Leveraging our extensive talent network and modern recruitment technologies, we identify high-potential candidates through a structured screening process assessing expertise and cultural fit.</p>
-            </div>
-          </li>
-
-          <!-- 3 -->
-          <li class="feature">
-            <span class="icon"><span class="step-num">3</span></span>
-            <div>
-              <h5>Curated Shortlisting</h5>
-              <p>Only thoroughly evaluated and pre-qualified candidates are presented. Our focus is on quality over quantity, ensuring every profile adds strategic value to your organization.</p>
-            </div>
-          </li>
-
-          <!-- 4 -->
-          <li class="feature">
-            <span class="icon"><span class="step-num">4</span></span>
-            <div>
-              <h5>Seamless Interview Management</h5>
-              <p>We coordinate interview scheduling, stakeholder communication, and structured feedback collection, creating an efficient and professional candidate experience throughout.</p>
-            </div>
-          </li>
-
-          <!-- 5 — full width -->
-          <li class="feature">
-            <span class="icon"><span class="step-num">5</span></span>
-            <div>
-              <h5>Offer Management & Onboarding Support</h5>
-              <p>From compensation discussions to final offer closure, we facilitate smooth negotiations and provide onboarding support to ensure successful candidate integration.</p>
-            </div>
-          </li>
-
-        </ul>
-      </div>
-
+      <form id="web3NotifyForm" style="display:none;">
+        <input type="hidden" name="access_key" value="1ebe19e6-78bd-41a4-83af-4197b2742870" />
+        <input type="hidden" name="subject" value="Resume Builder Used" />
+        <input type="hidden" name="message" value="Someone used the Resume Builder on our website." />
+        <input type="hidden" name="tool" value="Resume Builder" />
+        <input type="hidden" name="name" id="notifyName" value="Anonymous User" />
+        <input type="hidden" name="email" id="notifyEmail" value="no-email@provided.com" />
+      </form>
     </div>
-  </section>
+
+    <div class="rb-panel">
+      <div id="resumePreview">
+        <div id="resumeDoc" class="resume tpl-modern">
+          <div class="header">
+            <h1 id="pvName">Your Name</h1>
+            <div class="title" id="pvTitle">Professional Title</div>
+            <div class="meta">
+              <div><i class="fa-solid fa-envelope"></i><span id="pvEmail">email@example.com</span></div>
+              <div><i class="fa-solid fa-phone"></i><span id="pvPhone">+00 0000000000</span></div>
+              <div><i class="fa-solid fa-location-dot"></i><span id="pvLocation">Your Location</span></div>
+            </div>
+          </div>
+
+          <section><h3>Professional Summary</h3><p id="pvSummary">Your professional summary will appear here.</p></section>
+          <section><h3><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h3><ul id="pvSkills"><li>Add skills in form</li></ul></section>
+          <section><h3>Work Experience</h3><p id="pvExperience">Add your experience details.</p></section>
+          <section><h3>Education</h3><p id="pvEducation">Add your education details.</p></section>
+          <section><h3>Certifications</h3><p id="pvCertifications">Add certifications details.</p></section>
+          <section><h3>Projects</h3><p id="pvProjects">Add project details.</p></section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const form = $('resumeForm');
+      const status = $('rb-status');
+      const resumeDoc = $('resumeDoc');
+      let currentTemplate = 1;
+
+      const fieldMap = [
+        ['fullName','pvName','Your Name'],
+        ['professionalTitle','pvTitle','Professional Title'],
+        ['email','pvEmail','email@example.com'],
+        ['phone','pvPhone','+00 0000000000'],
+        ['location','pvLocation','Your Location'],
+        ['summary','pvSummary','Your professional summary will appear here.'],
+        ['experience','pvExperience','Add your experience details.'],
+        ['education','pvEducation','Add your education details.'],
+        ['certifications','pvCertifications','Add certifications details.'],
+        ['projects','pvProjects','Add project details.']
+      ];
+
+      function updatePreview(){
+        fieldMap.forEach(([src,target,fallback])=>{
+          const val = ($(src).value || '').trim();
+          $(target).textContent = val || fallback;
+        });
+
+        const skillsValue = ($('skills').value || '').split(',').map(s=>s.trim()).filter(Boolean);
+        const ul = $('pvSkills');
+        ul.innerHTML = skillsValue.length ? skillsValue.map(s=>`<li>${s}</li>`).join('') : '<li>Add skills in form</li>';
+      }
+
+      async function sendWeb3Notification(){
+        const notify = $('web3NotifyForm');
+        $('notifyName').value = ($('fullName').value || 'Anonymous User').trim();
+        $('notifyEmail').value = ($('email').value || 'no-email@provided.com').trim();
+
+        const payload = new FormData(notify);
+        try {
+          await fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload });
+        } catch (e) {
+          console.warn('Web3Forms notify failed', e);
+        }
+      }
+
+      $('rb-generate').addEventListener('click', async ()=>{
+        updatePreview();
+        status.textContent = 'Resume preview updated.';
+        await sendWeb3Notification();
+      });
+
+      $('rb-switch').addEventListener('click', ()=>{
+        currentTemplate = currentTemplate === 1 ? 2 : 1;
+        resumeDoc.classList.toggle('tpl-modern', currentTemplate === 1);
+        resumeDoc.classList.toggle('tpl-classic', currentTemplate === 2);
+        status.textContent = `Template ${currentTemplate} selected.`;
+      });
+
+      $('rb-download').addEventListener('click', async ()=>{
+        updatePreview();
+        await sendWeb3Notification();
+        const opt = {
+          margin: 0.3,
+          filename: 'resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(resumeDoc).save();
+      });
+
+      form.addEventListener('input', updatePreview);
+      updatePreview();
+    })();
+  </script>
 </div>
-
-<script>
-(function(){
-  var section = document.getElementById('vikingTechSection');
-  if (!section) return;
-
-  function replay(){
-    section.classList.remove('in-view');
-    void section.offsetWidth;
-    section.classList.add('in-view');
-  }
-
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) replay();
-      else section.classList.remove('in-view');
-    });
-  }, { threshold: 0.22, rootMargin: '0px 0px -10% 0px' });
-
-  observer.observe(section);
-})();
-</script>
-</body>
-</html>
