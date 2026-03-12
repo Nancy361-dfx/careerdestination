@@ -21,113 +21,144 @@
 
     .rb-hero {
       position: relative;
-      padding: 36px 0 70px;
+      padding: 28px 0 66px;
       overflow: hidden;
-      background: linear-gradient(100deg, #f7fbff 0%, #edf4ff 52%, #dbe9ff 100%);
+      background: #f3f8ff;
     }
-    .rb-hero::before {
+    .hero-canvas {
+      position: relative;
+      min-height: 600px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #d4e2fb;
+      box-shadow: 0 18px 44px rgba(18, 53, 110, .16);
+      background-image: linear-gradient(95deg, rgba(17, 58, 124, 0.12), rgba(17, 58, 124, 0.0) 55%), url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-canvas::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 78% 42%, rgba(28,93,186,.24), rgba(28,93,186,0) 40%);
-      pointer-events: none;
+      background: linear-gradient(90deg, rgba(243,245,248,.96) 0%, rgba(243,245,248,.96) 53%, rgba(243,245,248,0) 76%);
+      z-index: 1;
     }
     .hero-shell {
       position: relative;
-      background: #fff;
-      border-radius: 28px;
-      border: 1px solid #deebff;
-      box-shadow: 0 22px 55px rgba(21, 56, 120, .16);
-      padding: clamp(26px, 3.2vw, 46px);
-      isolation: isolate;
+      z-index: 2;
+      width: min(61%, 760px);
+      min-height: 600px;
+      border-radius: 0 300px 300px 0;
+      padding: clamp(38px, 5vw, 86px) clamp(20px, 3vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #eff1f5;
     }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 26px;
-      align-items: center;
+    .hero-grid { max-width: 620px; }
+    .hero-decor-star,
+    .hero-decor-cross {
+      position: absolute;
+      color: #cc7b52;
+      z-index: 3;
+      opacity: .9;
     }
+    .hero-decor-star { left: 22px; top: 82px; font-size: 42px; }
+    .hero-decor-cross { left: 40px; top: 160px; font-size: 18px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 13px;
-      border: 1px solid #bfd7ff;
+      padding: 6px 12px;
+      border: 1px solid #d6e3fb;
       border-radius: 99px;
-      background: #eef5ff;
-      color: #16458f;
+      background: #ffffff;
+      color: #2d4e88;
       font-weight: 700;
       font-size: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-    .rb-hero h1 { font-size: clamp(32px, 4.2vw, 56px); margin: 0 0 14px; line-height: 1.05; letter-spacing: -.02em; }
-    .rb-hero p { margin: 0 0 24px; color: #3f506f; font-size: 17px; line-height: 1.65; max-width: 620px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .rb-hero h1 { font-size: clamp(36px, 5.2vw, 72px); margin: 0 0 14px; line-height: 1.08; letter-spacing: -.02em; max-width: 560px; }
+    .rb-hero p { margin: 0 0 24px; color: #1f2f47; font-size: clamp(18px, 2vw, 35px); line-height: 1.45; max-width: 600px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
     .rb-cta {
       border: 0;
-      background: linear-gradient(135deg, #08d48f, #01b67b);
-      color: #fff;
-      padding: 13px 20px;
-      border-radius: 11px;
-      font-weight: 700;
+      background: linear-gradient(135deg, #0feba5, #03c988);
+      color: #072018;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-weight: 800;
       cursor: pointer;
       font-size: 14px;
       transition: transform .22s ease, box-shadow .22s ease;
     }
     .rb-cta.ghost {
-      background: #fff;
-      color: #0d2857;
-      border: 1.5px solid #0d2857;
+      background: #f5f7fa;
+      color: #0f172a;
+      border: 2px solid #111827;
     }
     .rb-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(8,116,181,.22); }
     .hero-tag {
       display: inline-flex;
-      margin-top: 10px;
+      margin-top: 12px;
       border-radius: 99px;
-      background: #ffe7c0;
-      color: #7a4d00;
-      padding: 6px 11px;
-      font-size: 12px;
+      background: #ffd88f;
+      color: #523101;
+      padding: 7px 14px;
+      font-size: 13px;
       font-weight: 700;
       animation: pulseTag 2.6s ease-in-out infinite;
     }
     @keyframes pulseTag { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
 
     .hero-media {
-      position: relative;
-      min-height: 430px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid #d8e7ff;
-      box-shadow: 0 18px 40px rgba(16, 39, 90, .18);
-      background: #1f4f9e;
-    }
-    .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .floating-resume {
       position: absolute;
-      left: 8%;
-      bottom: 10%;
-      width: min(330px, 64%);
+      right: clamp(12px, 3vw, 44px);
+      top: 55%;
+      transform: translateY(-48%);
+      width: min(39%, 520px);
+      min-height: 360px;
+      z-index: 3;
+    }
+    .resume-card {
+      position: absolute;
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 35px rgba(15, 23, 42, .3);
-      border-top: 8px solid #dd5252;
-      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 12px 34px rgba(15, 23, 42, .28);
+      border: 1px solid #dae3f1;
+      overflow: hidden;
+    }
+    .resume-card.primary {
+      width: 74%;
+      left: 0;
+      bottom: 0;
       animation: floatCard 4s ease-in-out infinite;
     }
+    .resume-card.secondary {
+      width: 84%;
+      right: 0;
+      top: 0;
+      border-top: 8px solid #d15454;
+      animation: floatCard 4.8s ease-in-out infinite;
+    }
+    .resume-card .bar { height: 30px; background: #eef4ff; border-bottom: 1px solid #d9e4f5; }
+    .resume-card .paper { padding: 10px; }
+    .resume-card .line { height: 7px; border-radius: 20px; background: #e3eaf7; margin-bottom: 6px; }
+    .resume-card .line.lg { height: 10px; width: 70%; background: #bdd0f4; }
     @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    .floating-resume .line { height: 8px; border-radius: 20px; background: #e3eaf7; margin-bottom: 7px; }
-    .floating-resume .line.lg { height: 12px; width: 70%; background: #b8d0f5; }
+
     .hero-dots {
       position: absolute;
-      right: 5%;
-      bottom: 9%;
-      width: 120px;
-      height: 78px;
-      background-image: radial-gradient(circle, #835dff 4px, transparent 4px);
-      background-size: 24px 24px;
-      opacity: .5;
+      right: 26%;
+      bottom: 60px;
+      width: 170px;
+      height: 104px;
+      background-image: radial-gradient(circle, #8f61fb 5px, transparent 5px);
+      background-size: 26px 26px;
+      opacity: .65;
+      z-index: 2;
     }
+
 
     .sec-head { text-align: center; margin-bottom: 26px; }
     .sec-head h2 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.01em; }
@@ -269,45 +300,73 @@
 
     @media (max-width: 1100px) {
       .feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .rb-builder-wrap, .hero-grid { grid-template-columns: 1fr; }
-      .hero-media { min-height: 340px; }
+      .rb-builder-wrap { grid-template-columns: 1fr; }
+      .hero-canvas { min-height: 640px; }
+      .hero-shell { width: 100%; border-radius: 0; min-height: 640px; padding-right: 42%; }
+      .hero-media { width: 48%; min-height: 320px; right: 20px; top: 58%; }
+      .hero-dots { right: 24%; bottom: 42px; }
     }
     @media (max-width: 700px) {
       .f-grid { grid-template-columns: 1fr; }
       .feature-grid { grid-template-columns: 1fr; }
       .sec-head h2 { font-size: 26px; }
       .proof { font-size: 19px; }
-      .hero-shell { border-radius: 18px; }
+      .hero-canvas { min-height: auto; background-position: 67% center; }
+      .hero-canvas::before { background: linear-gradient(180deg, rgba(243,245,248,.95) 0%, rgba(243,245,248,.92) 60%, rgba(243,245,248,.70) 100%); }
+      .hero-shell { width: 100%; min-height: auto; border-radius: 0; padding: 82px 16px 24px; background: transparent; }
+      .hero-media { position: relative; width: 100%; right: auto; top: auto; transform: none; min-height: 250px; margin-top: 14px; }
+      .hero-dots { left: 10px; right: auto; bottom: 12px; transform: scale(.75); }
+      .hero-decor-star { left: 10px; top: 26px; }
+      .hero-decor-cross { left: 22px; top: 92px; }
     }
   </style>
 
   <div class="rb-hero section">
     <div class="container">
-      <div class="hero-shell">
-        <div class="hero-grid">
-          <div>
-            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> ATS + AI Powered Resume Builder</div>
-            <h1>The CV that gets the job… done</h1>
-            <p>Create a professional, recruiter-ready CV in minutes. Choose from 10 modern templates, auto-improve your summary with AI assist, and export as PDF instantly.</p>
-            <div class="hero-actions">
-              <button class="rb-cta" id="scrollToTemplates">Create your CV</button>
-              <button class="rb-cta ghost" id="scrollToBuilder">AI Upgrade CV</button>
+      <div class="hero-canvas">
+        <div class="hero-decor-star"><i class="fa-solid fa-asterisk"></i></div>
+        <div class="hero-decor-cross"><i class="fa-solid fa-xmark"></i></div>
+        <div class="hero-shell">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-badge"><i class="fa-solid fa-bolt"></i> ATS + AI Powered Resume Builder</div>
+              <h1>The CV that gets<br>the job… done</h1>
+              <p>Build a new CV or improve your existing one with step-by-step expert guidance.</p>
+              <div class="hero-actions">
+                <button class="rb-cta" id="scrollToTemplates">Create your CV</button>
+                <button class="rb-cta ghost" id="scrollToBuilder">Upgrade a CV</button>
+              </div>
+              <div class="hero-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;AI-powered</div>
             </div>
-            <div class="hero-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;AI-powered</div>
-          </div>
-          <div class="hero-media" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80" alt="Professional working on laptop">
-            <div class="floating-resume">
-              <div class="line lg"></div>
-              <div class="line" style="width: 58%;"></div>
-              <div class="line" style="width: 92%; margin-top: 12px;"></div>
-              <div class="line" style="width: 94%;"></div>
-              <div class="line" style="width: 89%;"></div>
-              <div class="line" style="width: 67%;"></div>
-            </div>
-            <div class="hero-dots"></div>
           </div>
         </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="resume-card primary">
+            <div class="bar"></div>
+            <div class="paper">
+              <div class="line lg"></div>
+              <div class="line" style="width:56%"></div>
+              <div class="line" style="width:90%; margin-top: 10px"></div>
+              <div class="line" style="width:93%"></div>
+              <div class="line" style="width:87%"></div>
+              <div class="line" style="width:62%"></div>
+              <div class="line" style="width:74%; margin-top: 10px"></div>
+            </div>
+          </div>
+          <div class="resume-card secondary">
+            <div class="bar"></div>
+            <div class="paper">
+              <div class="line lg"></div>
+              <div class="line" style="width:50%"></div>
+              <div class="line" style="width:92%; margin-top: 10px"></div>
+              <div class="line" style="width:95%"></div>
+              <div class="line" style="width:84%"></div>
+              <div class="line" style="width:70%"></div>
+              <div class="line" style="width:90%; margin-top: 10px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-dots"></div>
       </div>
     </div>
   </div>
