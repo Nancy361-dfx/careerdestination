@@ -32,7 +32,7 @@
       overflow: hidden;
       border: 1px solid #d4e2fb;
       box-shadow: 0 18px 44px rgba(18, 53, 110, .16);
-      background-image: linear-gradient(95deg, rgba(17, 58, 124, 0.12), rgba(17, 58, 124, 0.0) 55%), url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1600&q=80');
+      background-image: linear-gradient(100deg, rgba(12, 43, 96, 0.15), rgba(12, 43, 96, 0.02) 58%), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
       background-size: cover;
       background-position: center;
     }
@@ -40,7 +40,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(243,245,248,.96) 0%, rgba(243,245,248,.96) 53%, rgba(243,245,248,0) 76%);
+      background: linear-gradient(90deg, rgba(243,245,248,.96) 0%, rgba(243,245,248,.95) 54%, rgba(243,245,248,0) 78%);
       z-index: 1;
     }
     .hero-shell {
@@ -56,15 +56,6 @@
       background: #eff1f5;
     }
     .hero-grid { max-width: 620px; }
-    .hero-decor-star,
-    .hero-decor-cross {
-      position: absolute;
-      color: #cc7b52;
-      z-index: 3;
-      opacity: .9;
-    }
-    .hero-decor-star { left: 22px; top: 82px; font-size: 42px; }
-    .hero-decor-cross { left: 40px; top: 160px; font-size: 18px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -113,44 +104,33 @@
 
     .hero-media {
       position: absolute;
-      right: clamp(12px, 3vw, 44px);
-      top: 55%;
+      right: clamp(10px, 3vw, 34px);
+      top: 54%;
       transform: translateY(-48%);
-      width: min(39%, 520px);
-      min-height: 360px;
+      width: min(41%, 560px);
+      min-height: 420px;
       z-index: 3;
     }
-    .resume-card {
-      position: absolute;
-      background: #fff;
+    .hero-resume-shot {
+      width: 100%;
       border-radius: 10px;
-      box-shadow: 0 12px 34px rgba(15, 23, 42, .28);
-      border: 1px solid #dae3f1;
-      overflow: hidden;
-    }
-    .resume-card.primary {
-      width: 74%;
-      left: 0;
-      bottom: 0;
-      animation: floatCard 4s ease-in-out infinite;
-    }
-    .resume-card.secondary {
-      width: 84%;
-      right: 0;
-      top: 0;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, .34);
       border-top: 8px solid #d15454;
-      animation: floatCard 4.8s ease-in-out infinite;
+      overflow: hidden;
+      background: #fff;
+      animation: floatCard 4.6s ease-in-out infinite;
     }
-    .resume-card .bar { height: 30px; background: #eef4ff; border-bottom: 1px solid #d9e4f5; }
-    .resume-card .paper { padding: 10px; }
-    .resume-card .line { height: 7px; border-radius: 20px; background: #e3eaf7; margin-bottom: 6px; }
-    .resume-card .line.lg { height: 10px; width: 70%; background: #bdd0f4; }
-    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .hero-resume-shot img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 
     .hero-dots {
       position: absolute;
-      right: 26%;
-      bottom: 60px;
+      right: 24%;
+      bottom: 48px;
       width: 170px;
       height: 104px;
       background-image: radial-gradient(circle, #8f61fb 5px, transparent 5px);
@@ -304,7 +284,7 @@
       .hero-canvas { min-height: 640px; }
       .hero-shell { width: 100%; border-radius: 0; min-height: 640px; padding-right: 42%; }
       .hero-media { width: 48%; min-height: 320px; right: 20px; top: 58%; }
-      .hero-dots { right: 24%; bottom: 42px; }
+      .hero-dots { right: 20%; bottom: 32px; transform: scale(.88); }
     }
     @media (max-width: 700px) {
       .f-grid { grid-template-columns: 1fr; }
@@ -314,18 +294,14 @@
       .hero-canvas { min-height: auto; background-position: 67% center; }
       .hero-canvas::before { background: linear-gradient(180deg, rgba(243,245,248,.95) 0%, rgba(243,245,248,.92) 60%, rgba(243,245,248,.70) 100%); }
       .hero-shell { width: 100%; min-height: auto; border-radius: 0; padding: 82px 16px 24px; background: transparent; }
-      .hero-media { position: relative; width: 100%; right: auto; top: auto; transform: none; min-height: 250px; margin-top: 14px; }
-      .hero-dots { left: 10px; right: auto; bottom: 12px; transform: scale(.75); }
-      .hero-decor-star { left: 10px; top: 26px; }
-      .hero-decor-cross { left: 22px; top: 92px; }
+      .hero-media { position: relative; width: 100%; right: auto; top: auto; transform: none; min-height: auto; margin-top: 14px; }
+      .hero-dots { left: 10px; right: auto; bottom: 12px; transform: scale(.72); }
     }
   </style>
 
   <div class="rb-hero section">
     <div class="container">
       <div class="hero-canvas">
-        <div class="hero-decor-star"><i class="fa-solid fa-asterisk"></i></div>
-        <div class="hero-decor-cross"><i class="fa-solid fa-xmark"></i></div>
         <div class="hero-shell">
           <div class="hero-grid">
             <div>
@@ -341,29 +317,8 @@
           </div>
         </div>
         <div class="hero-media" aria-hidden="true">
-          <div class="resume-card primary">
-            <div class="bar"></div>
-            <div class="paper">
-              <div class="line lg"></div>
-              <div class="line" style="width:56%"></div>
-              <div class="line" style="width:90%; margin-top: 10px"></div>
-              <div class="line" style="width:93%"></div>
-              <div class="line" style="width:87%"></div>
-              <div class="line" style="width:62%"></div>
-              <div class="line" style="width:74%; margin-top: 10px"></div>
-            </div>
-          </div>
-          <div class="resume-card secondary">
-            <div class="bar"></div>
-            <div class="paper">
-              <div class="line lg"></div>
-              <div class="line" style="width:50%"></div>
-              <div class="line" style="width:92%; margin-top: 10px"></div>
-              <div class="line" style="width:95%"></div>
-              <div class="line" style="width:84%"></div>
-              <div class="line" style="width:70%"></div>
-              <div class="line" style="width:90%; margin-top: 10px"></div>
-            </div>
+          <div class="hero-resume-shot">
+            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=860&q=80" alt="Resume sample preview">
           </div>
         </div>
         <div class="hero-dots"></div>
