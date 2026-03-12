@@ -144,6 +144,13 @@
     .sec-head h2 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.01em; }
     .sec-head p { margin: 0; color: var(--muted); }
 
+    .template-showcase {
+      background: linear-gradient(180deg, #f9fbff, #f2f7ff);
+      border-radius: 18px;
+      border: 1px solid #deebff;
+      padding: 18px;
+      box-shadow: inset 0 1px 0 #fff;
+    }
     .template-slider {
       display: grid;
       grid-auto-flow: column;
@@ -152,7 +159,10 @@
       overflow-x: auto;
       padding-bottom: 8px;
       scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
     }
+    .template-slider::-webkit-scrollbar { display: none; }
     .template-card {
       background: var(--card);
       border: 1px solid #dbe7fb;
@@ -176,6 +186,10 @@
       cursor: pointer;
       font-weight: 600;
     }
+
+    .template-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .template-dot { width: 9px; height: 9px; border-radius: 50%; background: #b8c8ea; border: 0; cursor: pointer; padding: 0; }
+    .template-dot.active { background: #1f5eb8; transform: scale(1.12); }
 
     .feature-grid {
       display: grid;
@@ -332,17 +346,20 @@
         <h2>Choose from 10 Professional Resume Templates</h2>
         <p>Each template is ATS-friendly and can be switched anytime.</p>
       </div>
-      <div class="template-slider">
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Modern ATS</h4><button class="choose-btn" data-template="t1">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Classic Pro</h4><button class="choose-btn" data-template="t2">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Purple Edge</h4><button class="choose-btn" data-template="t3">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Emerald Clean</h4><button class="choose-btn" data-template="t4">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Bold Orange</h4><button class="choose-btn" data-template="t5">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Executive Red</h4><button class="choose-btn" data-template="t6">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Skyline Blue</h4><button class="choose-btn" data-template="t7">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Royal Indigo</h4><button class="choose-btn" data-template="t8">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Olive Minimal</h4><button class="choose-btn" data-template="t9">Choose</button></div></div>
-        <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Slate Corporate</h4><button class="choose-btn" data-template="t10">Choose</button></div></div>
+      <div class="template-showcase">
+        <div class="template-slider" id="templateSlider">
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Modern ATS</h4><button class="choose-btn" data-template="t1">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Classic Pro</h4><button class="choose-btn" data-template="t2">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Purple Edge</h4><button class="choose-btn" data-template="t3">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Emerald Clean</h4><button class="choose-btn" data-template="t4">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Bold Orange</h4><button class="choose-btn" data-template="t5">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Executive Red</h4><button class="choose-btn" data-template="t6">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Skyline Blue</h4><button class="choose-btn" data-template="t7">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Royal Indigo</h4><button class="choose-btn" data-template="t8">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Olive Minimal</h4><button class="choose-btn" data-template="t9">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Slate Corporate</h4><button class="choose-btn" data-template="t10">Choose</button></div></div>
+        </div>
+        <div class="template-dots" id="templateDots" aria-label="Template slider indicators"></div>
       </div>
     </div>
   </div>
@@ -558,6 +575,58 @@
         builder.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
+      function initTemplateAutoSlider(){
+        const slider = $('templateSlider');
+        const dotsWrap = $('templateDots');
+        if (!slider || !dotsWrap) return;
+        const cards = Array.from(slider.querySelectorAll('.template-card'));
+        if (!cards.length) return;
+
+        let activeIndex = 0;
+        let timer = null;
+
+        const dots = cards.map((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'template-dot';
+          dot.setAttribute('aria-label', `Go to template ${i + 1}`);
+          dot.addEventListener('click', () => {
+            activeIndex = i;
+            goTo(activeIndex);
+            restart();
+          });
+          dotsWrap.appendChild(dot);
+          return dot;
+        });
+
+        function paintDots(){
+          dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+        }
+
+        function goTo(index){
+          const card = cards[index];
+          if (!card) return;
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          paintDots();
+        }
+
+        function next(){
+          activeIndex = (activeIndex + 1) % cards.length;
+          goTo(activeIndex);
+        }
+
+        function restart(){
+          clearInterval(timer);
+          timer = setInterval(next, 2400);
+        }
+
+        slider.addEventListener('mouseenter', () => clearInterval(timer));
+        slider.addEventListener('mouseleave', restart);
+
+        goTo(0);
+        restart();
+      }
+
       document.querySelectorAll('#rb-landing-widget .choose-btn').forEach(btn=>{
         btn.addEventListener('click', ()=> openBuilder(btn.dataset.template || 't1'));
       });
@@ -601,6 +670,7 @@
       });
 
       form.addEventListener('input', updatePreview);
+      initTemplateAutoSlider();
       updatePreview();
     })();
   </script>
