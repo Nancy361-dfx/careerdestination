@@ -1,0 +1,707 @@
+<div id="rb-landing-widget">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    #rb-landing-widget * { box-sizing: border-box; }
+    #rb-landing-widget {
+      --bg: #f3f8ff;
+      --text: #0f172a;
+      --muted: #5f6b86;
+      --primary: #1f5eb8;
+      --primary-2: #0e3f86;
+      --accent: #ffb000;
+      --card: #ffffff;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+    #rb-landing-widget .container { width: min(1240px, 94%); margin: 0 auto; }
+    #rb-landing-widget .section { padding: 72px 0; }
+
+    .rb-hero {
+      position: relative;
+      padding: 28px 0 66px;
+      overflow: hidden;
+      background: #f3f8ff;
+    }
+    .hero-canvas {
+      position: relative;
+      min-height: 600px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #d4e2fb;
+      box-shadow: 0 18px 44px rgba(18, 53, 110, .16);
+      background-image: linear-gradient(100deg, rgba(12, 43, 96, 0.15), rgba(12, 43, 96, 0.02) 58%), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(243,245,248,.96) 0%, rgba(243,245,248,.95) 54%, rgba(243,245,248,0) 78%);
+      z-index: 1;
+    }
+    .hero-shell {
+      position: relative;
+      z-index: 2;
+      width: min(61%, 760px);
+      min-height: 600px;
+      border-radius: 0 300px 300px 0;
+      padding: clamp(38px, 5vw, 86px) clamp(20px, 3vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #eff1f5;
+    }
+    .hero-grid { max-width: 620px; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border: 1px solid #d6e3fb;
+      border-radius: 99px;
+      background: #ffffff;
+      color: #2d4e88;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .rb-hero h1 { font-size: clamp(36px, 5.2vw, 72px); margin: 0 0 14px; line-height: 1.08; letter-spacing: -.02em; max-width: 560px; }
+    .rb-hero p { margin: 0 0 24px; color: #1f2f47; font-size: clamp(18px, 2vw, 35px); line-height: 1.45; max-width: 600px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .rb-cta {
+      border: 0;
+      background: linear-gradient(135deg, #0feba5, #03c988);
+      color: #072018;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 14px;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+    .rb-cta.ghost {
+      background: #f5f7fa;
+      color: #0f172a;
+      border: 2px solid #111827;
+    }
+    .rb-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(8,116,181,.22); }
+    .hero-tag {
+      display: inline-flex;
+      margin-top: 12px;
+      border-radius: 99px;
+      background: #ffd88f;
+      color: #523101;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      animation: pulseTag 2.6s ease-in-out infinite;
+    }
+    @keyframes pulseTag { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+
+    .hero-media {
+      position: absolute;
+      right: clamp(10px, 3vw, 34px);
+      top: 54%;
+      transform: translateY(-48%);
+      width: min(43%, 580px);
+      min-height: 430px;
+      z-index: 3;
+    }
+    .hero-resume-stack {
+      position: relative;
+      width: 100%;
+      min-height: 430px;
+    }
+    .hero-resume-card {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 10px;
+      border-top: 8px solid #d15454;
+      background: #fff;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, .34);
+    }
+    .hero-resume-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .hero-resume-card.back {
+      width: 43%;
+      left: 0;
+      bottom: 38px;
+      z-index: 1;
+      opacity: .95;
+      transform: rotate(-.8deg);
+    }
+    .hero-resume-card.front {
+      width: 86%;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      animation: floatCard 4.6s ease-in-out infinite;
+    }
+    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
+
+    .hero-dots {
+      position: absolute;
+      left: -6px;
+      bottom: 8px;
+      width: 170px;
+      height: 104px;
+      background-image: radial-gradient(circle, #8f61fb 5px, transparent 5px);
+      background-size: 26px 26px;
+      opacity: .8;
+      z-index: 3;
+    }
+
+
+    .sec-head { text-align: center; margin-bottom: 26px; }
+    .sec-head h2 { margin: 0 0 8px; font-size: 34px; letter-spacing: -.01em; }
+    .sec-head p { margin: 0; color: var(--muted); }
+
+    .template-showcase {
+      background: linear-gradient(180deg, #f9fbff, #f2f7ff);
+      border-radius: 18px;
+      border: 1px solid #deebff;
+      padding: 18px;
+      box-shadow: inset 0 1px 0 #fff;
+    }
+    .template-slider {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 300px);
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    .template-slider::-webkit-scrollbar { display: none; }
+    .template-card {
+      background: var(--card);
+      border: 1px solid #dbe7fb;
+      border-radius: 14px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .template-card:hover { transform: translateY(-4px); box-shadow: 0 20px 38px rgba(15,23,42,.16); }
+    .template-thumb { height: 190px; background-size: cover; background-position: top center; border-bottom: 1px solid #e4edf9; }
+    .template-body { padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .template-body h4 { margin: 0; font-size: 14px; }
+    .choose-btn {
+      border: 0;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      padding: 8px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .template-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .template-dot { width: 9px; height: 9px; border-radius: 50%; background: #b8c8ea; border: 0; cursor: pointer; padding: 0; }
+    .template-dot.active { background: #1f5eb8; transform: scale(1.12); }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid #dde8fb;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(15,23,42,.05);
+    }
+    .feature-card i { color: var(--primary); font-size: 20px; margin-bottom: 10px; }
+    .feature-card h5 { margin: 0 0 6px; font-size: 14px; }
+
+    .proof {
+      background: linear-gradient(90deg, #0c3574, #1f5eb8);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      box-shadow: 0 18px 34px rgba(14, 63, 134, .28);
+    }
+
+    .builder { display: none; }
+    .builder.active { display: block; }
+    .rb-builder-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid #dce7f8;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(15,23,42,.05);
+    }
+    .panel h3 { margin: 0 0 12px; font-size: 20px; }
+    .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field { margin-bottom: 10px; }
+    .field label { display:block; margin-bottom:4px; font-size: 12px; font-weight:600; color:#334155; }
+    .field input, .field textarea {
+      width: 100%;
+      border: 1px solid #c8d7ee;
+      border-radius: 8px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      background: #fff;
+    }
+    .field textarea { min-height: 76px; resize: vertical; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    .btn { border:0; border-radius: 8px; padding: 10px 13px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .btn.primary { background: var(--primary); color: #fff; }
+    .btn.dark { background: #0f172a; color: #fff; }
+    .btn.alt { background: #f59e0b; color: #111827; }
+    .btn.ai { background: #7c3aed; color: #fff; }
+
+    .resume-preview-wrap { border: 1px dashed #cbd5e1; border-radius: 10px; padding: 8px; background:#f8fafc; }
+    #resumeDoc {
+      --tpl-accent: #2563eb;
+      --tpl-heading: #1e3a8a;
+      --tpl-font: Inter, Arial, sans-serif;
+      --tpl-border: #e2e8f0;
+      background:#fff;
+      min-height: 640px;
+      padding: 22px;
+      font-size: 13px;
+      color:#0f172a;
+      font-family: var(--tpl-font);
+      border-left: 6px solid var(--tpl-accent);
+    }
+    #resumeDoc h1 { margin: 0; font-size: 30px; line-height: 1.1; }
+    #resumeDoc .r-title { font-weight: 600; color: #334155; margin-top: 4px; }
+    #resumeDoc .meta { display:flex; gap:12px; flex-wrap:wrap; margin-top: 10px; color:#475569; font-size:12px; }
+    #resumeDoc .meta i { margin-right: 5px; }
+    #resumeDoc section { margin-top: 14px; }
+    #resumeDoc h4 { font-size: 12px; letter-spacing: .8px; text-transform: uppercase; margin: 0 0 6px; color:var(--tpl-heading); }
+    #resumeDoc p { margin: 0; white-space: pre-line; }
+    #resumeDoc ul { margin: 0; padding-left: 18px; }
+    #resumeDoc .head { border-bottom: 1px solid var(--tpl-border); padding-bottom: 10px; }
+
+    #resumeDoc.t1 { --tpl-accent:#1d4ed8; --tpl-heading:#1d4ed8; }
+    #resumeDoc.t2 { --tpl-accent:#0f172a; --tpl-heading:#0f172a; --tpl-font:Georgia,'Times New Roman',serif; }
+    #resumeDoc.t3 { --tpl-accent:#9333ea; --tpl-heading:#6d28d9; }
+    #resumeDoc.t4 { --tpl-accent:#059669; --tpl-heading:#047857; }
+    #resumeDoc.t5 { --tpl-accent:#ea580c; --tpl-heading:#c2410c; }
+    #resumeDoc.t6 { --tpl-accent:#be123c; --tpl-heading:#9f1239; }
+    #resumeDoc.t7 { --tpl-accent:#0ea5e9; --tpl-heading:#0369a1; }
+    #resumeDoc.t8 { --tpl-accent:#4f46e5; --tpl-heading:#3730a3; }
+    #resumeDoc.t9 { --tpl-accent:#4d7c0f; --tpl-heading:#3f6212; }
+    #resumeDoc.t10 { --tpl-accent:#334155; --tpl-heading:#0f172a; }
+
+    .status { font-size: 12px; color:#64748b; margin-top: 8px; min-height: 16px; }
+
+    @media (max-width: 1100px) {
+      .feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .rb-builder-wrap { grid-template-columns: 1fr; }
+      .hero-canvas { min-height: 640px; }
+      .hero-shell { width: 100%; border-radius: 0; min-height: 640px; padding-right: 42%; }
+      .hero-media { width: 48%; min-height: 320px; right: 20px; top: 58%; }
+      .hero-resume-card.back { width: 40%; bottom: 22px; }
+      .hero-resume-card.front { width: 88%; }
+      .hero-dots { left: -4px; bottom: 2px; transform: scale(.78); }
+    }
+    @media (max-width: 700px) {
+      .f-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .sec-head h2 { font-size: 26px; }
+      .proof { font-size: 19px; }
+      .hero-canvas { min-height: auto; background-position: 67% center; }
+      .hero-canvas::before { background: linear-gradient(180deg, rgba(243,245,248,.95) 0%, rgba(243,245,248,.92) 60%, rgba(243,245,248,.70) 100%); }
+      .hero-shell { width: 100%; min-height: auto; border-radius: 0; padding: 82px 16px 24px; background: transparent; }
+      .hero-media { position: relative; width: 100%; right: auto; top: auto; transform: none; min-height: auto; margin-top: 14px; }
+      .hero-resume-stack { min-height: 300px; }
+      .hero-resume-card.back { width: 42%; bottom: 10px; }
+      .hero-resume-card.front { width: 88%; }
+      .hero-dots { left: -6px; right: auto; bottom: -6px; transform: scale(.66); }
+    }
+  </style>
+
+  <div class="rb-hero section">
+    <div class="container">
+      <div class="hero-canvas">
+        <div class="hero-shell">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-badge"><i class="fa-solid fa-bolt"></i> ATS + AI Powered Resume Builder</div>
+              <h1>The CV that gets<br>the job… done</h1>
+              <p>Build a new CV or improve your existing one with step-by-step expert guidance.</p>
+              <div class="hero-actions">
+                <button class="rb-cta" id="scrollToTemplates">Create your CV</button>
+                <button class="rb-cta ghost" id="scrollToBuilder">Upgrade a CV</button>
+              </div>
+              <div class="hero-tag"><i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;AI-powered</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-resume-stack">
+            <div class="hero-resume-card back">
+              <img src="https://careersdestination.com/wp-content/uploads/2026/03/Black-Simple-Highschool-Teacher-Resume.png" alt="Resume template side preview">
+            </div>
+            <div class="hero-resume-card front">
+              <img src="https://careersdestination.com/wp-content/uploads/2026/03/Professional-CV-Resume.png" alt="Resume template main preview">
+            </div>
+            <div class="hero-dots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="templateSection">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Choose from 10 Professional Resume Templates</h2>
+        <p>Each template is ATS-friendly and can be switched anytime.</p>
+      </div>
+      <div class="template-showcase">
+        <div class="template-slider" id="templateSlider">
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Modern ATS</h4><button class="choose-btn" data-template="t1">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Classic Pro</h4><button class="choose-btn" data-template="t2">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Purple Edge</h4><button class="choose-btn" data-template="t3">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Emerald Clean</h4><button class="choose-btn" data-template="t4">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521790797524-b2497295b8a0?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Bold Orange</h4><button class="choose-btn" data-template="t5">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Executive Red</h4><button class="choose-btn" data-template="t6">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Skyline Blue</h4><button class="choose-btn" data-template="t7">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Royal Indigo</h4><button class="choose-btn" data-template="t8">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Olive Minimal</h4><button class="choose-btn" data-template="t9">Choose</button></div></div>
+          <div class="template-card"><div class="template-thumb" style="background-image:url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=900&q=80');"></div><div class="template-body"><h4>Slate Corporate</h4><button class="choose-btn" data-template="t10">Choose</button></div></div>
+        </div>
+        <div class="template-dots" id="templateDots" aria-label="Template slider indicators"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="sec-head"><h2>Why Candidates Love This Builder</h2></div>
+      <div class="feature-grid">
+        <div class="feature-card"><i class="fa-solid fa-wand-magic-sparkles"></i><h5>AI content improve</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-check-double"></i><h5>ATS friendly templates</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-download"></i><h5>One click PDF export</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-pen-to-square"></i><h5>Live editing preview</h5></div>
+        <div class="feature-card"><i class="fa-solid fa-layer-group"></i><h5>10 professional layouts</h5></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="proof">Trusted by job seekers to create high-converting resumes quickly.</div>
+    </div>
+  </div>
+
+  <div class="section builder" id="builderSection">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Resume Builder Tool</h2>
+        <p>WordPress HTML widget friendly: copy-paste this block and update your Web3Forms access key.</p>
+      </div>
+      <div class="rb-builder-wrap">
+        <div class="panel">
+          <h3>Fill Your Details</h3>
+          <form id="rbForm">
+            <div class="f-grid">
+              <div class="field"><label>Name</label><input id="fName" name="name" placeholder="John Doe"></div>
+              <div class="field"><label>Professional Title</label><input id="fTitle" name="professional_title" placeholder="Frontend Developer"></div>
+              <div class="field"><label>Email</label><input id="fEmail" name="email" type="email" placeholder="john@email.com"></div>
+              <div class="field"><label>Phone</label><input id="fPhone" name="phone" placeholder="+91 98xxxxxx"></div>
+              <div class="field"><label>Location</label><input id="fLocation" name="location" placeholder="Noida, India"></div>
+              <div class="field"><label>Skills (comma separated)</label><input id="fSkills" name="skills" placeholder="HTML, CSS, JavaScript"></div>
+            </div>
+            <div class="field"><label>Summary</label><textarea id="fSummary" name="summary" placeholder="Write a short summary"></textarea></div>
+            <div class="field"><label>Experience</label><textarea id="fExperience" name="experience" placeholder="Company - Role - Duration"></textarea></div>
+            <div class="field"><label>Education</label><textarea id="fEducation" name="education" placeholder="Degree - University - Year"></textarea></div>
+            <div class="field"><label>Projects</label><textarea id="fProjects" name="projects" placeholder="Project name - stack - impact"></textarea></div>
+            <div class="field"><label>Certifications</label><textarea id="fCertifications" name="certifications" placeholder="Certifications"></textarea></div>
+            <div class="actions">
+              <button type="button" class="btn primary" id="generateBtn">Generate Resume</button>
+              <button type="button" class="btn ai" id="aiBtn">AI Improve Content</button>
+              <button type="button" class="btn alt" id="switchBtn">Switch Template</button>
+              <button type="button" class="btn dark" id="pdfBtn">Download Resume as PDF</button>
+            </div>
+            <div class="status" id="status"></div>
+          </form>
+
+          <form id="notifyForm" style="display:none;">
+            <input type="hidden" name="access_key" id="w3AccessKey" value="REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="Resume Builder Submission">
+            <input type="hidden" name="message" id="nMessage" value="A user interacted with resume builder.">
+            <input type="hidden" name="tool" value="Resume Builder">
+            <input type="hidden" name="name" id="nName" value="Anonymous User">
+            <input type="hidden" name="email" id="nEmail" value="no-email@provided.com">
+            <input type="hidden" name="phone" id="nPhone" value="not-provided">
+            <input type="hidden" name="action" id="nAction" value="generate">
+            <input type="hidden" name="selected_template" id="nTemplate" value="t1">
+            <input type="hidden" name="source_url" id="nSourceUrl" value="">
+            <input type="hidden" name="submitted_at" id="nSubmittedAt" value="">
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>Live Resume Preview</h3>
+          <div class="resume-preview-wrap">
+            <div id="resumeDoc" class="t1">
+              <div class="head">
+                <h1 id="pName">Your Name</h1>
+                <div class="r-title" id="pTitle">Professional Title</div>
+                <div class="meta">
+                  <div><i class="fa-solid fa-envelope"></i><span id="pEmail">email@example.com</span></div>
+                  <div><i class="fa-solid fa-phone"></i><span id="pPhone">+00 0000000000</span></div>
+                  <div><i class="fa-solid fa-location-dot"></i><span id="pLocation">Location</span></div>
+                </div>
+              </div>
+              <section><h4>Summary</h4><p id="pSummary">Summary appears here.</p></section>
+              <section><h4><i class="fa-solid fa-screwdriver-wrench"></i> Skills</h4><ul id="pSkills"><li>Add skills</li></ul></section>
+              <section><h4>Experience</h4><p id="pExperience">Experience appears here.</p></section>
+              <section><h4>Education</h4><p id="pEducation">Education appears here.</p></section>
+              <section><h4>Projects</h4><p id="pProjects">Projects appear here.</p></section>
+              <section><h4>Certifications</h4><p id="pCertifications">Certifications appear here.</p></section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const $ = (id) => document.getElementById(id);
+      const builder = $('builderSection');
+      const resumeDoc = $('resumeDoc');
+      const form = $('rbForm');
+      const status = $('status');
+      const templates = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10'];
+      let template = 't1';
+      let lastSentSignature = '';
+
+      function updatePreview(){
+        const map = [
+          ['fName','pName','Your Name'],
+          ['fTitle','pTitle','Professional Title'],
+          ['fEmail','pEmail','email@example.com'],
+          ['fPhone','pPhone','+00 0000000000'],
+          ['fLocation','pLocation','Location'],
+          ['fSummary','pSummary','Summary appears here.'],
+          ['fExperience','pExperience','Experience appears here.'],
+          ['fEducation','pEducation','Education appears here.'],
+          ['fProjects','pProjects','Projects appear here.'],
+          ['fCertifications','pCertifications','Certifications appear here.']
+        ];
+        map.forEach(([f,t,fb])=>{ const v=($(f).value||'').trim(); $(t).textContent=v||fb; });
+
+        const skills = ($('fSkills').value||'').split(',').map(s=>s.trim()).filter(Boolean);
+        $('pSkills').innerHTML = skills.length ? skills.map(s=>`<li>${s}</li>`).join('') : '<li>Add skills</li>';
+      }
+
+      function aiEnhanceContent(){
+        const name = ($('fName').value || 'Candidate').trim();
+        const title = ($('fTitle').value || 'professional').trim();
+        const skillsList = ($('fSkills').value || 'communication, teamwork, problem solving').split(',').map(s => s.trim()).filter(Boolean);
+
+        if (!$('fSummary').value.trim()) {
+          $('fSummary').value = `${name} is a results-driven ${title} with strong focus on quality delivery and measurable outcomes. Skilled in ${skillsList.slice(0,3).join(', ')}, and known for ownership, collaboration, and continuous improvement.`;
+        }
+
+        if ($('fExperience').value.trim() && !$('fExperience').value.includes('•')) {
+          $('fExperience').value = $('fExperience').value.split('\n').filter(Boolean).map(line => `• ${line.trim()}`).join('\n');
+        }
+
+        if ($('fProjects').value.trim() && !$('fProjects').value.includes('•')) {
+          $('fProjects').value = $('fProjects').value.split('\n').filter(Boolean).map(line => `• ${line.trim()}`).join('\n');
+        }
+
+        if (!$('fCertifications').value.trim()) {
+          $('fCertifications').value = '• Google Career Essentials\n• LinkedIn Learning Professional Certificate';
+        }
+
+        updatePreview();
+        status.textContent = 'AI assist applied: summary and content improved.';
+      }
+
+      async function sendNotify(actionType){
+        const accessKey = $('w3AccessKey').value.trim();
+        if (!accessKey || accessKey === 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY') {
+          status.textContent = 'Add your valid Web3Forms access key to receive resume builder leads.';
+          return;
+        }
+
+        const payloadSignature = [
+          ($('fName').value || '').trim(),
+          ($('fEmail').value || '').trim(),
+          ($('fPhone').value || '').trim(),
+          actionType,
+          template
+        ].join('|');
+
+        if (actionType === 'generate' && payloadSignature === lastSentSignature) {
+          return;
+        }
+        lastSentSignature = payloadSignature;
+
+        $('nName').value = ($('fName').value || 'Anonymous User').trim();
+        $('nEmail').value = ($('fEmail').value || 'no-email@provided.com').trim();
+        $('nPhone').value = ($('fPhone').value || 'not-provided').trim();
+        $('nAction').value = actionType;
+        $('nTemplate').value = template;
+        $('nSourceUrl').value = window.location.href;
+        $('nSubmittedAt').value = new Date().toISOString();
+        $('nMessage').value = [
+          `Action: ${actionType}`,
+          `Template: ${template}`,
+          `Name: ${$('fName').value || 'N/A'}`,
+          `Email: ${$('fEmail').value || 'N/A'}`,
+          `Phone: ${$('fPhone').value || 'N/A'}`,
+          `Title: ${$('fTitle').value || 'N/A'}`,
+          `Location: ${$('fLocation').value || 'N/A'}`,
+          `Skills: ${$('fSkills').value || 'N/A'}`
+        ].join('\n');
+
+        const fd = new FormData($('notifyForm'));
+        ['fSummary', 'fExperience', 'fEducation', 'fProjects', 'fCertifications'].forEach((fieldId) => {
+          fd.append(fieldId.replace('f', '').toLowerCase(), ($(fieldId).value || '').trim());
+        });
+
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+          if (!response.ok) throw new Error('Web3Forms request failed');
+        } catch(e){
+          console.warn('Web3 notify failed', e);
+          status.textContent = 'Resume generated, but lead notification failed. Check access key/internet.';
+        }
+      }
+
+      function applyTemplate(tpl){
+        template = tpl || template;
+        resumeDoc.classList.remove(...templates);
+        resumeDoc.classList.add(template);
+      }
+
+      function openBuilder(tpl){
+        builder.classList.add('active');
+        applyTemplate(tpl);
+        builder.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function initTemplateAutoSlider(){
+        const slider = $('templateSlider');
+        const dotsWrap = $('templateDots');
+        if (!slider || !dotsWrap) return;
+        const cards = Array.from(slider.querySelectorAll('.template-card'));
+        if (!cards.length) return;
+
+        let activeIndex = 0;
+        let timer = null;
+
+        const dots = cards.map((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'template-dot';
+          dot.setAttribute('aria-label', `Go to template ${i + 1}`);
+          dot.addEventListener('click', () => {
+            activeIndex = i;
+            goTo(activeIndex);
+            restart();
+          });
+          dotsWrap.appendChild(dot);
+          return dot;
+        });
+
+        function paintDots(){
+          dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+        }
+
+        function goTo(index){
+          const card = cards[index];
+          if (!card) return;
+          card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          paintDots();
+        }
+
+        function next(){
+          activeIndex = (activeIndex + 1) % cards.length;
+          goTo(activeIndex);
+        }
+
+        function restart(){
+          clearInterval(timer);
+          timer = setInterval(next, 2400);
+        }
+
+        slider.addEventListener('mouseenter', () => clearInterval(timer));
+        slider.addEventListener('mouseleave', restart);
+
+        goTo(0);
+        restart();
+      }
+
+      document.querySelectorAll('#rb-landing-widget .choose-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=> openBuilder(btn.dataset.template || 't1'));
+      });
+
+      $('scrollToTemplates').addEventListener('click', ()=> {
+        $('templateSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      $('scrollToBuilder').addEventListener('click', ()=> {
+        openBuilder(template);
+      });
+
+      $('aiBtn').addEventListener('click', async ()=>{
+        aiEnhanceContent();
+        await sendNotify('ai_enhance');
+      });
+
+      $('generateBtn').addEventListener('click', async ()=>{
+        updatePreview();
+        status.textContent = 'Resume generated successfully.';
+        await sendNotify('generate');
+      });
+
+      $('switchBtn').addEventListener('click', ()=>{
+        const idx = templates.indexOf(template);
+        const next = templates[(idx + 1) % templates.length];
+        applyTemplate(next);
+        status.textContent = `Template switched to ${next.toUpperCase()}.`;
+      });
+
+      $('pdfBtn').addEventListener('click', async ()=>{
+        updatePreview();
+        await sendNotify('download_pdf');
+        html2pdf().set({
+          margin: 0.25,
+          filename: 'resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        }).from(resumeDoc).save();
+      });
+
+      form.addEventListener('input', updatePreview);
+      initTemplateAutoSlider();
+      updatePreview();
+    })();
+  </script>
+</div>
