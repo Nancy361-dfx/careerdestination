@@ -107,36 +107,56 @@
       right: clamp(10px, 3vw, 34px);
       top: 54%;
       transform: translateY(-48%);
-      width: min(41%, 560px);
-      min-height: 420px;
+      width: min(43%, 580px);
+      min-height: 430px;
       z-index: 3;
     }
-    .hero-resume-shot {
+    .hero-resume-stack {
+      position: relative;
       width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 16px 36px rgba(15, 23, 42, .34);
-      border-top: 8px solid #d15454;
-      overflow: hidden;
-      background: #fff;
-      animation: floatCard 4.6s ease-in-out infinite;
+      min-height: 430px;
     }
-    .hero-resume-shot img {
+    .hero-resume-card {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 10px;
+      border-top: 8px solid #d15454;
+      background: #fff;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, .34);
+    }
+    .hero-resume-card img {
       width: 100%;
       display: block;
       object-fit: cover;
+      object-position: top center;
+    }
+    .hero-resume-card.back {
+      width: 43%;
+      left: 0;
+      bottom: 38px;
+      z-index: 1;
+      opacity: .95;
+      transform: rotate(-.8deg);
+    }
+    .hero-resume-card.front {
+      width: 86%;
+      right: 0;
+      top: 0;
+      z-index: 2;
+      animation: floatCard 4.6s ease-in-out infinite;
     }
     @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)} }
 
     .hero-dots {
       position: absolute;
-      right: 24%;
-      bottom: 48px;
+      left: -6px;
+      bottom: 8px;
       width: 170px;
       height: 104px;
       background-image: radial-gradient(circle, #8f61fb 5px, transparent 5px);
       background-size: 26px 26px;
-      opacity: .65;
-      z-index: 2;
+      opacity: .8;
+      z-index: 3;
     }
 
 
@@ -298,7 +318,9 @@
       .hero-canvas { min-height: 640px; }
       .hero-shell { width: 100%; border-radius: 0; min-height: 640px; padding-right: 42%; }
       .hero-media { width: 48%; min-height: 320px; right: 20px; top: 58%; }
-      .hero-dots { right: 20%; bottom: 32px; transform: scale(.88); }
+      .hero-resume-card.back { width: 40%; bottom: 22px; }
+      .hero-resume-card.front { width: 88%; }
+      .hero-dots { left: -4px; bottom: 2px; transform: scale(.78); }
     }
     @media (max-width: 700px) {
       .f-grid { grid-template-columns: 1fr; }
@@ -309,7 +331,10 @@
       .hero-canvas::before { background: linear-gradient(180deg, rgba(243,245,248,.95) 0%, rgba(243,245,248,.92) 60%, rgba(243,245,248,.70) 100%); }
       .hero-shell { width: 100%; min-height: auto; border-radius: 0; padding: 82px 16px 24px; background: transparent; }
       .hero-media { position: relative; width: 100%; right: auto; top: auto; transform: none; min-height: auto; margin-top: 14px; }
-      .hero-dots { left: 10px; right: auto; bottom: 12px; transform: scale(.72); }
+      .hero-resume-stack { min-height: 300px; }
+      .hero-resume-card.back { width: 42%; bottom: 10px; }
+      .hero-resume-card.front { width: 88%; }
+      .hero-dots { left: -6px; right: auto; bottom: -6px; transform: scale(.66); }
     }
   </style>
 
@@ -331,11 +356,16 @@
           </div>
         </div>
         <div class="hero-media" aria-hidden="true">
-          <div class="hero-resume-shot">
-            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=860&q=80" alt="Resume sample preview">
+          <div class="hero-resume-stack">
+            <div class="hero-resume-card back">
+              <img src="https://careersdestination.com/wp-content/uploads/2026/03/Black-Simple-Highschool-Teacher-Resume.png" alt="Resume template side preview">
+            </div>
+            <div class="hero-resume-card front">
+              <img src="https://careersdestination.com/wp-content/uploads/2026/03/Professional-CV-Resume.png" alt="Resume template main preview">
+            </div>
+            <div class="hero-dots"></div>
           </div>
         </div>
-        <div class="hero-dots"></div>
       </div>
     </div>
   </div>
